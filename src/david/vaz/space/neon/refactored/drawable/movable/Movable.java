@@ -4,5 +4,5 @@ public interface Movable {
 
     boolean cantMove();
 
-    void update();
+    void move();
 }

@@ -2,7 +2,6 @@ package david.vaz.space.neon.refactored.game;
 
 public final class Game {
 
-    private Player player;
     private boolean running;
 
     public Game(Player player) {

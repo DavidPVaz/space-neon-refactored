@@ -19,7 +19,7 @@ public abstract class AbstractMovable extends AbstractDrawable implements Movabl
 
     //needs to be implemented in subclasses
     @Override
-    public void update() {
+    public void move() {
 
         if (cantMove()) {
             return;
