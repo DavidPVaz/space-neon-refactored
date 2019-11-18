@@ -1,4 +1,4 @@
-package david.vaz.space.neon.refactored.drawable.movable;
+package david.vaz.space.neon.refactored.drawable.entity;
 
 public interface Movable {
 

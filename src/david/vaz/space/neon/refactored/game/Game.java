@@ -1,7 +1,10 @@
 package david.vaz.space.neon.refactored.game;
 
+import david.vaz.space.neon.refactored.drawable.entity.hitable.Player;
+
 public final class Game {
 
+    private Player player;
     private boolean running;
 
     public Game(Player player) {
@@ -14,7 +17,7 @@ public final class Game {
     }
 
     public void loop() {
-        player.update();
+        player.move();
     }
 
     public boolean doesNotEnd() {
