@@ -2,10 +2,10 @@ package david.vaz.space.neon.refactored.drawable.entity.bullet;
 
 import david.vaz.space.neon.refactored.drawable.entity.AbstractEntity;
 import david.vaz.space.neon.refactored.drawable.entity.Collidable;
-import david.vaz.space.neon.refactored.drawable.entity.hitable.Player;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
 import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
-import david.vaz.space.neon.refactored.drawable.entity.hitable.Hittable;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.Hittable;
 
 public class Bullet extends AbstractEntity {
 

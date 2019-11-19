@@ -15,7 +15,6 @@ public abstract class AbstractEntity extends AbstractDrawable implements Movable
     public AbstractEntity(double x, double y, Image image, double speed) {
         super(x, y, image);
         this.speed = speed;
-        this.direction = null;
     }
 
     @Override
@@ -80,4 +79,5 @@ public abstract class AbstractEntity extends AbstractDrawable implements Movable
     protected double getSpeed() {
         return speed;
     }
+
 }

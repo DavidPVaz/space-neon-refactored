@@ -1,6 +1,6 @@
 package david.vaz.space.neon.refactored.game;
 
-import david.vaz.space.neon.refactored.drawable.entity.hitable.Player;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
 
 import java.util.*;
 

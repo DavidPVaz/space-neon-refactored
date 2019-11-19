@@ -1,9 +1,9 @@
-package david.vaz.space.neon.refactored.drawable.entity.hitable;
+package david.vaz.space.neon.refactored.drawable.entity.hittable;
 
 import david.vaz.space.neon.refactored.drawable.entity.AbstractEntity;
 import david.vaz.space.neon.refactored.drawable.entity.Collidable;
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
-import david.vaz.space.neon.refactored.drawable.entity.hitable.enemy.Enemy;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.Enemy;
 import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
 
@@ -44,6 +44,11 @@ public class Player extends AbstractEntity implements Hittable {
     @Override
     public void takeHit(int damage) {
         //will have a list of life icons and reduce that list when hit by a bullet or collide with an enemy
+    }
+
+    @Override
+    public boolean isDestroyed() {
+        return false; //will return the size of the life icons list
     }
 
     public void addBullet(Bullet.Type type) {
