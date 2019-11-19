@@ -2,13 +2,15 @@ package david.vaz.space.neon.refactored.game;
 
 import david.vaz.space.neon.refactored.drawable.entity.hitable.Player;
 
+import java.util.*;
+
 public final class Game {
 
-    private Player player;
+    private List<Player> players;
     private boolean running;
 
-    public Game(Player player) {
-        this.player = player;
+    public Game(Player ...players) {
+        this.players = Arrays.asList(players);
         running = true;
     }
 
@@ -17,7 +19,7 @@ public final class Game {
     }
 
     public void loop() {
-        player.move();
+        players.forEach(Player::move);
     }
 
     public boolean doesNotEnd() {
@@ -29,7 +31,7 @@ public final class Game {
     }
 
     private void showContent() {
-        player.show();
+        players.forEach(Player::show);
     }
 
 }

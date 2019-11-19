@@ -54,6 +54,10 @@ public final class Engine implements KeyboardHandler {
         }
     }
 
+    public int getFPS() {
+        return currentFrames;
+    }
+
     public void play(Game game) {
 
         game.init();
@@ -83,7 +87,6 @@ public final class Engine implements KeyboardHandler {
             sleep(waitingValue);
             System.out.println(currentFrames + "FPS");
             System.out.println(lag > 0 ? "LAG: " + lag + "ms" : "Running smoothly");
-            System.out.printf("FPS are %s, and lag is %f",currentFrames, lag); //string format, with the arguments as varargs
         }
 
         game.end();

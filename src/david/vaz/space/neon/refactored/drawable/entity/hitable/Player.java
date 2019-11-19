@@ -7,20 +7,21 @@ import david.vaz.space.neon.refactored.drawable.entity.hitable.enemy.Enemy;
 import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Queue;
+
+import static david.vaz.space.neon.refactored.game.Constants.PLAYERS_INITIAL_SPEED;
 
 public class Player extends AbstractEntity implements Hittable {
 
     private final Queue<Bullet.Type> bullets;
     private final List<Direction> directions;
 
-    public Player(double x, double y, Image image, double speed) {
-        super(x, y, image, speed);
+    public Player(double x, double y, Image image) {
+        super(x, y, image, PLAYERS_INITIAL_SPEED);
         this.bullets = new LinkedList<>();
-        this.directions = new ArrayList<>();
+        this.directions = new LinkedList<>();
     }
 
     @Override
@@ -42,7 +43,7 @@ public class Player extends AbstractEntity implements Hittable {
 
     @Override
     public void takeHit(int damage) {
-        //will have a list of life icons and reduce that list when hit
+        //will have a list of life icons and reduce that list when hit by a bullet or collide with an enemy
     }
 
     public void addBullet(Bullet.Type type) {

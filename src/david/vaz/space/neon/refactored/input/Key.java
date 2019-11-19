@@ -5,9 +5,15 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import java.util.Arrays;
 
 public enum Key {
+    W(KeyboardEvent.KEY_W),
+    A(KeyboardEvent.KEY_A),
+    D(KeyboardEvent.KEY_D),
+    S(KeyboardEvent.KEY_S),
+    T(KeyboardEvent.KEY_T),
     UP(KeyboardEvent.KEY_UP),
     LEFT(KeyboardEvent.KEY_LEFT),
     RIGHT(KeyboardEvent.KEY_RIGHT),
+    DOWN(KeyboardEvent.KEY_DOWN),
     SPACE(KeyboardEvent.KEY_SPACE);
 
     private int keyCode;

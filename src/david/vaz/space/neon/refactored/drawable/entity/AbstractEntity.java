@@ -20,11 +20,6 @@ public abstract class AbstractEntity extends AbstractDrawable implements Movable
 
     @Override
     public void move() {
-
-        if (cantMove()) {
-            return;
-        }
-
         getPicture().translate(getDirection().getX() * getSpeed(), getDirection().getY() * getSpeed());
     }
 
