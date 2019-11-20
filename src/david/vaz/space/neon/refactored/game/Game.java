@@ -2,6 +2,8 @@ package david.vaz.space.neon.refactored.game;
 
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.Enemy;
+import david.vaz.space.neon.refactored.game.factories.EnemyGenerator;
 
 import java.util.*;
 
@@ -9,11 +11,13 @@ public final class Game {
 
     private List<Player> players;
     private List<Bullet> bullets;
+    private List<Enemy> enemies;
     private boolean running;
 
     public Game(Player ...players) {
         this.players = Arrays.asList(players);
         this.bullets = new LinkedList<>();
+        this.enemies = new LinkedList<>();
         running = true;
     }
 
@@ -22,8 +26,11 @@ public final class Game {
     }
 
     public void loop() {
+        generateEnemy();
+
         players.forEach(Player::move);
         players.forEach(this::shoot);
+        moveEnemies();
         moveBullets();
     }
 
@@ -32,7 +39,7 @@ public final class Game {
     }
 
     public void end() {
-        running = false;
+        running = false; //will return a match.all players are destroyed
     }
 
     private void showContent() {
@@ -41,6 +48,8 @@ public final class Game {
 
     private void shoot(Player player) {
 
+        //since booth players and enemies will shoot, i'll create a shootable interface
+        //and use varargs again to ask them all to shoot
         Bullet bullet = player.shoot();
 
         if (bullet == null) {
@@ -67,6 +76,39 @@ public final class Game {
 
             bullet.move();
 
+            //bullets will check if they collide with any of the players or any of the enemies
+        }
+    }
+
+    private void generateEnemy() {
+
+        Enemy enemy = EnemyGenerator.generateEnemy();
+
+        if (enemy == null) {
+            return;
+        }
+
+        enemies.add(enemy);
+        enemy.show();
+    }
+
+    private void moveEnemies() {
+
+        Iterator<Enemy> enemyIterator = enemies.iterator();
+
+        while (enemyIterator.hasNext()) {
+
+            Enemy enemy = enemyIterator.next();
+
+            if (enemy.cantMove()) {
+                enemy.hide();
+                enemyIterator.remove();
+                continue;
+            }
+
+            enemy.move();
+
+            //enemies will check if they collide with the player
         }
     }
 

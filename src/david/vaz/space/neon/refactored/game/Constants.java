@@ -10,6 +10,10 @@ public final class Constants {
     public final static double PLAYER_ONE_INITIAL_Y = 600;
     public final static double PLAYERS_INITIAL_SPEED = 7;
 
+    public final static double ENEMIES_STARTING_Y = PADDING;
+    private final static double ENEMIES_WIDTH = 25;
+    public final static double ENEMIES_MAX_X_SPAWN = SCREEN_WIDTH - ENEMIES_WIDTH - PADDING;
+
 
     private Constants() {
 
