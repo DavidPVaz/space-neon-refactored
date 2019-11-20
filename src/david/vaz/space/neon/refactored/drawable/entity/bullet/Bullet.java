@@ -29,8 +29,8 @@ public class Bullet extends AbstractEntity {
     }
 
     public enum Type {
-        GREEN(2, 7, Image.GREEN_BULLET),
-        BLUE(2, 4, Image.BLUE_BULLET),
+        GREEN(2, 10, Image.GREEN_BULLET),
+        BLUE(2, 10, Image.BLUE_BULLET),
         RED(2, 4, Image.RED_BULLET);
 
         private int damage;

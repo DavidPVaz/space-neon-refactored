@@ -8,7 +8,7 @@ public final class Constants {
 
     public final static double PLAYER_ONE_INITIAL_X = 400;
     public final static double PLAYER_ONE_INITIAL_Y = 600;
-    public final static double PLAYERS_INITIAL_SPEED = 10;
+    public final static double PLAYERS_INITIAL_SPEED = 7;
 
 
     private Constants() {

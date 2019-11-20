@@ -55,13 +55,13 @@ public class Player extends AbstractEntity implements Hittable {
         bullets.offer(type);
     }
 
-    public Bullet shoot() {
+    public Bullet shoot() { //maybe turn this into shared method with enemies
 
         if (bullets.isEmpty()) {
             return null;
         }
 
-        return new Bullet(getBulletXCoordinates(), getMinY(), bullets.poll(), this);
+        return new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), bullets.poll(), this);
     }
 
     public void addDirection(Direction direction) {
@@ -92,7 +92,11 @@ public class Player extends AbstractEntity implements Hittable {
     }
 
     private double getBulletXCoordinates() {
-        return getMinX() + (getPicture().getWidth() / 2);
+        return getMinX() + (getPicture().getWidth() / 6);
+    }
+
+    private double getBulletYCoordinates() {
+        return getMinY() - 10;
     }
 
 }
