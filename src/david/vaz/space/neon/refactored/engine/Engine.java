@@ -87,8 +87,8 @@ public final class Engine implements KeyboardHandler {
             long waitingValue = milliSecondsPerFrame - (System.currentTimeMillis() - startTime);
 
             sleep(waitingValue);
-            //System.out.println(currentFrames + "FPS");
-            //System.out.println(lag > 0 ? "LAG: " + lag + "ms" : "Running smoothly");
+            System.out.println(currentFrames + "FPS");
+            System.out.println(lag > 0 ? "LAG: " + lag + "ms" : "Running smoothly");
         }
 
         game.end();
@@ -147,7 +147,6 @@ public final class Engine implements KeyboardHandler {
         Key key = Key.withCode(keyboardEvent.getKey());
         inputs.remove(keyboardEvent.getKey());
         screen.process(new Input(key, Input.Type.KEY_RELEASE));
-
     }
 
     private enum State {

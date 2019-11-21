@@ -18,6 +18,7 @@ public class Player extends AbstractEntity implements Hittable {
 
     private final Queue<Bullet.Type> bullets;
     private final List<Direction> directions;
+    private boolean firing;
 
     public Player(double x, double y, Image image) {
         super(x, y, image, PLAYERS_INITIAL_SPEED);
@@ -52,17 +53,21 @@ public class Player extends AbstractEntity implements Hittable {
         return false; //will return the size of the life icons list
     }
 
-    public void addBullet(Bullet.Type type) {
-        bullets.offer(type);
+    public void fire() {
+        firing = true;
+    }
+
+    public void stopFiring() {
+        firing = false;
     }
 
     public Bullet shoot() { //maybe turn this into shared method with enemies
 
-        if (bullets.isEmpty()) {
+        if (!firing) {
             return null;
         }
 
-        return new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), bullets.poll(), this);
+        return new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), Bullet.Type.BLUE, this);
     }
 
     public void addDirection(Direction direction) {
@@ -85,12 +90,10 @@ public class Player extends AbstractEntity implements Hittable {
         }
 
         if (directions.size() == 2) {
-            System.out.println("size is 2");
             return Direction.resolveDiagonalDirection(directions.get(0), directions.get(1));
         }
-        System.out.println("size is one");
-        return directions.get(0);
 
+        return directions.get(0);
     }
 
     private double getBulletXCoordinates() {
