@@ -25,12 +25,12 @@ public abstract class Enemy extends AbstractEntity implements Hittable {
     }
 
     public enum Type {
-      REGULAR(Image.NORMAL_ENEMY, 3, 6),
-      DIAMOND(Image.DIAMOND_ENEMY, 5, 6);
+        REGULAR(Image.NORMAL_ENEMY, 3, 6),
+        DIAMOND(Image.DIAMOND_ENEMY, 5, 6);
 
-      private Image image;
-      private double speed;
-      private int hp;
+        private Image image;
+        private double speed;
+        private int hp;
 
         Type(Image image, double speed, int hp) {
             this.image = image;

@@ -13,6 +13,7 @@ import java.util.Queue;
 
 import static david.vaz.space.neon.refactored.game.Constants.PLAYERS_INITIAL_SPEED;
 
+
 public class Player extends AbstractEntity implements Hittable {
 
     private final Queue<Bullet.Type> bullets;
@@ -92,7 +93,7 @@ public class Player extends AbstractEntity implements Hittable {
     }
 
     private double getBulletXCoordinates() {
-        return getMinX() + (getPicture().getWidth() / 6);
+        return getMinX() + (getPicture().getWidth() / 6.0);
     }
 
     private double getBulletYCoordinates() {

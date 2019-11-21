@@ -51,7 +51,7 @@ public class GameScreen extends AbstractScreen {
         addInputHandler(Key.UP, Input.Type.KEY_RELEASE, () -> playerOne.removeDirection(Direction.NORTH));
         addInputHandler(Key.DOWN, Input.Type.KEY_RELEASE, () -> playerOne.removeDirection(Direction.SOUTH));
 
-        addInputHandler(Key.SPACE, Input.Type.KEY_RELEASE, () -> playerOne.addBullet(Bullet.Type.BLUE));
+        addInputHandler(Key.SPACE, Input.Type.KEY_PRESS, () -> playerOne.addBullet(Bullet.Type.BLUE));
 
     }
 }

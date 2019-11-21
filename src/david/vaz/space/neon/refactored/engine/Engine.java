@@ -50,7 +50,7 @@ public final class Engine implements KeyboardHandler {
         screen.show();
 
         while (running) {
-            loop();
+            checkActiveScreen();
         }
     }
 
@@ -71,6 +71,8 @@ public final class Engine implements KeyboardHandler {
         while (game.doesNotEnd()) {
 
             long startTime = System.currentTimeMillis();
+
+            screen.processAllValidInputs();
 
             howManyLoopsPerSecond++;
 
@@ -119,7 +121,7 @@ public final class Engine implements KeyboardHandler {
         keyboard.addEventListener(event);
     }
 
-    private void loop() {
+    private void checkActiveScreen() {
 
         Screen screen = screens.get(state);
 
@@ -133,13 +135,13 @@ public final class Engine implements KeyboardHandler {
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         Key key = Key.withCode(keyboardEvent.getKey());
-        screen.process(new Input(key, Input.Type.KEY_PRESS));
+        screen.submit(new Input(key, Input.Type.KEY_PRESS));
     }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
         Key key = Key.withCode(keyboardEvent.getKey());
-        screen.process(new Input(key, Input.Type.KEY_RELEASE));
+        screen.submit(new Input(key, Input.Type.KEY_RELEASE));
 
     }
 
