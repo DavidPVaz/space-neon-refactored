@@ -85,9 +85,10 @@ public class Player extends AbstractEntity implements Hittable {
         }
 
         if (directions.size() == 2) {
+            System.out.println("size is 2");
             return Direction.resolveDiagonalDirection(directions.get(0), directions.get(1));
         }
-
+        System.out.println("size is one");
         return directions.get(0);
 
     }

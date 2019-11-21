@@ -11,13 +11,13 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public final class Engine implements KeyboardHandler {
 
     private final Map<State, Screen> screens = new HashMap<>();
+    private final Map<Integer, Input> inputs = new LinkedHashMap<>();
     private final long targetFrames;
     private State state = State.GAME;
     private Screen screen;
@@ -72,7 +72,7 @@ public final class Engine implements KeyboardHandler {
 
             long startTime = System.currentTimeMillis();
 
-            screen.processAllValidInputs();
+            processAllInputs();
 
             howManyLoopsPerSecond++;
 
@@ -87,8 +87,8 @@ public final class Engine implements KeyboardHandler {
             long waitingValue = milliSecondsPerFrame - (System.currentTimeMillis() - startTime);
 
             sleep(waitingValue);
-            System.out.println(currentFrames + "FPS");
-            System.out.println(lag > 0 ? "LAG: " + lag + "ms" : "Running smoothly");
+            //System.out.println(currentFrames + "FPS");
+            //System.out.println(lag > 0 ? "LAG: " + lag + "ms" : "Running smoothly");
         }
 
         game.end();
@@ -132,16 +132,21 @@ public final class Engine implements KeyboardHandler {
         }
     }
 
+    private void processAllInputs() {
+        inputs.values().forEach(screen::process);
+    }
+
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         Key key = Key.withCode(keyboardEvent.getKey());
-        screen.submit(new Input(key, Input.Type.KEY_PRESS));
+        inputs.put(keyboardEvent.getKey(), new Input(key, Input.Type.KEY_PRESS));
     }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
         Key key = Key.withCode(keyboardEvent.getKey());
-        screen.submit(new Input(key, Input.Type.KEY_RELEASE));
+        inputs.remove(keyboardEvent.getKey());
+        screen.process(new Input(key, Input.Type.KEY_RELEASE));
 
     }
 

@@ -17,33 +17,21 @@ import static david.vaz.space.neon.refactored.game.Constants.PADDING;
 public abstract class AbstractScreen extends AbstractDrawable implements Screen {
 
     private Map<Input, InputHandler> validInputs;
-    private Queue<Input> inputsToHandle;
     private Engine engine;
 
     public AbstractScreen(Image image, Engine engine) {
         super(PADDING, PADDING, image);
         this.validInputs = new HashMap<>();
-        this.inputsToHandle = new LinkedList<>();
         this.engine = engine;
     }
 
-    @Override
-    public void processAllValidInputs() {
+    public void process(Input input) {
 
-        Input input;
-
-        while ((input = inputsToHandle.poll()) != null) {
-
-            if (validInputs.containsKey(input)) {
-                validInputs.get(input).handle();
-            }
-
+        if (!validInputs.containsKey(input)) {
+            return;
         }
 
-    }
-
-    public void submit(Input input) {
-        inputsToHandle.offer(input);
+        validInputs.get(input).handle();
     }
 
     protected void addInputHandler(Key key, Input.Type inputType, InputHandler inputHandler) {

@@ -7,7 +7,6 @@ public interface Screen extends Drawable {
 
     void setup();
 
-    void processAllValidInputs();
+    void process(Input input);
 
-    void submit(Input input);
 }
