@@ -7,6 +7,9 @@ import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Hittable;
 
+import static david.vaz.space.neon.refactored.game.Constants.PADDING;
+import static david.vaz.space.neon.refactored.game.Constants.SCREEN_HEIGHT;
+
 public class Bullet extends AbstractEntity {
 
     private final Type type;
@@ -17,6 +20,12 @@ public class Bullet extends AbstractEntity {
         this.type = type;
         this.owner = owner;
         setDirection(owner instanceof Player ? Direction.NORTH : Direction.SOUTH);
+    }
+
+    @Override
+    public boolean cantMove() {
+        return getMinY() + getDirection().getY() * getSpeed() < PADDING ||
+                getMaxY() + getDirection().getY() * getSpeed() > SCREEN_HEIGHT + PADDING;
     }
 
     @Override

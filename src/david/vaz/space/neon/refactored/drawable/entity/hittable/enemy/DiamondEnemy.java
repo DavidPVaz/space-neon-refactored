@@ -2,6 +2,8 @@ package david.vaz.space.neon.refactored.drawable.entity.hittable.enemy;
 
 import david.vaz.space.neon.refactored.game.Direction;
 
+import static david.vaz.space.neon.refactored.game.Constants.*;
+
 public class DiamondEnemy extends Enemy {
 
     public DiamondEnemy(double x, double y) {
@@ -11,11 +13,13 @@ public class DiamondEnemy extends Enemy {
 
     @Override
     public void move() {
-        super.move();//this one will move in diagonals and switch to the inverse diagonal when side has been reached
+
+        if (getMinX() + getDirection().getX() * getSpeed() < PADDING ||
+                getMaxX() + getDirection().getX() * getSpeed() > SCREEN_WIDTH + PADDING) {
+            setDirection(getDirection().equals(Direction.SOUTHEAST) ? Direction.SOUTHWEST : Direction.SOUTHEAST);
+        }
+
+        super.move();
     }
 
-    @Override
-    public boolean cantMove() {
-        return super.cantMove();
-    }
 }

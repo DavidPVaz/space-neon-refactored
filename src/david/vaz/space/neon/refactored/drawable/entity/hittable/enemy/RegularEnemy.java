@@ -8,4 +8,5 @@ public class RegularEnemy extends Enemy {
         super(x, y, Type.REGULAR);
         setDirection(Direction.SOUTH);
     }
+
 }

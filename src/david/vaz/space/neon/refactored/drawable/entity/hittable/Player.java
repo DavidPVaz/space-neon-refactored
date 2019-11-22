@@ -9,20 +9,17 @@ import david.vaz.space.neon.refactored.resources.Image;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
-import static david.vaz.space.neon.refactored.game.Constants.PLAYERS_INITIAL_SPEED;
-
+import static david.vaz.space.neon.refactored.game.Constants.*;
+import static david.vaz.space.neon.refactored.game.Constants.PADDING;
 
 public class Player extends AbstractEntity implements Hittable {
 
-    private final Queue<Bullet.Type> bullets;
     private final List<Direction> directions;
     private boolean firing;
 
     public Player(double x, double y, Image image) {
         super(x, y, image, PLAYERS_INITIAL_SPEED);
-        this.bullets = new LinkedList<>();
         this.directions = new LinkedList<>();
     }
 
@@ -36,6 +33,19 @@ public class Player extends AbstractEntity implements Hittable {
         }
 
         getPicture().translate(getDirection().getX() * getSpeed(), getDirection().getY() * getSpeed());
+    }
+
+    @Override
+    public boolean cantMove() {
+
+        if (getDirection() == null) {
+            return true;
+        }
+
+        return getMinX() + getDirection().getX() * getSpeed() < PADDING ||
+                getMaxX() + getDirection().getX() * getSpeed() > SCREEN_WIDTH + PADDING ||
+                getMinY() + getDirection().getY() * getSpeed() < PADDING ||
+                getMaxY() + getDirection().getY() * getSpeed() > SCREEN_HEIGHT + PADDING;
     }
 
     @Override
