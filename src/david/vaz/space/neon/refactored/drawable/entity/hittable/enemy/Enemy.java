@@ -11,7 +11,6 @@ public abstract class Enemy extends AbstractEntity implements Hittable {
     Enemy(double x, double y, Type type) {
         super(x, y, type.getImage(), type.getSpeed());
         this.hp = type.getHp();
-
     }
 
     @Override

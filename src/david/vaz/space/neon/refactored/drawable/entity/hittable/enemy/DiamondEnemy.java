@@ -8,7 +8,7 @@ public class DiamondEnemy extends Enemy {
 
     public DiamondEnemy(double x, double y) {
         super(x, y, Type.DIAMOND);
-        setDirection(Math.random() > 0.5 ? Direction.SOUTHEAST : Direction.NORTHWEST);
+        setDirection(Math.random() > 0.5 ? Direction.SOUTHEAST : Direction.SOUTHWEST);
     }
 
     @Override
