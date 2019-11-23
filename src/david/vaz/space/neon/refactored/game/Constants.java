@@ -10,6 +10,7 @@ public final class Constants {
     public final static double PLAYER_ONE_INITIAL_Y = 600;
     public final static double PLAYERS_INITIAL_SPEED = 7;
     public final static int PLAYERS_FIRING_COOLDOWN = 5;
+    public final static int INVINCIBILITY_COOLDOWN = 100;
 
     public final static double ENEMIES_STARTING_Y = PADDING;
     private final static double ENEMIES_WIDTH = 25;

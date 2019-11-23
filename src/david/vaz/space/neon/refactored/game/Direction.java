@@ -42,7 +42,7 @@ public enum Direction {
         return false;
     }
 
-    public static Direction resolveDiagonalDirection(Direction direction, Direction direction1) {
+    public static Direction resolveTwoPressedDirections(Direction direction, Direction direction1) {
 
         if (direction.isOpposite(direction1)) {
             return direction1;

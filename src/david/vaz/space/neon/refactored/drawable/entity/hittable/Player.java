@@ -16,14 +16,41 @@ import static david.vaz.space.neon.refactored.game.Constants.PADDING;
 
 public class Player extends AbstractEntity implements Hittable {
 
+    private Mode mode;
     private final List<Direction> directions;
     private boolean firing;
     private int firingCooldown;
 
     public Player(double x, double y, Image image) {
         super(x, y, image, PLAYERS_INITIAL_SPEED);
+        this.mode = Mode.VULNERABLE;
         this.directions = new LinkedList<>();
         this.firingCooldown = PLAYERS_FIRING_COOLDOWN;
+    }
+
+    @Override
+    public void show() {
+
+        //will display the lives icons
+
+        if (mode.equals(Mode.VULNERABLE)) {
+            super.show();
+            return;
+        }
+
+        mode.cooldown--;
+
+        if (mode.cooldown % 20 == 1) {
+            hide();
+            return;
+        }
+
+        super.show();
+
+        if (mode.cooldown == 0) {
+            mode.cooldown = INVINCIBILITY_COOLDOWN;
+            mode = Mode.VULNERABLE;
+        }
     }
 
     @Override
@@ -58,7 +85,12 @@ public class Player extends AbstractEntity implements Hittable {
 
     @Override
     public void takeHit(int damage) {
+
+        if (mode.equals(Mode.INVINCIBLE)) {
+            return;
+        }
         //will have a list of life icons and reduce that list when hit by a bullet or collide with an enemy
+        mode = Mode.INVINCIBLE;
     }
 
     @Override
@@ -111,7 +143,7 @@ public class Player extends AbstractEntity implements Hittable {
         }
 
         if (directions.size() == 2) {
-            return Direction.resolveDiagonalDirection(directions.get(0), directions.get(1));
+            return Direction.resolveTwoPressedDirections(directions.get(0), directions.get(1));
         }
 
         return directions.get(0);
@@ -123,6 +155,21 @@ public class Player extends AbstractEntity implements Hittable {
 
     private double getBulletYCoordinates() {
         return getMinY() - 10;
+    }
+
+    private enum Mode {
+        VULNERABLE,
+        INVINCIBLE(INVINCIBILITY_COOLDOWN);
+
+        private int cooldown;
+
+        Mode() {
+        }
+
+        Mode(int cooldown) {
+            this.cooldown = cooldown;
+        }
+
     }
 
 }
