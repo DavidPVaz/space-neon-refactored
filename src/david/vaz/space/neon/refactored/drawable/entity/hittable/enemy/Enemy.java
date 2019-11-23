@@ -1,7 +1,9 @@
 package david.vaz.space.neon.refactored.drawable.entity.hittable.enemy;
 
+import david.vaz.space.neon.refactored.drawable.entity.Collidable;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Hittable;
 import david.vaz.space.neon.refactored.drawable.entity.AbstractEntity;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
 import david.vaz.space.neon.refactored.resources.Image;
 
 public abstract class Enemy extends AbstractEntity implements Hittable {
@@ -11,6 +13,11 @@ public abstract class Enemy extends AbstractEntity implements Hittable {
     Enemy(double x, double y, Type type) {
         super(x, y, type.getImage(), type.getSpeed());
         this.hp = type.getHp();
+    }
+
+    @Override
+    public boolean willCollideWith(Collidable collidable) {
+        return collidable instanceof Player && super.willCollideWith(collidable);
     }
 
     @Override

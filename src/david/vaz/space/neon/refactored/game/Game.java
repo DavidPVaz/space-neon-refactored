@@ -1,8 +1,10 @@
 package david.vaz.space.neon.refactored.game;
 
+import david.vaz.space.neon.refactored.drawable.entity.Collidable;
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.Enemy;
+import david.vaz.space.neon.refactored.engine.modules.Collision;
 import david.vaz.space.neon.refactored.game.factories.EnemyGenerator;
 
 import java.util.*;
@@ -76,7 +78,10 @@ public final class Game {
 
             bullet.move();
 
-            //bullets will check if they collide with any of the players or any of the enemies
+            if (Collision.detectsThatBulletHitAnything(bullet, players, enemies)) {
+                bullet.hide();
+                bulletIterator.remove();
+            }
         }
     }
 
@@ -100,7 +105,7 @@ public final class Game {
 
             Enemy enemy = enemyIterator.next();
 
-            if (enemy.cantMove()) {
+            if (enemy.cantMove() || enemy.isDestroyed()) {
                 enemy.hide();
                 enemyIterator.remove();
                 continue;
@@ -109,6 +114,7 @@ public final class Game {
             enemy.move();
 
             //enemies will check if they collide with the player
+            //also need another for moving the obstacles and check if obstacles collide with enemy
         }
     }
 

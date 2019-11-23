@@ -4,6 +4,7 @@ import david.vaz.space.neon.refactored.drawable.entity.AbstractEntity;
 import david.vaz.space.neon.refactored.drawable.entity.Collidable;
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.Enemy;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.obstacle.Obstacle;
 import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
 
@@ -50,7 +51,7 @@ public class Player extends AbstractEntity implements Hittable {
 
     @Override
     public boolean willCollideWith(Collidable collidable) {
-        return collidable instanceof Enemy && super.willCollideWith(collidable);
+        return (collidable instanceof Enemy || collidable instanceof Obstacle) && super.willCollideWith(collidable);
     }
 
     @Override
