@@ -1,6 +1,5 @@
 package david.vaz.space.neon.refactored.game;
 
-import david.vaz.space.neon.refactored.drawable.entity.Collidable;
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.Enemy;

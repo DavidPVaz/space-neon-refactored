@@ -54,10 +54,10 @@ public abstract class AbstractEntity extends AbstractDrawable implements Movable
             return !cantMove();
         }
 
-        return getMinX() + getDirection().getX() * getSpeed() < collidable.getMaxX() &&
-                getMaxX() + getDirection().getX() * getSpeed() > collidable.getMinX() &&
-                getMinY() + getDirection().getY() * getSpeed() < collidable.getMaxY() &&
-                getMaxY() + getDirection().getY() * getSpeed() > collidable.getMinY();
+        return getMinX() < collidable.getMaxX() &&
+                getMaxX() > collidable.getMinX() &&
+                getMinY() < collidable.getMaxY() &&
+                getMaxY() > collidable.getMinY();
     }
 
     protected void setDirection(Direction direction) {

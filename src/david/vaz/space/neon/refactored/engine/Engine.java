@@ -133,19 +133,28 @@ public final class Engine implements KeyboardHandler {
     }
 
     private void processAllInputs() {
-        inputs.values().forEach(screen::process);
+        synchronized (inputs) {
+            inputs.values().forEach(screen::process);
+        }
     }
 
     @Override
     public void keyPressed(KeyboardEvent keyboardEvent) {
         Key key = Key.withCode(keyboardEvent.getKey());
-        inputs.put(keyboardEvent.getKey(), new Input(key, Input.Type.KEY_PRESS));
+
+        synchronized (inputs) {
+            inputs.put(keyboardEvent.getKey(), new Input(key, Input.Type.KEY_PRESS));
+        }
     }
 
     @Override
     public void keyReleased(KeyboardEvent keyboardEvent) {
         Key key = Key.withCode(keyboardEvent.getKey());
-        inputs.remove(keyboardEvent.getKey());
+
+        synchronized (inputs) {
+            inputs.remove(keyboardEvent.getKey());
+        }
+
         screen.process(new Input(key, Input.Type.KEY_RELEASE));
     }
 

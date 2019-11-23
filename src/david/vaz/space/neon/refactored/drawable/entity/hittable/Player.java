@@ -18,10 +18,12 @@ public class Player extends AbstractEntity implements Hittable {
 
     private final List<Direction> directions;
     private boolean firing;
+    private int firingCooldown;
 
     public Player(double x, double y, Image image) {
         super(x, y, image, PLAYERS_INITIAL_SPEED);
         this.directions = new LinkedList<>();
+        this.firingCooldown = PLAYERS_FIRING_COOLDOWN;
     }
 
     @Override
@@ -74,11 +76,19 @@ public class Player extends AbstractEntity implements Hittable {
 
     public Bullet shoot() { //maybe turn this into shared method with enemies
 
-        if (!firing) {
+        firingCooldown--;
+
+        if (!firing || firingCooldown > 0) {
             return null;
         }
 
-        return new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), Bullet.Type.BLUE, this);
+        Bullet bullet = new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), Bullet.Type.BLUE, this);
+
+        if (firingCooldown <= 0) {
+            firingCooldown = PLAYERS_FIRING_COOLDOWN;
+        }
+
+        return bullet;
     }
 
     public void addDirection(Direction direction) {
