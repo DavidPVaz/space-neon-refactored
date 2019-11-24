@@ -79,8 +79,8 @@ public class Player extends AbstractEntity implements Hittable {
     }
 
     @Override
-    public boolean willCollideWith(Collidable collidable) {
-        return (collidable instanceof Enemy || collidable instanceof Obstacle) && super.willCollideWith(collidable);
+    public boolean collideWith(Collidable collidable) {
+        return (collidable instanceof Enemy || collidable instanceof Obstacle) && super.collideWith(collidable);
     }
 
     @Override

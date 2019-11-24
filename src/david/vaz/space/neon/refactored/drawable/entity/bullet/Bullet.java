@@ -29,8 +29,8 @@ public class Bullet extends AbstractEntity {
     }
 
     @Override
-    public boolean willCollideWith(Collidable collidable) {
-        return !collidable.equals(owner) && super.willCollideWith(collidable);
+    public boolean collideWith(Collidable collidable) {
+        return !collidable.equals(owner) && super.collideWith(collidable);
     }
 
     public void hit(Hittable hittable) {

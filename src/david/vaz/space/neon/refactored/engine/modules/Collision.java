@@ -13,7 +13,7 @@ public final class Collision {
 
         for (List<? extends Collidable> collidables : entitiesToCheck) {
             for (Collidable entity : collidables) {
-                if(bullet.willCollideWith(entity)) {
+                if(bullet.collideWith(entity)) {
                     bullet.hit((Hittable) entity);
                     return true;
                 }

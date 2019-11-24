@@ -10,5 +10,5 @@ public interface Collidable {
 
     int getMaxY();
 
-    boolean willCollideWith(Collidable collidable);
+    boolean collideWith(Collidable collidable);
 }

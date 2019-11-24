@@ -19,6 +19,7 @@ public class EnemyGenerator {
     }
 
     private static double generateRandomX() {
+        //make a recursive call if the x generated was the same as the previous call
         return (Math.random() * (ENEMIES_MAX_X_SPAWN - PADDING)) + PADDING;
     }
 }

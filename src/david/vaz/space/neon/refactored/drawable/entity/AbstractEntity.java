@@ -48,7 +48,7 @@ public abstract class AbstractEntity extends AbstractDrawable implements Movable
     }
 
     @Override
-    public boolean willCollideWith(Collidable collidable) {
+    public boolean collideWith(Collidable collidable) {
 
         if (cantMove()) {
             return !cantMove();

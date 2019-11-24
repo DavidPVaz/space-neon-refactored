@@ -1,6 +1,5 @@
 package david.vaz.space.neon.refactored.screen.game;
 
-import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
 import david.vaz.space.neon.refactored.engine.Engine;
 import david.vaz.space.neon.refactored.game.Direction;
