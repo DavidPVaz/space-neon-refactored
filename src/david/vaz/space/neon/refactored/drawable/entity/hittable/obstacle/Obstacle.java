@@ -1,9 +1,7 @@
 package david.vaz.space.neon.refactored.drawable.entity.hittable.obstacle;
 
 import david.vaz.space.neon.refactored.drawable.entity.AbstractEntity;
-import david.vaz.space.neon.refactored.drawable.entity.Collidable;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Hittable;
-import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
 import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
 
@@ -15,11 +13,6 @@ public class Obstacle extends AbstractEntity implements Hittable {
         super(x, y, type.getImage(), type.getSpeed());
         this.hp = type.getHp();
         setDirection(Direction.SOUTH);
-    }
-
-    @Override
-    public boolean collideWith(Collidable collidable) {
-        return collidable instanceof Player && super.collideWith(collidable);
     }
 
     @Override

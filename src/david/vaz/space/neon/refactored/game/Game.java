@@ -29,10 +29,13 @@ public final class Game {
     public void loop() {
         generateEnemy();
 
-        players.forEach(Player::move);
+        Collision.checkIfAnyEnemyEntityHitPlayers(players, enemies);
+
+        players.forEach(Player::update);
         players.forEach(this::shoot);
-        moveEnemies();
         moveBullets();
+        moveEnemies();
+        players.forEach(Player::move);
     }
 
     public boolean doesNotEnd() {

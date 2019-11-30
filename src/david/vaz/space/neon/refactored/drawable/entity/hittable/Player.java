@@ -1,10 +1,7 @@
 package david.vaz.space.neon.refactored.drawable.entity.hittable;
 
 import david.vaz.space.neon.refactored.drawable.entity.AbstractEntity;
-import david.vaz.space.neon.refactored.drawable.entity.Collidable;
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
-import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.Enemy;
-import david.vaz.space.neon.refactored.drawable.entity.hittable.obstacle.Obstacle;
 import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
 
@@ -30,27 +27,8 @@ public class Player extends AbstractEntity implements Hittable {
 
     @Override
     public void show() {
-
         //will display the lives icons
-
-        if (mode.equals(Mode.VULNERABLE)) {
-            super.show();
-            return;
-        }
-
-        mode.cooldown--;
-
-        if (mode.cooldown % 20 == 1) {
-            hide();
-            return;
-        }
-
         super.show();
-
-        if (mode.cooldown == 0) {
-            mode.cooldown = INVINCIBILITY_COOLDOWN;
-            mode = Mode.VULNERABLE;
-        }
     }
 
     @Override
@@ -79,16 +57,12 @@ public class Player extends AbstractEntity implements Hittable {
     }
 
     @Override
-    public boolean collideWith(Collidable collidable) {
-        return (collidable instanceof Enemy || collidable instanceof Obstacle) && super.collideWith(collidable);
-    }
-
-    @Override
     public void takeHit(int damage) {
 
         if (mode.equals(Mode.INVINCIBLE)) {
             return;
         }
+
         //will have a list of life icons and reduce that list when hit by a bullet or collide with an enemy
         mode = Mode.INVINCIBLE;
     }
@@ -96,6 +70,29 @@ public class Player extends AbstractEntity implements Hittable {
     @Override
     public boolean isDestroyed() {
         return false; //will return the size of the life icons list
+    }
+
+    public void update() {
+
+        if (mode.equals(Mode.VULNERABLE)) {
+            super.show();
+            return;
+        }
+
+        mode.cooldown--;
+
+        if (mode.cooldown % 10 == 1) {
+            super.show();
+            return;
+        }
+
+        hide();
+
+        if (mode.cooldown == 0) {
+            mode.cooldown = INVINCIBILITY_COOLDOWN;
+            mode = Mode.VULNERABLE;
+        }
+
     }
 
     public void fire() {
