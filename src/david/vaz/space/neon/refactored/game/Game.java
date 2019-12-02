@@ -3,22 +3,26 @@ package david.vaz.space.neon.refactored.game;
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.Enemy;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.obstacle.Obstacle;
 import david.vaz.space.neon.refactored.engine.modules.Collision;
 import david.vaz.space.neon.refactored.game.factories.EnemyGenerator;
+import david.vaz.space.neon.refactored.game.factories.ObstacleGenerator;
 
 import java.util.*;
 
 public final class Game {
 
-    private List<Player> players;
-    private List<Bullet> bullets;
-    private List<Enemy> enemies;
+    private final List<Player> players;
+    private final List<Bullet> bullets;
+    private final List<Enemy> enemies;
+    private final List<Obstacle> obstacles;
     private boolean running;
 
     public Game(Player ...players) {
         this.players = Arrays.asList(players);
         this.bullets = new LinkedList<>();
         this.enemies = new LinkedList<>();
+        this.obstacles = new LinkedList<>();
         running = true;
     }
 
@@ -27,15 +31,20 @@ public final class Game {
     }
 
     public void loop() {
-        generateEnemy();
 
-        Collision.checkIfAnyEnemyEntityHitPlayers(players, enemies);
-        Collision.checkIfBulletHitAnything(bullets, players, enemies);
+        generateEnemy();
+        generateObstacle();
+
+        Collision.checkIfAnyEnemyEntityHitPlayers(players, enemies, obstacles);
+        Collision.checkIfBulletHitAnything(bullets, players, enemies, obstacles);
 
         players.forEach(Player::update);
         players.forEach(this::shoot);
+
         moveBullets();
+
         moveEnemies();
+        moveObstacles();
         players.forEach(Player::move);
     }
 
@@ -95,6 +104,18 @@ public final class Game {
         enemy.show();
     }
 
+    private void generateObstacle() {
+
+        Obstacle obstacle = ObstacleGenerator.generateObstacle();
+
+        if (obstacle == null) {
+            return;
+        }
+
+        obstacles.add(obstacle);
+        obstacle.show();
+    }
+
     private void moveEnemies() {
 
         Iterator<Enemy> enemyIterator = enemies.iterator();
@@ -110,6 +131,24 @@ public final class Game {
             }
 
             enemy.move();
+        }
+    }
+
+    private void moveObstacles() {
+
+        Iterator<Obstacle> obstacleIterator = obstacles.iterator();
+
+        while (obstacleIterator.hasNext()) {
+
+            Obstacle obstacle = obstacleIterator.next();
+
+            if (obstacle.cantMove() || obstacle.isDestroyed()) {
+                obstacle.hide();
+                obstacleIterator.remove();
+                continue;
+            }
+
+            obstacle.move();
         }
     }
 

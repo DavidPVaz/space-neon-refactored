@@ -52,7 +52,7 @@ public class Obstacle extends AbstractEntity implements Hittable {
             return hp;
         }
 
-        public Type random() {
+        public static Type random() {
 
             double random = Math.random();
 

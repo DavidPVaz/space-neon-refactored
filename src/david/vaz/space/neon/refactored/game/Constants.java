@@ -16,7 +16,13 @@ public final class Constants {
 
     public final static double ENEMIES_STARTING_Y = PADDING;
     private final static double ENEMIES_WIDTH = 25;
+    private final static double SMALL_OBSTACLE_WIDTH = 80;
+    private final static double MEDIUM_OBSTACLE_WIDTH = 100;
+    private final static double BIG_OBSTACLE_WIDTH = 140;
     public final static double ENEMIES_MAX_X_SPAWN = SCREEN_WIDTH - ENEMIES_WIDTH - PADDING;
+    public final static double SMALL_OBSTACLE_MAX_X_SPAWN = SCREEN_WIDTH - SMALL_OBSTACLE_WIDTH - PADDING;
+    public final static double MEDIUM_OBSTACLE_MAX_X_SPAWN = SCREEN_WIDTH - MEDIUM_OBSTACLE_WIDTH - PADDING;
+    public final static double BIG_OBSTACLE_MAX_X_SPAWN = SCREEN_WIDTH - BIG_OBSTACLE_WIDTH - PADDING;
 
 
     private Constants() {
