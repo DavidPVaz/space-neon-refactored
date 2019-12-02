@@ -14,11 +14,13 @@ public class Bullet extends AbstractEntity {
 
     private final Type type;
     private final Hittable owner;
+    private boolean hasCollided;
 
     public Bullet(double x, double y, Type type, Hittable owner) {
         super(x, y, type.getImage(), type.getSpeed());
         this.type = type;
         this.owner = owner;
+        hasCollided = false;
         setDirection(owner instanceof Player ? Direction.NORTH : Direction.SOUTH);
     }
 
@@ -35,6 +37,11 @@ public class Bullet extends AbstractEntity {
 
     public void hit(Hittable hittable) {
         hittable.takeHit(type.getDamage());
+        hasCollided = true;
+    }
+
+    public boolean hasCollided() {
+        return hasCollided;
     }
 
     public enum Type {

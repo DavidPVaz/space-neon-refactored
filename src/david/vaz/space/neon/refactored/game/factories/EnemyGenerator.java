@@ -12,7 +12,7 @@ public class EnemyGenerator {
 
         double chance = Math.random() * 10;
 
-        return chance > 0.2 ? null :
+        return chance > 0.5 ? null :
                 Enemy.Type.random().equals(Enemy.Type.REGULAR) ?
                         new RegularEnemy(generateRandomX(), ENEMIES_STARTING_Y) :
                         new DiamondEnemy(generateRandomX(), ENEMIES_STARTING_Y);

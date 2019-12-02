@@ -11,18 +11,20 @@ import static david.vaz.space.neon.refactored.game.Constants.COLLISION_DAMAGE;
 public final class Collision {
 
     @SafeVarargs
-    public static boolean detectsThatBulletHitAnything(Bullet bullet, List<? extends Collidable>... entitiesToCheck) {
+    public static void checkIfBulletHitAnything(List<? extends Collidable> bullets, List<? extends Collidable>... entitiesToCheck) {
 
         for (List<? extends Collidable> collidables : entitiesToCheck) {
+
             for (Collidable entity : collidables) {
-                if (bullet.collideWith(entity)) {
-                    bullet.hit((Hittable) entity);
-                    return true;
+                for (Collidable bullet : bullets) {
+
+                    if (bullet.collideWith(entity)) {
+                        Bullet toUse = (Bullet) bullet;
+                        toUse.hit((Hittable) entity);
+                    }
                 }
             }
         }
-
-        return false;
     }
 
     @SafeVarargs

@@ -30,6 +30,7 @@ public final class Game {
         generateEnemy();
 
         Collision.checkIfAnyEnemyEntityHitPlayers(players, enemies);
+        Collision.checkIfBulletHitAnything(bullets, players, enemies);
 
         players.forEach(Player::update);
         players.forEach(this::shoot);
@@ -72,18 +73,13 @@ public final class Game {
 
             Bullet bullet = bulletIterator.next();
 
-            if (bullet.cantMove()) {
+            if (bullet.cantMove() || bullet.hasCollided()) {
                 bullet.hide();
                 bulletIterator.remove();
                 continue;
             }
 
             bullet.move();
-
-            if (Collision.detectsThatBulletHitAnything(bullet, players, enemies)) {
-                bullet.hide();
-                bulletIterator.remove();
-            }
         }
     }
 
@@ -114,9 +110,6 @@ public final class Game {
             }
 
             enemy.move();
-
-            //enemies will check if they collide with the player
-            //also need another for moving the obstacles and check if obstacles collide with enemy
         }
     }
 
