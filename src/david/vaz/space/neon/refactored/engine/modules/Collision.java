@@ -11,7 +11,7 @@ import static david.vaz.space.neon.refactored.game.Constants.COLLISION_DAMAGE;
 public final class Collision {
 
     @SafeVarargs
-    public static void checkIfBulletHitAnything(List<? extends Collidable> bullets, List<? extends Collidable> ...entitiesToCheck) {
+    public static void checkIfBulletHitAnything(List<? extends Collidable> bullets, List<? extends Collidable>... entitiesToCheck) {
 
         for (List<? extends Collidable> collidables : entitiesToCheck) {
 

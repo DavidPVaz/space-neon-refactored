@@ -30,7 +30,7 @@ public class GameScreen extends AbstractScreen {
     public void show() {
         super.show();
 
-       getEngine().play(new Game(playerOne));
+        getEngine().play(new Game(playerOne));
 
     }
 

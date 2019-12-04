@@ -13,7 +13,7 @@ public class ObstacleGenerator {
 
         Obstacle.Type type = Obstacle.Type.random();
 
-        return chance > 0.1 ? null : new Obstacle(generateRandomX(type), ENEMIES_STARTING_Y, type);
+        return chance > 0.1 ? null : new Obstacle(generateRandomX(type), ENTITIES_STARTING_Y, type);
     }
 
     private static double generateRandomX(Obstacle.Type type) {

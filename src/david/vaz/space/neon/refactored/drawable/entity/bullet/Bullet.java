@@ -7,8 +7,7 @@ import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Hittable;
 
-import static david.vaz.space.neon.refactored.game.Constants.PADDING;
-import static david.vaz.space.neon.refactored.game.Constants.SCREEN_HEIGHT;
+import static david.vaz.space.neon.refactored.game.Constants.*;
 
 public class Bullet extends AbstractEntity {
 
@@ -45,18 +44,18 @@ public class Bullet extends AbstractEntity {
     }
 
     public enum Type {
-        GREEN(2, 10, Image.GREEN_BULLET),
-        BLUE(2, 10, Image.BLUE_BULLET),
-        RED(2, 4, Image.RED_BULLET);
+        GREEN(2, Image.GREEN_BULLET, BULLET_SPEED),
+        BLUE(2, Image.BLUE_BULLET, BULLET_SPEED),
+        RED(2, Image.RED_BULLET, BULLET_SPEED);
 
         private int damage;
-        private int speed;
         private Image image;
+        private int speed;
 
-        Type(int damage, int speed, Image image) {
+        Type(int damage, Image image, int speed) {
             this.damage = damage;
-            this.speed = speed;
             this.image = image;
+            this.speed = speed;
         }
 
         public int getDamage() {

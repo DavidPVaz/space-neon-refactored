@@ -1,12 +1,14 @@
 package david.vaz.space.neon.refactored.game;
 
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
+import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.Enemy;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.obstacle.Obstacle;
 import david.vaz.space.neon.refactored.engine.modules.Collision;
 import david.vaz.space.neon.refactored.game.factories.EnemyGenerator;
 import david.vaz.space.neon.refactored.game.factories.ObstacleGenerator;
+import david.vaz.space.neon.refactored.game.factories.PowerUpGenerator;
 
 import java.util.*;
 
@@ -16,6 +18,7 @@ public final class Game {
     private final List<Bullet> bullets;
     private final List<Enemy> enemies;
     private final List<Obstacle> obstacles;
+    private final List<PowerUp> powerUps;
     private boolean running;
 
     public Game(Player ...players) {
@@ -23,6 +26,7 @@ public final class Game {
         this.bullets = new LinkedList<>();
         this.enemies = new LinkedList<>();
         this.obstacles = new LinkedList<>();
+        this.powerUps = new LinkedList<>();
         running = true;
     }
 
@@ -34,6 +38,7 @@ public final class Game {
 
         generateEnemy();
         generateObstacle();
+        generatePowerUp();
 
         Collision.checkIfAnyEnemyEntityHitPlayers(players, enemies, obstacles);
         Collision.checkIfBulletHitAnything(bullets, players, enemies, obstacles);
@@ -42,7 +47,7 @@ public final class Game {
         players.forEach(this::shoot);
 
         moveBullets();
-
+        movePowerUps();
         moveEnemies();
         moveObstacles();
         players.forEach(Player::move);
@@ -116,6 +121,18 @@ public final class Game {
         obstacle.show();
     }
 
+    private void generatePowerUp() {
+
+        PowerUp powerUp = PowerUpGenerator.generatePowerUp();
+
+        if (powerUp == null) {
+            return;
+        }
+
+        powerUps.add(powerUp);
+        powerUp.show();
+    }
+
     private void moveEnemies() {
 
         Iterator<Enemy> enemyIterator = enemies.iterator();
@@ -149,6 +166,24 @@ public final class Game {
             }
 
             obstacle.move();
+        }
+    }
+
+    private void movePowerUps() {
+
+        Iterator<PowerUp> powerUpIterator = powerUps.iterator();
+
+        while (powerUpIterator.hasNext()) {
+
+            PowerUp powerUp = powerUpIterator.next();
+
+            if (powerUp.cantMove() || powerUp.hasBeenCollected()) {
+                powerUp.hide();
+                powerUpIterator.remove();
+                continue;
+            }
+
+            powerUp.move();
         }
     }
 
