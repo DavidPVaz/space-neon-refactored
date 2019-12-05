@@ -24,7 +24,7 @@ public abstract class AbstractEntity extends AbstractDrawable implements Movable
 
     @Override
     public boolean cantMove() {
-        return getMaxY() + getDirection().getY() * getSpeed() > SCREEN_HEIGHT + PADDING;
+        return getMaxY() + getDirection().getY() * getSpeed() > SCREEN_HEIGHT - PADDING;
     }
 
     @Override

@@ -25,8 +25,7 @@ public class Bullet extends AbstractEntity {
 
     @Override
     public boolean cantMove() {
-        return getMinY() + getDirection().getY() * getSpeed() < PADDING ||
-                getMaxY() + getDirection().getY() * getSpeed() > SCREEN_HEIGHT + PADDING;
+        return getMinY() + getDirection().getY() * getSpeed() < PADDING + BAR_HEIGHT || super.cantMove();
     }
 
     @Override

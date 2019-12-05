@@ -52,8 +52,8 @@ public class Player extends AbstractEntity implements Hittable {
 
         return getMinX() + getDirection().getX() * getSpeed() < PADDING ||
                 getMaxX() + getDirection().getX() * getSpeed() > SCREEN_WIDTH + PADDING ||
-                getMinY() + getDirection().getY() * getSpeed() < PADDING ||
-                getMaxY() + getDirection().getY() * getSpeed() > SCREEN_HEIGHT + PADDING;
+                getMinY() + getDirection().getY() * getSpeed() < PADDING + BAR_HEIGHT ||
+                super.cantMove();
     }
 
     @Override

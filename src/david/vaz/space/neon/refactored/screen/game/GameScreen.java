@@ -1,5 +1,6 @@
 package david.vaz.space.neon.refactored.screen.game;
 
+import david.vaz.space.neon.refactored.drawable.bar.ScreenBar;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
 import david.vaz.space.neon.refactored.engine.Engine;
 import david.vaz.space.neon.refactored.game.Direction;
@@ -9,15 +10,18 @@ import david.vaz.space.neon.refactored.input.Key;
 import david.vaz.space.neon.refactored.resources.Image;
 import david.vaz.space.neon.refactored.screen.AbstractScreen;
 
-import static david.vaz.space.neon.refactored.game.Constants.PLAYER_ONE_INITIAL_X;
-import static david.vaz.space.neon.refactored.game.Constants.PLAYER_ONE_INITIAL_Y;
+import static david.vaz.space.neon.refactored.game.Constants.*;
 
 public class GameScreen extends AbstractScreen {
 
     private Player playerOne;
+    private ScreenBar topBar;
+    private ScreenBar bottomBar;
 
     public GameScreen(Engine engine) {
         super(Image.GAME_SCREEN, engine);
+        topBar = new ScreenBar(TOP_BAR_X, TOP_BAR_Y, Image.TOP_BAR);
+        bottomBar = new ScreenBar(BOTTOM_BAR_X, BOTTOM_BAR_Y, Image.BOTTOM_BAR);
     }
 
     @Override
@@ -29,6 +33,8 @@ public class GameScreen extends AbstractScreen {
     @Override
     public void show() {
         super.show();
+        topBar.show();
+        bottomBar.show();
 
         getEngine().play(new Game(playerOne));
 

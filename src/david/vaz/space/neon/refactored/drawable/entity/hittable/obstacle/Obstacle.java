@@ -26,7 +26,7 @@ public class Obstacle extends AbstractEntity implements Hittable {
     }
 
     public enum Type {
-        SMALL(Image.SMALL_OBSTACLE, 6, 10),
+        SMALL(Image.SMALL_OBSTACLE, 5, 10),
         MEDIUM(Image.MEDIUM_OBSTACLE, 4, 20),
         BIG(Image.BIG_OBSTACLE, 2, 30);
 

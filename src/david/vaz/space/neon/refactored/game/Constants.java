@@ -6,6 +6,12 @@ public final class Constants {
     public final static double SCREEN_WIDTH = 800;
     public final static double SCREEN_HEIGHT = 800;
 
+    public final static double BAR_HEIGHT = 40;
+    public final static double TOP_BAR_X = PADDING;
+    public final static double TOP_BAR_Y = PADDING;
+    public final static double BOTTOM_BAR_X = PADDING;
+    public final static double BOTTOM_BAR_Y = SCREEN_HEIGHT - PADDING;
+
     public final static double PLAYER_ONE_INITIAL_X = 400;
     public final static double PLAYER_ONE_INITIAL_Y = 600;
     public final static double PLAYERS_INITIAL_SPEED = 7;
@@ -16,7 +22,7 @@ public final class Constants {
     public final static int POWER_UP_SPEED = 3;
     public final static int BULLET_SPEED = 10;
 
-    public final static double ENTITIES_STARTING_Y = PADDING;
+    public final static double ENTITIES_STARTING_Y = PADDING + BAR_HEIGHT;
     private final static double ENEMIES_WIDTH = 25;
     private final static double SMALL_OBSTACLE_WIDTH = 80;
     private final static double MEDIUM_OBSTACLE_WIDTH = 100;

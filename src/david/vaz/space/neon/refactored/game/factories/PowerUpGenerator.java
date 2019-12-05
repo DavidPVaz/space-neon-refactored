@@ -3,7 +3,6 @@ package david.vaz.space.neon.refactored.game.factories;
 import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
-import static david.vaz.space.neon.refactored.game.Constants.PADDING;
 
 public class PowerUpGenerator {
 
