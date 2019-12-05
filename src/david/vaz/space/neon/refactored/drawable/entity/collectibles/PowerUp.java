@@ -20,11 +20,6 @@ public class PowerUp extends AbstractEntity {
         setDirection(Direction.SOUTH);
     }
 
-    @Override
-    public boolean collideWith(Collidable collidable) {
-        return collidable instanceof Player && super.collideWith(collidable);
-    }
-
     public void setCollected() {
         isCollected = true;
     }

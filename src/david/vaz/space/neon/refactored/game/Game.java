@@ -42,6 +42,7 @@ public final class Game {
 
         Collision.checkIfAnyEnemyEntityHitPlayers(players, enemies, obstacles);
         Collision.checkIfBulletHitAnything(bullets, players, enemies, obstacles);
+        Collision.checkIfAnyPlayerCatchAnyPowerUp(players, powerUps);
 
         players.forEach(Player::update);
         players.forEach(this::shoot);
