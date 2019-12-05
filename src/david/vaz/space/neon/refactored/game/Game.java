@@ -21,7 +21,7 @@ public final class Game {
     private final List<PowerUp> powerUps;
     private boolean running;
 
-    public Game(Player ...players) {
+    public Game(Player... players) {
         this.players = Arrays.asList(players);
         this.bullets = new LinkedList<>();
         this.enemies = new LinkedList<>();
@@ -70,14 +70,14 @@ public final class Game {
 
         //since booth players and enemies will shoot, i'll create a shootable interface
         //and use varargs again to ask them all to shoot
-        Bullet bullet = player.shoot();
+        List<Bullet> bullets = player.shoot();
 
-        if (bullet == null) {
+        if (bullets == null) {
             return;
         }
 
-        bullet.show();
-        bullets.add(bullet);
+        bullets.forEach(Bullet::show);
+        this.bullets.addAll(bullets);
     }
 
     private void moveBullets() {

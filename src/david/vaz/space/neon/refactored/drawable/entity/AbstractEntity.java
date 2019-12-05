@@ -72,4 +72,8 @@ public abstract class AbstractEntity extends AbstractDrawable implements Movable
         return speed;
     }
 
+    protected void incrementSpeed(int speed) {
+        this.speed += speed;
+    }
+
 }

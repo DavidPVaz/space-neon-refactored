@@ -68,5 +68,23 @@ public class Bullet extends AbstractEntity {
         public Image getImage() {
             return image;
         }
+
+        public void incrementSpeed(int speed) {
+
+            if (this.speed >= 20) {
+                return;
+            }
+
+            this.speed += speed;
+        }
+
+        public void incrementDamage(int damage) {
+
+            if (this.damage >= 20) {
+                return;
+            }
+
+            this.damage += damage;
+        }
     }
 }

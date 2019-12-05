@@ -1,6 +1,7 @@
 package david.vaz.space.neon.refactored.screen.game;
 
 import david.vaz.space.neon.refactored.drawable.bar.ScreenBar;
+import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
 import david.vaz.space.neon.refactored.engine.Engine;
 import david.vaz.space.neon.refactored.game.Direction;
@@ -41,7 +42,7 @@ public class GameScreen extends AbstractScreen {
     }
 
     private void setupPlayers() {
-        playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y, Image.PLAYER_BLUE);
+        playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y, Image.PLAYER_BLUE, Bullet.Type.BLUE);
     }
 
     private void setupInputs() {
@@ -56,8 +57,8 @@ public class GameScreen extends AbstractScreen {
         addInputHandler(Key.UP, Input.Type.KEY_RELEASE, () -> playerOne.removeDirection(Direction.NORTH));
         addInputHandler(Key.DOWN, Input.Type.KEY_RELEASE, () -> playerOne.removeDirection(Direction.SOUTH));
 
-        addInputHandler(Key.SPACE, Input.Type.KEY_PRESS, () -> playerOne.fire());
-        addInputHandler(Key.SPACE, Input.Type.KEY_RELEASE, () -> playerOne.stopFiring());
+        addInputHandler(Key.SPACE, Input.Type.KEY_PRESS, playerOne::fire);
+        addInputHandler(Key.SPACE, Input.Type.KEY_RELEASE, playerOne::stopFiring);
 
     }
 }
