@@ -49,7 +49,7 @@ public final class Collision {
     public static void checkIfAnyPlayerCatchAnyPowerUp(List<? extends Collidable> players, List<PowerUp> powerUps) {
 
         players.forEach(player -> powerUps.forEach(powerUp -> {
-            if (player.collideWith(powerUp)) {
+            if (player.collideWith(powerUp) || powerUp.collideWith(player)) {
                 ((Player) player).collect(powerUp);
                 powerUp.setCollected();
             }

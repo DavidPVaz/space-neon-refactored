@@ -183,11 +183,11 @@ public class Player extends AbstractEntity implements Hittable {
             return getMinX() + (getPicture().getWidth() / 6.0);
         }
 
-        return getMinX();
+        return getMinX() - 5;
     }
 
     private double getBulletYCoordinates() {
-        return shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET) ? getMinY() - 25 : getMinY() - 10;
+        return shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET) ? getMinY() : getMinY() - 10;
     }
 
     private void setPowerUpAction() {

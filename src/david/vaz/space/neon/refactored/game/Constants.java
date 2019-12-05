@@ -33,7 +33,7 @@ public final class Constants {
     public final static int POWER_UP_SPEED = 3;
     public final static int BULLET_SPEED = 10;
     public final static int BULLET_DAMAGE = 2;
-    public final static double DOUBLE_SHOOT_DISTANCE = 30;
+    public final static double DOUBLE_SHOOT_DISTANCE = 20;
 
     public final static double ENTITIES_STARTING_Y = PADDING + BAR_HEIGHT;
     private final static double ENEMIES_WIDTH = 25;
