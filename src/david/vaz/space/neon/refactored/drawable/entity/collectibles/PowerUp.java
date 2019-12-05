@@ -11,11 +11,13 @@ import static david.vaz.space.neon.refactored.game.Constants.POWER_UP_SPEED;
 public class PowerUp extends AbstractEntity {
 
     private boolean isCollected;
+    private Type type;
 
     public PowerUp(double x, double y, Type type) {
         super(x, y, type.getImage(), type.getSpeed());
-        setDirection(Direction.SOUTH);
+        this.type = type;
         isCollected = false;
+        setDirection(Direction.SOUTH);
     }
 
     @Override
@@ -29,6 +31,10 @@ public class PowerUp extends AbstractEntity {
 
     public boolean hasBeenCollected() {
         return isCollected;
+    }
+
+    public Type type() {
+        return type;
     }
 
     public enum Type {

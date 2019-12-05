@@ -8,7 +8,7 @@ public class ObstacleGenerator {
 
     public static Obstacle generateObstacle() {
 
-        double chance = Math.random() * 10;
+        double chance = Math.random() * 20;
 
         Obstacle.Type type = Obstacle.Type.random();
 
