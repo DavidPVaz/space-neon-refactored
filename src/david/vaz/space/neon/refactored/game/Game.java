@@ -47,18 +47,19 @@ public final class Game {
         players.forEach(this::shoot);
 
         moveBullets();
-        movePowerUps();
         moveEnemies();
         moveObstacles();
+        movePowerUps();
         players.forEach(Player::move);
     }
 
     public boolean doesNotEnd() {
-        return running;
+        return running; //will return a match.all players are destroyed;
     }
 
     public void end() {
-        running = false; //will return a match.all players are destroyed
+        //delete all game objects and clear lists
+        running = false;
     }
 
     private void showContent() {

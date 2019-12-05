@@ -23,6 +23,10 @@ public class PowerUp extends AbstractEntity {
         return collidable instanceof Player && super.collideWith(collidable);
     }
 
+    public void setCollected() {
+        isCollected = true;
+    }
+
     public boolean hasBeenCollected() {
         return isCollected;
     }

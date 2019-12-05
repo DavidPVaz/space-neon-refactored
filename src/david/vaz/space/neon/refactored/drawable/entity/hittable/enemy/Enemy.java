@@ -4,6 +4,8 @@ import david.vaz.space.neon.refactored.drawable.entity.hittable.Hittable;
 import david.vaz.space.neon.refactored.drawable.entity.AbstractEntity;
 import david.vaz.space.neon.refactored.resources.Image;
 
+import static david.vaz.space.neon.refactored.game.Constants.*;
+
 public abstract class Enemy extends AbstractEntity implements Hittable {
 
     private int hp;
@@ -24,8 +26,8 @@ public abstract class Enemy extends AbstractEntity implements Hittable {
     }
 
     public enum Type {
-        REGULAR(Image.NORMAL_ENEMY, 3, 6),
-        DIAMOND(Image.DIAMOND_ENEMY, 5, 6);
+        REGULAR(Image.NORMAL_ENEMY, REGULAR_ENEMY_SPEED, ENEMY_HP),
+        DIAMOND(Image.DIAMOND_ENEMY, DIAMOND_ENEMY_SPEED, ENEMY_HP);
 
         private Image image;
         private double speed;

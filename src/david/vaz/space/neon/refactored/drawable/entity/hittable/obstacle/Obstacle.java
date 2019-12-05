@@ -5,6 +5,8 @@ import david.vaz.space.neon.refactored.drawable.entity.hittable.Hittable;
 import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
 
+import static david.vaz.space.neon.refactored.game.Constants.*;
+
 public class Obstacle extends AbstractEntity implements Hittable {
 
     private int hp;
@@ -26,9 +28,9 @@ public class Obstacle extends AbstractEntity implements Hittable {
     }
 
     public enum Type {
-        SMALL(Image.SMALL_OBSTACLE, 5, 10),
-        MEDIUM(Image.MEDIUM_OBSTACLE, 4, 20),
-        BIG(Image.BIG_OBSTACLE, 2, 30);
+        SMALL(Image.SMALL_OBSTACLE, SMALL_OBSTACLE_SPEED, SMALL_OBSTACLE_HP),
+        MEDIUM(Image.MEDIUM_OBSTACLE, MEDIUM_OBSTACLE_SPEED, MEDIUM_OBSTACLE_HP),
+        BIG(Image.BIG_OBSTACLE, BIG_OBSTACLE_SPEED, BIG_OBSTACLE_HP);
 
         private Image image;
         private double speed;

@@ -18,9 +18,21 @@ public final class Constants {
     public final static int PLAYERS_FIRING_COOLDOWN = 5;
     public final static int INVINCIBILITY_COOLDOWN = 120;
 
+    public final static double REGULAR_ENEMY_SPEED = 3;
+    public final static double DIAMOND_ENEMY_SPEED = 4;
+    public final static int ENEMY_HP = 6;
+
+    public final static double SMALL_OBSTACLE_SPEED = 5;
+    public final static double MEDIUM_OBSTACLE_SPEED = 4;
+    public final static double BIG_OBSTACLE_SPEED = 2;
+    public final static int SMALL_OBSTACLE_HP = 10;
+    public final static int MEDIUM_OBSTACLE_HP = 20;
+    public final static int BIG_OBSTACLE_HP = 30;
+
     public final static int COLLISION_DAMAGE = 10;
     public final static int POWER_UP_SPEED = 3;
     public final static int BULLET_SPEED = 10;
+    public final static int BULLET_DAMAGE = 2;
 
     public final static double ENTITIES_STARTING_Y = PADDING + BAR_HEIGHT;
     private final static double ENEMIES_WIDTH = 25;
