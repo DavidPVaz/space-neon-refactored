@@ -19,7 +19,6 @@ public final class Game {
     private final List<Enemy> enemies;
     private final List<Obstacle> obstacles;
     private final List<PowerUp> powerUps;
-    private boolean running;
 
     public Game(Player... players) {
         this.players = new LinkedList<>();
@@ -28,7 +27,6 @@ public final class Game {
         this.enemies = new LinkedList<>();
         this.obstacles = new LinkedList<>();
         this.powerUps = new LinkedList<>();
-        running = true;
     }
 
     public void init() {
@@ -61,7 +59,6 @@ public final class Game {
 
     public void end() {
         //delete all game objects and clear lists
-        running = false;
     }
 
     private void showContent() {
