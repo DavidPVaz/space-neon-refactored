@@ -22,7 +22,8 @@ public final class Game {
     private boolean running;
 
     public Game(Player... players) {
-        this.players = Arrays.asList(players);
+        this.players = new LinkedList<>();
+        this.players.addAll(Arrays.asList(players));
         this.bullets = new LinkedList<>();
         this.enemies = new LinkedList<>();
         this.obstacles = new LinkedList<>();
@@ -55,7 +56,7 @@ public final class Game {
     }
 
     public boolean doesNotEnd() {
-        return running; //will return a match.all players are destroyed;
+        return players.stream().anyMatch(Player::isAlive);
     }
 
     public void end() {

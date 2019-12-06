@@ -86,6 +86,10 @@ public class Player extends AbstractEntity implements Hittable {
         return lifeList.isEmpty();
     }
 
+    public boolean isAlive() {
+        return !lifeList.isEmpty();
+    }
+
     public void collect(PowerUp powerUp) {
         powerUpAction.get(powerUp.type()).enhance();
     }
@@ -152,11 +156,14 @@ public class Player extends AbstractEntity implements Hittable {
 
     private void addExtraLife() {
 
-        if (lifeList.size() == 3 || lifeList.isEmpty()) {
+        if (lifeList.size() == 3) {
             return;
         }
 
-        LifeIcon life = new LifeIcon(lifeList.peek().getPicture().getX() - LIFE_ICON_DISTANCE - LIFE_ICON_SIDE, LIFE_ICON_Y, lifeList.peek().getType());
+        LifeIcon life = new LifeIcon(lifeList.peek().getPicture().getX() - LIFE_ICON_DISTANCE - LIFE_ICON_SIDE,
+                LIFE_ICON_Y,
+                lifeList.peek().getType());
+
         lifeList.push(life);
         life.show();
     }
