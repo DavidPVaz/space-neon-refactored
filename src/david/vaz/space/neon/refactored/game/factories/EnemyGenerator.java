@@ -12,14 +12,14 @@ public class EnemyGenerator {
 
         double chance = Math.random() * 20;
 
-        return chance > 0.5 ? null :
+        return chance > 0.4 ?
+                null :
                 Enemy.Type.random().equals(Enemy.Type.REGULAR) ?
                         new RegularEnemy(generateRandomX(), ENTITIES_STARTING_Y) :
                         new DiamondEnemy(generateRandomX(), ENTITIES_STARTING_Y);
     }
 
     private static double generateRandomX() {
-        //make a recursive call if the x generated was the same as the previous call
         return (Math.random() * (ENEMIES_MAX_X_SPAWN - PADDING)) + PADDING;
     }
 }

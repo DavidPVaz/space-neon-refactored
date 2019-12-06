@@ -30,7 +30,7 @@ public final class Game {
     }
 
     public void init() {
-        showContent();
+        players.forEach(Player::show);
     }
 
     public void loop() {
@@ -59,10 +59,6 @@ public final class Game {
 
     public void end() {
         //delete all game objects and clear lists
-    }
-
-    private void showContent() {
-        players.forEach(Player::show);
     }
 
     private void shoot(Player player) {

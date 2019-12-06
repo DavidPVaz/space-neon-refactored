@@ -58,7 +58,11 @@ public class Obstacle extends AbstractEntity implements Hittable {
 
             double random = Math.random();
 
-            return random > 0.8 ? BIG : random < 0.45 ? SMALL : MEDIUM;
+            return random > 0.8 ?
+                    BIG :
+                    random < 0.5 ?
+                            SMALL :
+                            MEDIUM;
         }
     }
 

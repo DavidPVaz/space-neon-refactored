@@ -42,8 +42,8 @@ public class GameScreen extends AbstractScreen {
         topBar.show();
         bottomBar.show();
 
+        //getEngine().play(game);
         new Thread(() -> getEngine().play(game)).start();
-
     }
 
     private void setupPlayers() {
@@ -70,6 +70,5 @@ public class GameScreen extends AbstractScreen {
 
         addInputHandler(Key.SPACE, Input.Type.KEY_PRESS, playerOne::fire);
         addInputHandler(Key.SPACE, Input.Type.KEY_RELEASE, playerOne::stopFiring);
-
     }
 }

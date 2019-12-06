@@ -16,6 +16,7 @@ public class DiamondEnemy extends Enemy {
 
         if (getMinX() + getDirection().getX() * getSpeed() < PADDING ||
                 getMaxX() + getDirection().getX() * getSpeed() > SCREEN_WIDTH + PADDING) {
+
             setDirection(getDirection().equals(Direction.SOUTHEAST) ? Direction.SOUTHWEST : Direction.SOUTHEAST);
         }
 

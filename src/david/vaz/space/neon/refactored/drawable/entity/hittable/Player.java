@@ -3,7 +3,7 @@ package david.vaz.space.neon.refactored.drawable.entity.hittable;
 import david.vaz.space.neon.refactored.drawable.entity.AbstractEntity;
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
-import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUpAction;
+import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUpEnhancement;
 import david.vaz.space.neon.refactored.drawable.lifes.LifeIcon;
 import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
@@ -18,7 +18,7 @@ public class Player extends AbstractEntity implements Hittable {
     private Bullet.Type bulletType;
     private final Stack<LifeIcon> lifeList;
     private final List<Direction> directions;
-    private final Map<PowerUp.Type, PowerUpAction> powerUpAction;
+    private final Map<PowerUp.Type, PowerUpEnhancement> powerUpAction;
     private Mode mode;
     private boolean firing;
     private int firingCooldown;
@@ -201,11 +201,9 @@ public class Player extends AbstractEntity implements Hittable {
 
     private double getBulletXCoordinates() {
 
-        if (shootingStrategy.equals(ShootingStrategy.SINGLE_BULLET)) {
-            return getMinX() + (getPicture().getWidth() / 6.0);
-        }
-
-        return getMinX() - 5;
+        return shootingStrategy.equals(ShootingStrategy.SINGLE_BULLET) ?
+                getMinX() + (getPicture().getWidth() / 6.0) :
+                getMinX() - 5;
     }
 
     private double getBulletYCoordinates() {
@@ -218,7 +216,6 @@ public class Player extends AbstractEntity implements Hittable {
         powerUpAction.put(PowerUp.Type.EXTRA_LIFE, this::addExtraLife);
         powerUpAction.put(PowerUp.Type.INCREASE_BULLET_SPEED, () -> bulletType.incrementSpeed(2));
         powerUpAction.put(PowerUp.Type.INCREASE_PLAYER_SPEED, () -> incrementSpeed(2));
-
     }
 
     private enum Mode {
@@ -233,7 +230,6 @@ public class Player extends AbstractEntity implements Hittable {
         Mode(int cooldown) {
             this.cooldown = cooldown;
         }
-
     }
 
     private enum ShootingStrategy {

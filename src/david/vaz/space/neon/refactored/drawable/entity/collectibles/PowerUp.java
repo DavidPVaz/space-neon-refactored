@@ -1,8 +1,6 @@
 package david.vaz.space.neon.refactored.drawable.entity.collectibles;
 
 import david.vaz.space.neon.refactored.drawable.entity.AbstractEntity;
-import david.vaz.space.neon.refactored.drawable.entity.Collidable;
-import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
 import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
 
@@ -56,6 +54,7 @@ public class PowerUp extends AbstractEntity {
         }
 
         public static Type random() {
+
             int random = (int) (Math.random() * values().length);
 
             return values()[random];
