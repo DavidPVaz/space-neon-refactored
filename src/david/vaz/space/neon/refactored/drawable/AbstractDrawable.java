@@ -21,11 +21,8 @@ public abstract class AbstractDrawable implements Drawable {
         picture.delete();
     }
 
-    protected Picture getPicture() {
+    public Picture getPicture() {
         return picture;
     }
 
-    protected void load(String imagePath) {
-        picture.load(imagePath);
-    }
 }

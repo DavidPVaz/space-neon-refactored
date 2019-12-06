@@ -51,7 +51,7 @@ public final class Game {
         moveEnemies();
         moveObstacles();
         movePowerUps();
-        players.forEach(Player::move);
+        movePlayers();
     }
 
     public boolean doesNotEnd() {
@@ -133,6 +133,24 @@ public final class Game {
 
         powerUps.add(powerUp);
         powerUp.show();
+    }
+
+    private void movePlayers() {
+
+        Iterator<Player> playerIterator = players.iterator();
+
+        while (playerIterator.hasNext()) {
+
+            Player player = playerIterator.next();
+
+            if (player.isDestroyed()) {
+                player.hide();
+                playerIterator.remove();
+                continue;
+            }
+
+            player.move();
+        }
     }
 
     private void moveEnemies() {

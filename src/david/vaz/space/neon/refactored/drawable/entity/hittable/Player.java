@@ -4,6 +4,7 @@ import david.vaz.space.neon.refactored.drawable.entity.AbstractEntity;
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
 import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUpAction;
+import david.vaz.space.neon.refactored.drawable.lifes.LifeIcon;
 import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
 
@@ -15,19 +16,21 @@ import static david.vaz.space.neon.refactored.game.Constants.PADDING;
 public class Player extends AbstractEntity implements Hittable {
 
     private Bullet.Type bulletType;
-    private Mode mode;
+    private final Stack<LifeIcon> lifeList;
     private final List<Direction> directions;
     private final Map<PowerUp.Type, PowerUpAction> powerUpAction;
+    private Mode mode;
     private boolean firing;
     private int firingCooldown;
     private ShootingStrategy shootingStrategy;
 
-    public Player(double x, double y, Image image, Bullet.Type bulletType) {
+    public Player(double x, double y, Image image, Bullet.Type bulletType, Stack<LifeIcon> lifeList) {
         super(x, y, image, PLAYERS_INITIAL_SPEED);
         this.bulletType = bulletType;
-        this.mode = Mode.VULNERABLE;
+        this.lifeList = lifeList;
         this.directions = new LinkedList<>();
         this.powerUpAction = new HashMap<>();
+        this.mode = Mode.VULNERABLE;
         this.firing = false;
         this.firingCooldown = PLAYERS_FIRING_COOLDOWN;
         this.shootingStrategy = ShootingStrategy.SINGLE_BULLET;
@@ -36,7 +39,7 @@ public class Player extends AbstractEntity implements Hittable {
 
     @Override
     public void show() {
-        //will display the lives icons
+        lifeList.forEach(LifeIcon::show);
         super.show();
     }
 
@@ -72,13 +75,15 @@ public class Player extends AbstractEntity implements Hittable {
             return;
         }
 
-        //will have a list of life icons and reduce that list when hit by a bullet or collide with an enemy
+        lifeList.pop().hide();
+        //need to reset all previous enhancements by the power-ups
+
         mode = Mode.INVINCIBLE;
     }
 
     @Override
     public boolean isDestroyed() {
-        return false; //will return the size of the life icons list
+        return lifeList.isEmpty();
     }
 
     public void collect(PowerUp powerUp) {
@@ -105,7 +110,6 @@ public class Player extends AbstractEntity implements Hittable {
             mode.cooldown = INVINCIBILITY_COOLDOWN;
             mode = Mode.VULNERABLE;
         }
-
     }
 
     public void fire() {
@@ -144,6 +148,17 @@ public class Player extends AbstractEntity implements Hittable {
 
     public void removeDirection(Direction direction) {
         directions.remove(direction);
+    }
+
+    private void addExtraLife() {
+
+        if (lifeList.size() == 3 || lifeList.isEmpty()) {
+            return;
+        }
+
+        LifeIcon life = new LifeIcon(lifeList.peek().getPicture().getX() - LIFE_ICON_DISTANCE - LIFE_ICON_SIDE, LIFE_ICON_Y, lifeList.peek().getType());
+        lifeList.push(life);
+        life.show();
     }
 
     private void changeShootingStrategy() {
@@ -193,7 +208,7 @@ public class Player extends AbstractEntity implements Hittable {
     private void setPowerUpAction() {
         powerUpAction.put(PowerUp.Type.DOUBLE_SHOOTING, this::changeShootingStrategy);
         powerUpAction.put(PowerUp.Type.EXTRA_DAMAGE, () -> bulletType.incrementDamage(2));
-        //powerUpAction.put(PowerUp.Type.EXTRA_LIFE, this::addExtraLife);
+        powerUpAction.put(PowerUp.Type.EXTRA_LIFE, this::addExtraLife);
         powerUpAction.put(PowerUp.Type.INCREASE_BULLET_SPEED, () -> bulletType.incrementSpeed(2));
         powerUpAction.put(PowerUp.Type.INCREASE_PLAYER_SPEED, () -> incrementSpeed(2));
 

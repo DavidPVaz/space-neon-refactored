@@ -14,9 +14,16 @@ public final class Constants {
 
     public final static double PLAYER_ONE_INITIAL_X = 400;
     public final static double PLAYER_ONE_INITIAL_Y = 600;
-    public final static double PLAYERS_INITIAL_SPEED = 7;
+    public final static double PLAYERS_INITIAL_SPEED = 4;
     public final static int PLAYERS_FIRING_COOLDOWN = 5;
     public final static int INVINCIBILITY_COOLDOWN = 120;
+
+    public final static double LIFE_ICON_SIDE = 13;
+    public final static double LIFE_ICON_DISTANCE = 20;
+    public final static double LIFE_ICON_Y = SCREEN_HEIGHT + 5;
+    public final static double PLAYER_ONE_FIRST_LIFE_X = SCREEN_WIDTH - PADDING - LIFE_ICON_SIDE;
+    public final static double PLAYER_ONE_SECOND_LIFE_X = PLAYER_ONE_FIRST_LIFE_X - LIFE_ICON_SIDE - LIFE_ICON_DISTANCE;
+    public final static double PLAYER_ONE_THIRD_LIFE_X = PLAYER_ONE_SECOND_LIFE_X - LIFE_ICON_SIDE - LIFE_ICON_DISTANCE;
 
     public final static double REGULAR_ENEMY_SPEED = 3;
     public final static double DIAMOND_ENEMY_SPEED = 4;
@@ -31,7 +38,7 @@ public final class Constants {
 
     public final static int COLLISION_DAMAGE = 10;
     public final static int POWER_UP_SPEED = 3;
-    public final static int BULLET_SPEED = 10;
+    public final static int BULLET_SPEED = 6;
     public final static int BULLET_DAMAGE = 2;
     public final static double DOUBLE_SHOOT_DISTANCE = 20;
 

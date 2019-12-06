@@ -3,6 +3,7 @@ package david.vaz.space.neon.refactored.screen.game;
 import david.vaz.space.neon.refactored.drawable.bar.ScreenBar;
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
+import david.vaz.space.neon.refactored.drawable.lifes.LifeIcon;
 import david.vaz.space.neon.refactored.engine.Engine;
 import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.game.Game;
@@ -10,6 +11,8 @@ import david.vaz.space.neon.refactored.input.Input;
 import david.vaz.space.neon.refactored.input.Key;
 import david.vaz.space.neon.refactored.resources.Image;
 import david.vaz.space.neon.refactored.screen.AbstractScreen;
+
+import java.util.Stack;
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
 
@@ -42,7 +45,13 @@ public class GameScreen extends AbstractScreen {
     }
 
     private void setupPlayers() {
-        playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y, Image.PLAYER_BLUE, Bullet.Type.BLUE);
+
+        Stack<LifeIcon> playerOneLifeList = new Stack<>();
+        playerOneLifeList.push(new LifeIcon(PLAYER_ONE_FIRST_LIFE_X, LIFE_ICON_Y, LifeIcon.Type.BLUE));
+        playerOneLifeList.push(new LifeIcon(PLAYER_ONE_SECOND_LIFE_X, LIFE_ICON_Y, LifeIcon.Type.BLUE));
+        playerOneLifeList.push(new LifeIcon(PLAYER_ONE_THIRD_LIFE_X, LIFE_ICON_Y, LifeIcon.Type.BLUE));
+
+        playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y, Image.PLAYER_BLUE, Bullet.Type.BLUE, playerOneLifeList);
     }
 
     private void setupInputs() {
