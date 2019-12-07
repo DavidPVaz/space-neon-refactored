@@ -10,7 +10,7 @@ public final class Constants {
     public final static double TOP_BAR_X = PADDING;
     public final static double TOP_BAR_Y = PADDING;
     public final static double BOTTOM_BAR_X = PADDING;
-    public final static double BOTTOM_BAR_Y = SCREEN_HEIGHT - PADDING;
+    public final static double BOTTOM_BAR_Y = SCREEN_HEIGHT - BAR_HEIGHT - PADDING;
 
     public final static double PLAYER_ONE_INITIAL_X = 400;
     public final static double PLAYER_ONE_INITIAL_Y = 600;
@@ -20,7 +20,7 @@ public final class Constants {
 
     public final static double LIFE_ICON_SIDE = 13;
     public final static double LIFE_ICON_DISTANCE = 20;
-    public final static double LIFE_ICON_Y = SCREEN_HEIGHT + 5;
+    public final static double LIFE_ICON_Y = SCREEN_HEIGHT - BAR_HEIGHT + PADDING + PADDING;
     public final static double PLAYER_ONE_FIRST_LIFE_X = SCREEN_WIDTH - PADDING - LIFE_ICON_SIDE;
     public final static double PLAYER_ONE_SECOND_LIFE_X = PLAYER_ONE_FIRST_LIFE_X - LIFE_ICON_SIDE - LIFE_ICON_DISTANCE;
     public final static double PLAYER_ONE_THIRD_LIFE_X = PLAYER_ONE_SECOND_LIFE_X - LIFE_ICON_SIDE - LIFE_ICON_DISTANCE;
@@ -43,8 +43,8 @@ public final class Constants {
     public final static double DOUBLE_SHOOT_DISTANCE = 20;
 
     public final static double SCORE_PER_ENEMY = 5;
-    public final static double SCORE_X = 400;
-    public final static double SCORE_Y = 810;
+    public final static double SCORE_X = SCREEN_WIDTH / 2;
+    public final static double SCORE_Y = SCREEN_HEIGHT - BAR_HEIGHT + PADDING + PADDING;
 
     public final static double ENTITIES_STARTING_Y = PADDING + BAR_HEIGHT;
     private final static double ENEMIES_WIDTH = 25;

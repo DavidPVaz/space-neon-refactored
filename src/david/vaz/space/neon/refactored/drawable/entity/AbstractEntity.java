@@ -5,7 +5,6 @@ import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
-import static david.vaz.space.neon.refactored.game.Constants.PADDING;
 
 public abstract class AbstractEntity extends AbstractDrawable implements Movable, Collidable {
 
@@ -24,7 +23,7 @@ public abstract class AbstractEntity extends AbstractDrawable implements Movable
 
     @Override
     public boolean cantMove() {
-        return getMaxY() + getDirection().getY() * getSpeed() > SCREEN_HEIGHT - PADDING;
+        return getMaxY() + getDirection().getY() * getSpeed() > SCREEN_HEIGHT - BAR_HEIGHT - PADDING;
     }
 
     @Override
