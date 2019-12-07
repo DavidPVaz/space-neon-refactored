@@ -45,11 +45,11 @@ public class PowerUp extends AbstractEntity {
             this.image = image;
         }
 
-        public int getSpeed() {
+        private int getSpeed() {
             return speed;
         }
 
-        public Image getImage() {
+        private Image getImage() {
             return image;
         }
 

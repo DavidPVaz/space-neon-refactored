@@ -5,15 +5,19 @@ import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Hittable;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.Enemy;
 
 import java.util.List;
 
 import static david.vaz.space.neon.refactored.game.Constants.COLLISION_DAMAGE;
+import static david.vaz.space.neon.refactored.game.Constants.SCORE_PER_ENEMY;
 
 public final class Collision {
 
     @SafeVarargs
-    public static void checkIfBulletHitAnything(List<Bullet> bullets, List<? extends Collidable>... entitiesToCheck) {
+    public static int checkIfBulletHitAnything(List<Bullet> bullets, List<? extends Collidable>... entitiesToCheck) {
+
+        int score = 0;
 
         for (List<? extends Collidable> collidables : entitiesToCheck) {
 
@@ -22,10 +26,13 @@ public final class Collision {
 
                     if (bullet.collideWith(entity)) {
                         bullet.hit((Hittable) entity);
+                        score += entity instanceof Enemy && ((Enemy) entity).isDestroyed() ? SCORE_PER_ENEMY : score;
                     }
                 }
             }
         }
+
+        return score;
     }
 
     @SafeVarargs

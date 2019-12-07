@@ -19,7 +19,7 @@ public abstract class AbstractScreen extends AbstractDrawable implements Screen 
     private Map<Input, InputHandler> validInputs;
     private Engine engine;
 
-    public AbstractScreen(Image image, Engine engine) {
+    protected AbstractScreen(Image image, Engine engine) {
         super(PADDING, PADDING, image);
         this.validInputs = new HashMap<>();
         this.engine = engine;

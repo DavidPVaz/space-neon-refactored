@@ -7,7 +7,7 @@ public abstract class AbstractDrawable implements Drawable {
 
     private Picture picture;
 
-    public AbstractDrawable(double x, double y, Image image) {
+    protected AbstractDrawable(double x, double y, Image image) {
         this.picture = new Picture(x, y, image.path());
     }
 

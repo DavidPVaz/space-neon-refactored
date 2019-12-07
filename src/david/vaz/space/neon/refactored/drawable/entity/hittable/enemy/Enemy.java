@@ -39,15 +39,15 @@ public abstract class Enemy extends AbstractEntity implements Hittable {
             this.hp = hp;
         }
 
-        public Image getImage() {
+        private Image getImage() {
             return image;
         }
 
-        public double getSpeed() {
+        private double getSpeed() {
             return speed;
         }
 
-        public int getHp() {
+        private int getHp() {
             return hp;
         }
 

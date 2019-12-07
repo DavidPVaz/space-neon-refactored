@@ -26,7 +26,7 @@ public class LifeIcon extends AbstractDrawable {
             this.image = image;
         }
 
-        public Image getImage() {
+        private Image getImage() {
             return image;
         }
     }

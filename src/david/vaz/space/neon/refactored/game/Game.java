@@ -19,6 +19,7 @@ public final class Game {
     private final List<Enemy> enemies;
     private final List<Obstacle> obstacles;
     private final List<PowerUp> powerUps;
+    private final Score score;
 
     public Game(Player... players) {
         this.players = new LinkedList<>();
@@ -27,10 +28,12 @@ public final class Game {
         this.enemies = new LinkedList<>();
         this.obstacles = new LinkedList<>();
         this.powerUps = new LinkedList<>();
+        this.score = new Score();
     }
 
     public void init() {
         players.forEach(Player::show);
+        score.show();
     }
 
     public void loop() {
@@ -39,8 +42,10 @@ public final class Game {
         generateObstacle();
         generatePowerUp();
 
+        int toUpdate = Collision.checkIfBulletHitAnything(bullets, players, enemies, obstacles);
+        score.update(toUpdate);
+
         Collision.checkIfAnyEnemyEntityHitPlayers(players, enemies, obstacles);
-        Collision.checkIfBulletHitAnything(bullets, players, enemies, obstacles);
         Collision.checkIfAnyPlayerCatchAnyPowerUp(players, powerUps);
 
         players.forEach(Player::update);

@@ -12,7 +12,7 @@ public abstract class AbstractEntity extends AbstractDrawable implements Movable
     private double speed;
     private Direction direction;
 
-    public AbstractEntity(double x, double y, Image image, double speed) {
+    protected AbstractEntity(double x, double y, Image image, double speed) {
         super(x, y, image);
         this.speed = speed;
     }
