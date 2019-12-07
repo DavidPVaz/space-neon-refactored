@@ -4,6 +4,9 @@ import david.vaz.space.neon.refactored.drawable.Drawable;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 
+import static david.vaz.space.neon.refactored.game.Constants.SCORE_X;
+import static david.vaz.space.neon.refactored.game.Constants.SCORE_Y;
+
 final class Score implements Drawable {
 
     private int score;
@@ -11,7 +14,7 @@ final class Score implements Drawable {
 
     Score () {
         this.score = 0;
-        this.display = new Text(400, 810, "Score");
+        this.display = new Text(SCORE_X, SCORE_Y, "Score");
     }
 
     @Override

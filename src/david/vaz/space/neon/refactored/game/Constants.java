@@ -43,6 +43,8 @@ public final class Constants {
     public final static double DOUBLE_SHOOT_DISTANCE = 20;
 
     public final static double SCORE_PER_ENEMY = 5;
+    public final static double SCORE_X = 400;
+    public final static double SCORE_Y = 810;
 
     public final static double ENTITIES_STARTING_Y = PADDING + BAR_HEIGHT;
     private final static double ENEMIES_WIDTH = 25;

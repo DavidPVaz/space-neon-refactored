@@ -7,7 +7,7 @@ import david.vaz.space.neon.refactored.resources.Image;
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
 
-public class Obstacle extends AbstractEntity implements Hittable {
+public final class Obstacle extends AbstractEntity implements Hittable {
 
     private int hp;
 
@@ -42,15 +42,15 @@ public class Obstacle extends AbstractEntity implements Hittable {
             this.hp = hp;
         }
 
-        public Image getImage() {
+        private Image getImage() {
             return image;
         }
 
-        public double getSpeed() {
+        private double getSpeed() {
             return speed;
         }
 
-        public int getHp() {
+        private int getHp() {
             return hp;
         }
 
