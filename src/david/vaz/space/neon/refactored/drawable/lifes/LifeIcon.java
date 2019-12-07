@@ -3,7 +3,7 @@ package david.vaz.space.neon.refactored.drawable.lifes;
 import david.vaz.space.neon.refactored.drawable.AbstractDrawable;
 import david.vaz.space.neon.refactored.resources.Image;
 
-public class LifeIcon extends AbstractDrawable {
+public final class LifeIcon extends AbstractDrawable {
 
     private Type type;
 

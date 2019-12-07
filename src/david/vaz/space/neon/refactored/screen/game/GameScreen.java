@@ -16,7 +16,7 @@ import java.util.Stack;
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
 
-public class GameScreen extends AbstractScreen {
+public final class GameScreen extends AbstractScreen {
 
     private Game game;
     private Player playerOne;

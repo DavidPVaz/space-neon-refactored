@@ -4,7 +4,7 @@ import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
 
-public class PowerUpGenerator {
+public final class PowerUpGenerator {
 
     public static PowerUp generatePowerUp() {
 

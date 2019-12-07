@@ -9,7 +9,7 @@ import david.vaz.space.neon.refactored.drawable.entity.hittable.Hittable;
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
 
-public class Bullet extends AbstractEntity {
+public final class Bullet extends AbstractEntity {
 
     private final Type type;
     private final Hittable owner;

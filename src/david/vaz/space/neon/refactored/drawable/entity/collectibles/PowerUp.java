@@ -6,7 +6,7 @@ import david.vaz.space.neon.refactored.resources.Image;
 
 import static david.vaz.space.neon.refactored.game.Constants.POWER_UP_SPEED;
 
-public class PowerUp extends AbstractEntity {
+public final class PowerUp extends AbstractEntity {
 
     private boolean isCollected;
     private Type type;

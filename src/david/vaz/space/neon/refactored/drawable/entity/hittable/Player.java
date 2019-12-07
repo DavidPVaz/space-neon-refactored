@@ -13,7 +13,7 @@ import java.util.*;
 import static david.vaz.space.neon.refactored.game.Constants.*;
 import static david.vaz.space.neon.refactored.game.Constants.PADDING;
 
-public class Player extends AbstractEntity implements Hittable {
+public final class Player extends AbstractEntity implements Hittable {
 
     private Bullet.Type bulletType;
     private final Stack<LifeIcon> lifeList;

@@ -4,7 +4,7 @@ import david.vaz.space.neon.refactored.game.Direction;
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
 
-public class DiamondEnemy extends Enemy {
+public final class DiamondEnemy extends Enemy {
 
     public DiamondEnemy(double x, double y) {
         super(x, y, Type.DIAMOND);

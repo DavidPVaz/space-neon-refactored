@@ -4,7 +4,7 @@ import david.vaz.space.neon.refactored.drawable.Drawable;
 import org.academiadecodigo.simplegraphics.graphics.Color;
 import org.academiadecodigo.simplegraphics.graphics.Text;
 
-class Score implements Drawable {
+final class Score implements Drawable {
 
     private int score;
     private Text display;

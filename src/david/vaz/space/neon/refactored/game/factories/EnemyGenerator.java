@@ -6,7 +6,7 @@ import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.RegularEne
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
 
-public class EnemyGenerator {
+public final class EnemyGenerator {
 
     public static Enemy generateEnemy() {
 

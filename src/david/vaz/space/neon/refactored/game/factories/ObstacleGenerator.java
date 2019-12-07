@@ -4,7 +4,7 @@ import david.vaz.space.neon.refactored.drawable.entity.hittable.obstacle.Obstacl
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
 
-public class ObstacleGenerator {
+public final class ObstacleGenerator {
 
     public static Obstacle generateObstacle() {
 
