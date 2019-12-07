@@ -6,7 +6,7 @@ import david.vaz.space.neon.refactored.resources.Image;
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
 
-public abstract class AbstractEntity extends AbstractDrawable implements Movable, Collidable {
+public abstract class AbstractEntity extends AbstractDrawable implements Collidable {
 
     private double speed;
     private Direction direction;
@@ -14,16 +14,6 @@ public abstract class AbstractEntity extends AbstractDrawable implements Movable
     protected AbstractEntity(double x, double y, Image image, double speed) {
         super(x, y, image);
         this.speed = speed;
-    }
-
-    @Override
-    public void move() {
-        getPicture().translate(getDirection().getX() * getSpeed(), getDirection().getY() * getSpeed());
-    }
-
-    @Override
-    public boolean cantMove() {
-        return getMaxY() + getDirection().getY() * getSpeed() > SCREEN_HEIGHT - BAR_HEIGHT - PADDING;
     }
 
     @Override
@@ -57,6 +47,14 @@ public abstract class AbstractEntity extends AbstractDrawable implements Movable
                 getMaxX() > collidable.getMinX() &&
                 getMinY() < collidable.getMaxY() &&
                 getMaxY() > collidable.getMinY();
+    }
+
+    public void move() {
+        getPicture().translate(getDirection().getX() * getSpeed(), getDirection().getY() * getSpeed());
+    }
+
+    public boolean cantMove() {
+        return getMaxY() + getDirection().getY() * getSpeed() > SCREEN_HEIGHT - BAR_HEIGHT - PADDING;
     }
 
     protected void setDirection(Direction direction) {
