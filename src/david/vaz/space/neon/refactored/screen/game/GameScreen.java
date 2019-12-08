@@ -31,9 +31,7 @@ public final class GameScreen extends AbstractScreen {
 
     @Override
     public void setup() {
-        setupPlayers();
         setupInputs();
-        game = new Game(playerOne);
     }
 
     @Override
@@ -42,7 +40,9 @@ public final class GameScreen extends AbstractScreen {
         topBar.show();
         bottomBar.show();
 
-        //getEngine().play(game);
+        setupPlayers();
+        game = new Game(playerOne);
+
         new Thread(() -> getEngine().play(game)).start();
     }
 
