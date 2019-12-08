@@ -5,6 +5,7 @@ import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.Enemy;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.obstacle.Obstacle;
+import david.vaz.space.neon.refactored.engine.Engine;
 import david.vaz.space.neon.refactored.engine.modules.Collision;
 import david.vaz.space.neon.refactored.game.factories.EnemyGenerator;
 import david.vaz.space.neon.refactored.game.factories.ObstacleGenerator;
@@ -20,6 +21,7 @@ public final class Game {
     private final List<Obstacle> obstacles;
     private final List<PowerUp> powerUps;
     private final Score score;
+    private final Frames frames;
 
     public Game(Player... players) {
         this.players = new LinkedList<>();
@@ -29,11 +31,13 @@ public final class Game {
         this.obstacles = new LinkedList<>();
         this.powerUps = new LinkedList<>();
         this.score = new Score();
+        this.frames = new Frames();
     }
 
     public void init() {
         players.forEach(Player::show);
         score.show();
+        frames.show();
     }
 
     public void loop() {
@@ -56,6 +60,8 @@ public final class Game {
         moveObstacles();
         movePowerUps();
         movePlayers();
+
+        frames.update(Engine.getFPS());
     }
 
     public boolean doesNotEnd() {

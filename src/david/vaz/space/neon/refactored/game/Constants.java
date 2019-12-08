@@ -46,6 +46,10 @@ public final class Constants {
     public final static double SCORE_X = SCREEN_WIDTH / 2;
     public final static double SCORE_Y = SCREEN_HEIGHT - BAR_HEIGHT + PADDING + PADDING;
 
+    public final static double FPS_X = PADDING + PADDING;
+    public final static double FPS_Y = PADDING + PADDING;
+
+
     public final static double ENTITIES_STARTING_Y = PADDING + BAR_HEIGHT;
     private final static double ENEMIES_WIDTH = 25;
     private final static double SMALL_OBSTACLE_WIDTH = 80;

@@ -22,7 +22,7 @@ public final class Engine implements KeyboardHandler {
     private State state = State.GAME;
     private Screen screen;
     private boolean running;
-    private int currentFrames;
+    private static int currentFrames;
     private double lag;
 
     public Engine(long targetFrames) {
@@ -54,7 +54,7 @@ public final class Engine implements KeyboardHandler {
         }
     }
 
-    public int getFPS() {
+    public static int getFPS() {
         return currentFrames;
     }
 
