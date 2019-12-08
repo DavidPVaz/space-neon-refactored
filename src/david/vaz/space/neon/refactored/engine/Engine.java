@@ -22,11 +22,15 @@ public final class Engine implements KeyboardHandler {
     private State state = State.GAME;
     private Screen screen;
     private boolean running;
-    private static int currentFrames;
     private double lag;
+    private static int currentFrames;
 
     public Engine(long targetFrames) {
         this.targetFrames = targetFrames;
+    }
+
+    public static int getFPS() {
+        return currentFrames;
     }
 
     public void init() {
@@ -54,10 +58,6 @@ public final class Engine implements KeyboardHandler {
         }
     }
 
-    public static int getFPS() {
-        return currentFrames;
-    }
-
     public void play(Game game) {
 
         game.init();
@@ -72,7 +72,7 @@ public final class Engine implements KeyboardHandler {
 
             long startTime = System.currentTimeMillis();
 
-            processAllInputs();
+            processAllPressedInputs();
 
             howManyLoopsPerSecond++;
 
@@ -132,7 +132,7 @@ public final class Engine implements KeyboardHandler {
         }
     }
 
-    private void processAllInputs() {
+    private void processAllPressedInputs() {
         synchronized (inputs) {
             inputs.values().forEach(screen::process);
         }

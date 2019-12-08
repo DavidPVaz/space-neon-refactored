@@ -211,5 +211,4 @@ public final class Game {
             powerUp.move();
         }
     }
-
 }

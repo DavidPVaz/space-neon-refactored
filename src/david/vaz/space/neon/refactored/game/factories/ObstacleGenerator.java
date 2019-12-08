@@ -17,12 +17,12 @@ public final class ObstacleGenerator {
 
     private static double generateRandomX(Obstacle.Type type) {
 
-        double xLocation = type.equals(Obstacle.Type.SMALL) ?
+        double xMaxSpawn = type.equals(Obstacle.Type.SMALL) ?
                 SMALL_OBSTACLE_MAX_X_SPAWN :
                 type.equals(Obstacle.Type.MEDIUM) ?
                         MEDIUM_OBSTACLE_MAX_X_SPAWN :
                         BIG_OBSTACLE_MAX_X_SPAWN;
 
-        return (Math.random() * (xLocation - PADDING)) + PADDING;
+        return (Math.random() * (xMaxSpawn - PADDING)) + PADDING;
     }
 }

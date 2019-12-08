@@ -12,10 +12,10 @@ public final class Constants {
     public final static double BOTTOM_BAR_X = PADDING;
     public final static double BOTTOM_BAR_Y = SCREEN_HEIGHT - BAR_HEIGHT - PADDING;
 
-    public final static double PLAYER_ONE_INITIAL_X = 400;
-    public final static double PLAYER_ONE_INITIAL_Y = 600;
+    public final static double PLAYER_ONE_INITIAL_X = SCREEN_WIDTH - 100;
+    public final static double PLAYER_ONE_INITIAL_Y = SCREEN_HEIGHT - 100;
     public final static double PLAYERS_INITIAL_SPEED = 4;
-    public final static int PLAYERS_FIRING_COOLDOWN = 5;
+    public final static int PLAYERS_FIRING_COOLDOWN = 8;
     public final static int INVINCIBILITY_COOLDOWN = 120;
 
     public final static double LIFE_ICON_SIDE = 13;
@@ -38,7 +38,7 @@ public final class Constants {
 
     public final static int COLLISION_DAMAGE = 10;
     public final static int POWER_UP_SPEED = 3;
-    public final static int BULLET_SPEED = 6;
+    public final static int BULLET_SPEED = 8;
     public final static int BULLET_DAMAGE = 2;
     public final static double DOUBLE_SHOOT_DISTANCE = 20;
 
@@ -48,7 +48,6 @@ public final class Constants {
 
     public final static double FPS_X = PADDING + PADDING;
     public final static double FPS_Y = PADDING + PADDING;
-
 
     public final static double ENTITIES_STARTING_Y = PADDING + BAR_HEIGHT;
     private final static double ENEMIES_WIDTH = 25;
@@ -61,7 +60,6 @@ public final class Constants {
     public final static double MEDIUM_OBSTACLE_MAX_X_SPAWN = SCREEN_WIDTH - MEDIUM_OBSTACLE_WIDTH - PADDING;
     public final static double BIG_OBSTACLE_MAX_X_SPAWN = SCREEN_WIDTH - BIG_OBSTACLE_WIDTH - PADDING;
     public final static double POWER_UP_MAX_X_SPAWN = SCREEN_WIDTH - POWER_UP_WIDTH - PADDING;
-
 
     private Constants() {
 
