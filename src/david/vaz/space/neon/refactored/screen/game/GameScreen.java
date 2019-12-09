@@ -20,8 +20,8 @@ public final class GameScreen extends AbstractScreen {
 
     private Game game;
     private Player playerOne;
-    private ScreenBar topBar;
-    private ScreenBar bottomBar;
+    private final ScreenBar topBar;
+    private final ScreenBar bottomBar;
 
     public GameScreen(Engine engine) {
         super(Image.GAME_SCREEN, engine);
@@ -49,9 +49,10 @@ public final class GameScreen extends AbstractScreen {
     private void setupPlayers() {
 
         Stack<LifeIcon> playerOneLifeList = new Stack<>();
-        playerOneLifeList.push(new LifeIcon(PLAYER_ONE_FIRST_LIFE_X, LIFE_ICON_Y, LifeIcon.Type.BLUE));
-        playerOneLifeList.push(new LifeIcon(PLAYER_ONE_SECOND_LIFE_X, LIFE_ICON_Y, LifeIcon.Type.BLUE));
-        playerOneLifeList.push(new LifeIcon(PLAYER_ONE_THIRD_LIFE_X, LIFE_ICON_Y, LifeIcon.Type.BLUE));
+
+        for (int i = 0; i < PLAYERS_MAX_LIVES; i++) {
+            playerOneLifeList.push(new LifeIcon(PLAYER_ONE_LIFE_X + i * PLAYER_ONE_LIVES_MARGIN, LIFE_ICON_Y, LifeIcon.Type.BLUE));
+        }
 
         playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y, Image.PLAYER_BLUE, Bullet.Type.BLUE, playerOneLifeList);
     }

@@ -18,12 +18,12 @@ public final class Constants {
     public final static int PLAYERS_FIRING_COOLDOWN = 8;
     public final static int INVINCIBILITY_COOLDOWN = 120;
 
+    public final static double PLAYERS_MAX_LIVES = 3;
     public final static double LIFE_ICON_SIDE = 13;
     public final static double LIFE_ICON_DISTANCE = 20;
     public final static double LIFE_ICON_Y = SCREEN_HEIGHT - BAR_HEIGHT + PADDING + PADDING;
-    public final static double PLAYER_ONE_FIRST_LIFE_X = SCREEN_WIDTH - PADDING - LIFE_ICON_SIDE;
-    public final static double PLAYER_ONE_SECOND_LIFE_X = PLAYER_ONE_FIRST_LIFE_X - LIFE_ICON_SIDE - LIFE_ICON_DISTANCE;
-    public final static double PLAYER_ONE_THIRD_LIFE_X = PLAYER_ONE_SECOND_LIFE_X - LIFE_ICON_SIDE - LIFE_ICON_DISTANCE;
+    public final static double PLAYER_ONE_LIFE_X = SCREEN_WIDTH - PADDING - LIFE_ICON_SIDE;
+    public final static double PLAYER_ONE_LIVES_MARGIN = -LIFE_ICON_SIDE - LIFE_ICON_DISTANCE;
 
     public final static double REGULAR_ENEMY_SPEED = 3;
     public final static double DIAMOND_ENEMY_SPEED = 4;
