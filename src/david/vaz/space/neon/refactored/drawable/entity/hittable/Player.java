@@ -29,12 +29,11 @@ public final class Player extends AbstractEntity implements Hittable {
         this.bulletType = bulletType;
         this.lifeList = lifeList;
         this.directions = new LinkedList<>();
-        this.powerUpAction = new HashMap<>();
+        this.powerUpAction = setPowerUpAction();
         this.mode = Mode.VULNERABLE;
         this.firing = false;
         this.firingCooldown = PLAYERS_FIRING_COOLDOWN;
         this.shootingStrategy = ShootingStrategy.SINGLE_BULLET;
-        setPowerUpAction();
     }
 
     @Override
@@ -187,16 +186,16 @@ public final class Player extends AbstractEntity implements Hittable {
 
     private List<Bullet> createBullets() {
 
-        List<Bullet> toReturn = new LinkedList<>();
+        List<Bullet> bullets = new LinkedList<>();
 
         if (shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET)) {
-            toReturn.add(new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), bulletType, this));
-            toReturn.add(new Bullet(getBulletXCoordinates() + DOUBLE_SHOOT_DISTANCE, getBulletYCoordinates(), bulletType, this));
-            return toReturn;
+            bullets.add(new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), bulletType, this));
+            bullets.add(new Bullet(getBulletXCoordinates() + DOUBLE_SHOOT_DISTANCE, getBulletYCoordinates(), bulletType, this));
+            return bullets;
         }
 
-        toReturn.add(new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), bulletType, this));
-        return toReturn;
+        bullets.add(new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), bulletType, this));
+        return bullets;
     }
 
     private double getBulletXCoordinates() {
@@ -210,12 +209,17 @@ public final class Player extends AbstractEntity implements Hittable {
         return shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET) ? getMinY() : getMinY() - 10;
     }
 
-    private void setPowerUpAction() {
+    private Map<PowerUp.Type, PowerUpEnhancement> setPowerUpAction() {
+
+        HashMap<PowerUp.Type, PowerUpEnhancement> powerUpAction = new HashMap<>();
+
         powerUpAction.put(PowerUp.Type.DOUBLE_SHOOTING, this::changeShootingStrategy);
         powerUpAction.put(PowerUp.Type.EXTRA_DAMAGE, () -> bulletType.incrementDamage(2));
         powerUpAction.put(PowerUp.Type.EXTRA_LIFE, this::addExtraLife);
         powerUpAction.put(PowerUp.Type.INCREASE_BULLET_SPEED, () -> bulletType.incrementSpeed(2));
         powerUpAction.put(PowerUp.Type.INCREASE_PLAYER_SPEED, () -> incrementSpeed(2));
+
+        return powerUpAction;
     }
 
     private enum Mode {
