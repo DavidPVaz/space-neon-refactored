@@ -19,7 +19,7 @@ public final class Engine implements KeyboardHandler {
     private final Map<State, Screen> screens = new HashMap<>();
     private final Map<Integer, Input> inputs = new LinkedHashMap<>();
     private final long targetFrames;
-    private State state = State.GAME;
+    private State state = State.SINGLE_PLAYER_GAME;
     private Screen screen;
     private boolean running;
     private static int currentFrames;
@@ -34,7 +34,7 @@ public final class Engine implements KeyboardHandler {
 
     public void init() {
 
-        addScreen(State.GAME, new GameScreen(this));
+        addScreen(State.SINGLE_PLAYER_GAME, new GameScreen(this));
 
         screen = screens.get(state);
 
@@ -89,6 +89,10 @@ public final class Engine implements KeyboardHandler {
         }
 
         game.end();
+    }
+
+    public void setState(State state) {
+        this.state = state;
     }
 
     private void sleep(long waitingValue) {
@@ -154,7 +158,11 @@ public final class Engine implements KeyboardHandler {
         screen.process(new Input(key, Input.Type.KEY_RELEASE));
     }
 
-    private enum State {
-        GAME
+    public enum State {
+        SINGLE_PLAYER_GAME,
+        MULTI_PLAYER_GAME,
+        VERSUS,
+        INSTRUCTIONS,
+        MENU,
     }
 }
