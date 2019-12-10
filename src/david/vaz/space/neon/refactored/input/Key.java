@@ -14,7 +14,11 @@ public enum Key {
     LEFT(KeyboardEvent.KEY_LEFT),
     RIGHT(KeyboardEvent.KEY_RIGHT),
     DOWN(KeyboardEvent.KEY_DOWN),
-    SPACE(KeyboardEvent.KEY_SPACE);
+    SPACE(KeyboardEvent.KEY_SPACE),
+    ENTER(KeyboardEvent.KEY_ENTER),
+    ESC(KeyboardEvent.KEY_ESC),
+    Q(KeyboardEvent.KEY_Q),
+    M(KeyboardEvent.KEY_M);
 
     private int keyCode;
 

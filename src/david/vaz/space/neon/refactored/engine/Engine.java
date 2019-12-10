@@ -22,7 +22,6 @@ public final class Engine implements KeyboardHandler {
     private State state = State.GAME;
     private Screen screen;
     private boolean running;
-    private double lag;
     private static int currentFrames;
 
     public Engine(long targetFrames) {
@@ -87,8 +86,6 @@ public final class Engine implements KeyboardHandler {
             long waitingValue = milliSecondsPerFrame - (System.currentTimeMillis() - startTime);
 
             sleep(waitingValue);
-            System.out.println(currentFrames + "FPS");
-            System.out.println(lag > 0 ? "LAG: " + lag + "ms" : "Running smoothly");
         }
 
         game.end();
@@ -97,7 +94,6 @@ public final class Engine implements KeyboardHandler {
     private void sleep(long waitingValue) {
 
         if (waitingValue <= 0) {
-            lag = Math.abs(waitingValue);
             return;
         }
 
