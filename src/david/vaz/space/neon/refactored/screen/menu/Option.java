@@ -6,7 +6,13 @@ public enum Option {
     VERSUS,
     INSTRUCTIONS;
 
-    Option() {
+    public Option previous() {
+        int ordinal = ordinal() - 1;
+        return ordinal == -1 ? this : values()[ordinal];
+    }
 
+    public Option next() {
+        int ordinal = ordinal() + 1;
+        return ordinal == values().length ? this : values()[ordinal];
     }
 }

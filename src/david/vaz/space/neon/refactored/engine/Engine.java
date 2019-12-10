@@ -3,9 +3,9 @@ package david.vaz.space.neon.refactored.engine;
 import david.vaz.space.neon.refactored.game.Game;
 import david.vaz.space.neon.refactored.input.Input;
 import david.vaz.space.neon.refactored.input.Key;
-import david.vaz.space.neon.refactored.screen.AbstractScreen;
 import david.vaz.space.neon.refactored.screen.Screen;
 import david.vaz.space.neon.refactored.screen.game.GameScreen;
+import david.vaz.space.neon.refactored.screen.menu.MenuScreen;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
@@ -19,7 +19,7 @@ public final class Engine implements KeyboardHandler {
     private final Map<State, Screen> screens = new HashMap<>();
     private final Map<Integer, Input> inputs = new LinkedHashMap<>();
     private final long targetFrames;
-    private State state = State.SINGLE_PLAYER_GAME;
+    private State state = State.MENU;
     private Screen screen;
     private boolean running;
     private static int currentFrames;
@@ -34,6 +34,7 @@ public final class Engine implements KeyboardHandler {
 
     public void init() {
 
+        addScreen(State.MENU, new MenuScreen(this));
         addScreen(State.SINGLE_PLAYER_GAME, new GameScreen(this));
 
         screen = screens.get(state);
@@ -103,13 +104,12 @@ public final class Engine implements KeyboardHandler {
 
         try {
             Thread.sleep(waitingValue);
-        } catch (InterruptedException e) { // exceptions should not be silenced unless explicitly so.
+        } catch (InterruptedException e) {
             System.err.println(e.getMessage());
-            // Thread woke up early
         }
     }
 
-    private void addScreen(State state, AbstractScreen screen) {
+    private void addScreen(State state, Screen screen) {
         screens.put(state, screen);
         screen.setup();
     }
@@ -159,10 +159,10 @@ public final class Engine implements KeyboardHandler {
     }
 
     public enum State {
+        MENU,
         SINGLE_PLAYER_GAME,
         MULTI_PLAYER_GAME,
         VERSUS,
-        INSTRUCTIONS,
-        MENU,
+        INSTRUCTIONS
     }
 }

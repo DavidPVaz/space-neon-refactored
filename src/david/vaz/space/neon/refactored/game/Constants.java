@@ -1,5 +1,7 @@
 package david.vaz.space.neon.refactored.game;
 
+import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
+
 public final class Constants {
 
     public final static double PADDING = 10;
@@ -60,6 +62,9 @@ public final class Constants {
     public final static double MEDIUM_OBSTACLE_MAX_X_SPAWN = SCREEN_WIDTH - MEDIUM_OBSTACLE_WIDTH - PADDING;
     public final static double BIG_OBSTACLE_MAX_X_SPAWN = SCREEN_WIDTH - BIG_OBSTACLE_WIDTH - PADDING;
     public final static double POWER_UP_MAX_X_SPAWN = SCREEN_WIDTH - POWER_UP_WIDTH - PADDING;
+
+    public final static double ARROW_X = 680;
+    public final static double OPTIONS_DISTANCE = 95;
 
     private Constants() {
 
