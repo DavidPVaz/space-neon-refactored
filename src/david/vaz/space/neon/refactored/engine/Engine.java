@@ -55,6 +55,7 @@ public final class Engine implements KeyboardHandler {
 
         while (running) {
             checkActiveScreen();
+            processAllPressedInputs();
         }
     }
 

@@ -1,6 +1,6 @@
 package david.vaz.space.neon.refactored.screen.menu;
 
-import david.vaz.space.neon.refactored.drawable.entity.arrow.MenuArrow;
+import david.vaz.space.neon.refactored.drawable.arrow.MenuArrow;
 import david.vaz.space.neon.refactored.engine.Engine;
 import david.vaz.space.neon.refactored.input.Input;
 import david.vaz.space.neon.refactored.input.Key;
@@ -10,7 +10,7 @@ import david.vaz.space.neon.refactored.screen.AbstractScreen;
 import java.util.HashMap;
 import java.util.Map;
 
-public class MenuScreen extends AbstractScreen {
+public final class MenuScreen extends AbstractScreen {
 
     private Map<Option, Selection> options;
     private MenuArrow arrow;
@@ -23,7 +23,6 @@ public class MenuScreen extends AbstractScreen {
 
     @Override
     public void show() {
-        System.out.println("showing");
         super.show();
         arrow.show();
     }
@@ -48,19 +47,8 @@ public class MenuScreen extends AbstractScreen {
     }
 
     private void setupInputs() {
-        System.out.println("setting up inputs");
-        addInputHandler(Key.UP, Input.Type.KEY_PRESS, () -> {
-            System.out.println("pressing up");
-            arrow.previous();
-        });
-        addInputHandler(Key.DOWN, Input.Type.KEY_PRESS, () -> {
-            System.out.println("pressing down");
-            arrow.next();
-        });
-
-        addInputHandler(Key.ENTER, Input.Type.KEY_PRESS, () -> {
-            System.out.println("pressing enter");
-            options.get(arrow.getSelected()).select();
-        });
+        addInputHandler(Key.UP, Input.Type.KEY_PRESS, () -> arrow.previous());
+        addInputHandler(Key.DOWN, Input.Type.KEY_PRESS, () -> arrow.next());
+        addInputHandler(Key.ENTER, Input.Type.KEY_PRESS, () -> options.get(arrow.getSelected()).select());
     }
 }

@@ -64,6 +64,7 @@ public final class Constants {
     public final static double POWER_UP_MAX_X_SPAWN = SCREEN_WIDTH - POWER_UP_WIDTH - PADDING;
 
     public final static double ARROW_X = 680;
+    public final static double ARROW_INITIAL_Y = 400;
     public final static double OPTIONS_DISTANCE = 95;
 
     private Constants() {
