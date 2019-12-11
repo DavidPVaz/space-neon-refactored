@@ -55,6 +55,11 @@ public final class Engine implements KeyboardHandler {
 
         while (running) {
             checkActiveScreen();
+
+            if (state.equals(State.SINGLE_PLAYER_GAME) || state.equals(State.MULTI_PLAYER_GAME)) {
+                continue;
+            }
+            
             processAllPressedInputs();
         }
     }
