@@ -5,6 +5,7 @@ import david.vaz.space.neon.refactored.input.Input;
 import david.vaz.space.neon.refactored.input.Key;
 import david.vaz.space.neon.refactored.screen.Screen;
 import david.vaz.space.neon.refactored.screen.game.GameScreen;
+import david.vaz.space.neon.refactored.screen.instructions.InstructionsScreen;
 import david.vaz.space.neon.refactored.screen.menu.MenuScreen;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
@@ -16,13 +17,14 @@ import java.util.concurrent.TimeUnit;
 
 public final class Engine implements KeyboardHandler {
 
+    private static int currentFrames;
+
     private final Map<State, Screen> screens = new HashMap<>();
     private final Map<Integer, Input> inputs = new LinkedHashMap<>();
     private final long targetFrames;
-    private State state = State.MENU;
-    private Screen screen;
+    private State activeState = State.MENU;
+    private Screen activeScreen;
     private boolean running;
-    private static int currentFrames;
 
     public Engine(long targetFrames) {
         this.targetFrames = targetFrames;
@@ -36,8 +38,9 @@ public final class Engine implements KeyboardHandler {
 
         addScreen(State.MENU, new MenuScreen(this));
         addScreen(State.SINGLE_PLAYER_GAME, new GameScreen(this));
+        addScreen(State.INSTRUCTIONS, new InstructionsScreen(this));
 
-        screen = screens.get(state);
+        activeScreen = screens.get(activeState);
 
         Keyboard keyboard = new Keyboard(this);
 
@@ -51,12 +54,12 @@ public final class Engine implements KeyboardHandler {
 
     public void start() {
 
-        screen.show();
+        activeScreen.show();
 
         while (running) {
             checkActiveScreen();
 
-            if (state.equals(State.SINGLE_PLAYER_GAME) || state.equals(State.MULTI_PLAYER_GAME)) {
+            if (activeState.equals(State.SINGLE_PLAYER_GAME) || activeState.equals(State.MULTI_PLAYER_GAME)) {
                 continue;
             }
             
@@ -98,8 +101,8 @@ public final class Engine implements KeyboardHandler {
         game.end();
     }
 
-    public void setState(State state) {
-        this.state = state;
+    public void setActiveState(State activeState) {
+        this.activeState = activeState;
     }
 
     public void quit() {
@@ -134,18 +137,18 @@ public final class Engine implements KeyboardHandler {
 
     private void checkActiveScreen() {
 
-        Screen screen = screens.get(state);
+        Screen screen = screens.get(activeState);
 
-        if (screen != this.screen) {
-            this.screen.hide();
-            this.screen = screen;
-            this.screen.show();
+        if (screen != this.activeScreen) {
+            this.activeScreen.hide();
+            this.activeScreen = screen;
+            this.activeScreen.show();
         }
     }
 
     private void processAllPressedInputs() {
         synchronized (inputs) {
-            inputs.values().forEach(screen::process);
+            inputs.values().forEach(activeScreen::process);
         }
     }
 
@@ -166,7 +169,7 @@ public final class Engine implements KeyboardHandler {
             inputs.remove(keyboardEvent.getKey());
         }
 
-        screen.process(new Input(key, Input.Type.KEY_RELEASE));
+        activeScreen.process(new Input(key, Input.Type.KEY_RELEASE));
     }
 
     public enum State {

@@ -40,10 +40,10 @@ public final class MenuScreen extends AbstractScreen {
     }
 
     private void setupOptions() {
-        options.put(Option.SINGLE_PLAYER, () -> getEngine().setState(Engine.State.SINGLE_PLAYER_GAME));
-        options.put(Option.MULTI_PLAYER, () -> getEngine().setState(Engine.State.MULTI_PLAYER_GAME));
-        options.put(Option.VERSUS, () -> getEngine().setState(Engine.State.VERSUS));
-        options.put(Option.INSTRUCTIONS, () -> getEngine().setState(Engine.State.INSTRUCTIONS));
+        options.put(Option.SINGLE_PLAYER, () -> getEngine().setActiveState(Engine.State.SINGLE_PLAYER_GAME));
+        options.put(Option.MULTI_PLAYER, () -> getEngine().setActiveState(Engine.State.MULTI_PLAYER_GAME));
+        options.put(Option.VERSUS, () -> getEngine().setActiveState(Engine.State.VERSUS));
+        options.put(Option.INSTRUCTIONS, () -> getEngine().setActiveState(Engine.State.INSTRUCTIONS));
     }
 
     private void setupInputs() {
