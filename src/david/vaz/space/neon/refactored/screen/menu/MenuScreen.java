@@ -50,5 +50,6 @@ public final class MenuScreen extends AbstractScreen {
         addInputHandler(Key.UP, Input.Type.KEY_PRESS, () -> arrow.previous());
         addInputHandler(Key.DOWN, Input.Type.KEY_PRESS, () -> arrow.next());
         addInputHandler(Key.ENTER, Input.Type.KEY_PRESS, () -> options.get(arrow.getSelected()).select());
+        addInputHandler(Key.Q, Input.Type.KEY_PRESS, () -> getEngine().quit());
     }
 }

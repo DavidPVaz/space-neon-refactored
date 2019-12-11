@@ -97,6 +97,11 @@ public final class Engine implements KeyboardHandler {
         this.state = state;
     }
 
+    public void quit() {
+        running = false;
+        System.exit(0);
+    }
+
     private void sleep(long waitingValue) {
 
         if (waitingValue <= 0) {

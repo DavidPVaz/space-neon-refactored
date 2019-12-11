@@ -8,7 +8,6 @@ public enum Option {
 
     public Option previous() {
         int ordinal = ordinal() - 1;
-        System.out.println(ordinal());
         return ordinal == -1 ? this : values()[ordinal];
     }
 
