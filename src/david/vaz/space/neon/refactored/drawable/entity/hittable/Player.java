@@ -16,7 +16,7 @@ import static david.vaz.space.neon.refactored.game.Constants.PADDING;
 public final class Player extends AbstractEntity implements Hittable {
 
     private Bullet.Type bulletType;
-    private final Stack<LifeIcon> lifeList;
+    private final Stack<LifeIcon> livesStack;
     private final List<Direction> directions;
     private final Map<PowerUp.Type, PowerUpEnhancement> powerUpAction;
     private Mode mode;
@@ -24,10 +24,10 @@ public final class Player extends AbstractEntity implements Hittable {
     private int firingCooldown;
     private ShootingStrategy shootingStrategy;
 
-    public Player(double x, double y, Image image, Bullet.Type bulletType, Stack<LifeIcon> lifeList) {
+    public Player(double x, double y, Image image, Bullet.Type bulletType, Stack<LifeIcon> livesStack) {
         super(x, y, image, PLAYERS_INITIAL_SPEED);
         this.bulletType = bulletType;
-        this.lifeList = lifeList;
+        this.livesStack = livesStack;
         this.directions = new LinkedList<>();
         this.powerUpAction = setPowerUpAction();
         this.mode = Mode.VULNERABLE;
@@ -38,7 +38,7 @@ public final class Player extends AbstractEntity implements Hittable {
 
     @Override
     public void show() {
-        lifeList.forEach(LifeIcon::show);
+        livesStack.forEach(LifeIcon::show);
         super.show();
     }
 
@@ -74,7 +74,7 @@ public final class Player extends AbstractEntity implements Hittable {
             return;
         }
 
-        lifeList.pop().hide();
+        livesStack.pop().hide();
         //need to reset all previous enhancements by the power-ups
 
         mode = Mode.INVINCIBLE;
@@ -82,11 +82,11 @@ public final class Player extends AbstractEntity implements Hittable {
 
     @Override
     public boolean isDestroyed() {
-        return lifeList.isEmpty();
+        return livesStack.isEmpty();
     }
 
     public boolean isAlive() {
-        return !lifeList.isEmpty();
+        return !livesStack.isEmpty();
     }
 
     public void collect(PowerUp powerUp) {
@@ -155,15 +155,15 @@ public final class Player extends AbstractEntity implements Hittable {
 
     private void addExtraLife() {
 
-        if (lifeList.size() == 3) {
+        if (livesStack.size() == PLAYERS_MAX_LIVES) {
             return;
         }
 
-        LifeIcon life = new LifeIcon(lifeList.peek().getPicture().getX() - LIFE_ICON_DISTANCE - LIFE_ICON_SIDE,
+        LifeIcon life = new LifeIcon(livesStack.peek().getPicture().getX() - LIFE_ICON_DISTANCE - LIFE_ICON_SIDE,
                 LIFE_ICON_Y,
-                lifeList.peek().getType());
+                livesStack.peek().getType());
 
-        lifeList.push(life);
+        livesStack.push(life);
         life.show();
     }
 

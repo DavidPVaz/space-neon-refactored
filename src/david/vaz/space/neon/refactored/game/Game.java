@@ -69,7 +69,23 @@ public final class Game {
     }
 
     public void end() {
-        //delete all game objects and clear lists
+        players.forEach(Player::hide);
+        players.clear();
+
+        bullets.forEach(Bullet::hide);
+        bullets.clear();
+
+        enemies.forEach(Enemy::hide);
+        enemies.clear();
+
+        obstacles.forEach(Obstacle::hide);
+        obstacles.clear();
+
+        powerUps.forEach(PowerUp::hide);
+        powerUps.clear();
+
+        score.hide();
+        frames.hide();
     }
 
     private void shoot(Player player) {
