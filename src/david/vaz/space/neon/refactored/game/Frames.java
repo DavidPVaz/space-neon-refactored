@@ -6,11 +6,11 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
 
-final class Frames implements Drawable {
+public final class Frames implements Drawable {
 
     private Text display;
 
-    Frames () {
+    public Frames() {
         this.display = new Text(FPS_X, FPS_Y, "FPS");
     }
 
@@ -25,7 +25,7 @@ final class Frames implements Drawable {
         display.delete();
     }
 
-    void update(int fps){
+    public void update(int fps){
         display.setText("FPS: " + fps);
     }
 }

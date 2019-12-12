@@ -7,12 +7,12 @@ import org.academiadecodigo.simplegraphics.graphics.Text;
 import static david.vaz.space.neon.refactored.game.Constants.SCORE_X;
 import static david.vaz.space.neon.refactored.game.Constants.SCORE_Y;
 
-final class Score implements Drawable {
+public final class Score implements Drawable {
 
     private int score;
     private Text display;
 
-    Score () {
+    public Score () {
         this.score = 0;
         this.display = new Text(SCORE_X, SCORE_Y, "Score");
     }
@@ -29,7 +29,7 @@ final class Score implements Drawable {
         display.delete();
     }
 
-    void update(int score){
+    public void update(int score){
         this.score += score;
         display.setText("Score: " + this.score);
     }

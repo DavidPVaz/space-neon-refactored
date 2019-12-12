@@ -1,6 +1,6 @@
 package david.vaz.space.neon.refactored.engine;
 
-import david.vaz.space.neon.refactored.game.Game;
+import david.vaz.space.neon.refactored.game.concreteGames.Game;
 import david.vaz.space.neon.refactored.input.Input;
 import david.vaz.space.neon.refactored.input.Key;
 import david.vaz.space.neon.refactored.screen.Screen;
@@ -41,6 +41,7 @@ public final class Engine implements KeyboardHandler {
         Screen gameScreen = new GameScreen(this);
         addScreen(State.SINGLE_PLAYER_GAME, gameScreen);
         addScreen(State.MULTI_PLAYER_GAME, gameScreen);
+        addScreen(State.VERSUS, gameScreen);
 
         addScreen(State.INSTRUCTIONS, new InstructionsScreen(this));
 
@@ -61,13 +62,12 @@ public final class Engine implements KeyboardHandler {
         activeScreen.show();
 
         while (running) {
+
             checkActiveScreen();
 
-            if (activeState.equals(State.SINGLE_PLAYER_GAME) || activeState.equals(State.MULTI_PLAYER_GAME)) {
-                continue;
+            if (activeState.equals(State.MENU) || activeState.equals(State.INSTRUCTIONS)) {
+                processAllPressedInputs();
             }
-            
-            processAllPressedInputs();
         }
     }
 

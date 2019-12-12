@@ -6,7 +6,9 @@ import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
 import david.vaz.space.neon.refactored.drawable.lifes.LifeIcon;
 import david.vaz.space.neon.refactored.engine.Engine;
 import david.vaz.space.neon.refactored.game.Direction;
-import david.vaz.space.neon.refactored.game.Game;
+import david.vaz.space.neon.refactored.game.concreteGames.Game;
+import david.vaz.space.neon.refactored.game.concreteGames.SpaceNeon;
+import david.vaz.space.neon.refactored.game.concreteGames.Versus;
 import david.vaz.space.neon.refactored.input.Input;
 import david.vaz.space.neon.refactored.input.Key;
 import david.vaz.space.neon.refactored.resources.Image;
@@ -47,10 +49,12 @@ public final class GameScreen extends AbstractScreen {
 
         setupPlayers();
 
-        if (playerTwo == null) {
-            game = new Game(playerOne);
+        if (getEngine().getActiveState().equals(Engine.State.VERSUS)) {
+            game = new Versus(playerOne, playerTwo);
+        } else if (playerTwo == null) {
+            game = new SpaceNeon(playerOne);
         } else {
-            game = new Game(playerOne, playerTwo);
+            game = new SpaceNeon(playerOne, playerTwo);
         }
 
         new Thread(() -> getEngine().play(game)).start();
@@ -59,16 +63,15 @@ public final class GameScreen extends AbstractScreen {
     private void setupPlayers() {
 
         Stack<LifeIcon> playerOneLives = buildPlayerLives(PLAYER_ONE_LIFE_X, PLAYER_ONE_LIVES_MARGIN, LifeIcon.Type.BLUE);
-
         playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYERS_INITIAL_Y, Image.PLAYER_BLUE, Bullet.Type.BLUE, playerOneLives);
 
-        if (!getEngine().getActiveState().equals(Engine.State.MULTI_PLAYER_GAME)) {
-            return;
+        Engine.State activeState = getEngine().getActiveState();
+
+        if (activeState.equals(Engine.State.MULTI_PLAYER_GAME) || activeState.equals(Engine.State.VERSUS)) {
+
+            Stack<LifeIcon> playerTwoLives = buildPlayerLives(PLAYER_TWO_LIFE_X, PLAYER_TWO_LIVES_MARGIN, LifeIcon.Type.GREEN);
+            playerTwo = new Player(PLAYER_TWO_INITIAL_X, PLAYERS_INITIAL_Y, Image.PLAYER_GREEN, Bullet.Type.GREEN, playerTwoLives);
         }
-
-        Stack<LifeIcon> playerTwoLives = buildPlayerLives(PLAYER_TWO_LIFE_X, PLAYER_TWO_LIVES_MARGIN, LifeIcon.Type.GREEN);
-
-        playerTwo = new Player(PLAYER_TWO_INITIAL_X, PLAYERS_INITIAL_Y, Image.PLAYER_GREEN, Bullet.Type.GREEN, playerTwoLives);
     }
 
     private void setupInputs() {
@@ -86,22 +89,23 @@ public final class GameScreen extends AbstractScreen {
         addInputHandler(Key.SPACE, Input.Type.KEY_PRESS, () -> playerOne.fire());
         addInputHandler(Key.SPACE, Input.Type.KEY_RELEASE, () -> playerOne.stopFiring());
 
-        if (!getEngine().getActiveState().equals(Engine.State.MULTI_PLAYER_GAME)) {
-            return;
+        Engine.State activeState = getEngine().getActiveState();
+
+        if (activeState.equals(Engine.State.MULTI_PLAYER_GAME) || activeState.equals(Engine.State.VERSUS)) {
+
+            addInputHandler(Key.D, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.EAST));
+            addInputHandler(Key.A, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.WEST));
+            addInputHandler(Key.W, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.NORTH));
+            addInputHandler(Key.S, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.SOUTH));
+
+            addInputHandler(Key.D, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.EAST));
+            addInputHandler(Key.A, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.WEST));
+            addInputHandler(Key.W, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.NORTH));
+            addInputHandler(Key.S, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.SOUTH));
+
+            addInputHandler(Key.T, Input.Type.KEY_PRESS, () -> playerTwo.fire());
+            addInputHandler(Key.T, Input.Type.KEY_RELEASE, () -> playerTwo.stopFiring());
         }
-
-        addInputHandler(Key.D, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.EAST));
-        addInputHandler(Key.A, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.WEST));
-        addInputHandler(Key.W, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.NORTH));
-        addInputHandler(Key.S, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.SOUTH));
-
-        addInputHandler(Key.D, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.EAST));
-        addInputHandler(Key.A, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.WEST));
-        addInputHandler(Key.W, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.NORTH));
-        addInputHandler(Key.S, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.SOUTH));
-
-        addInputHandler(Key.T, Input.Type.KEY_PRESS, () -> playerTwo.fire());
-        addInputHandler(Key.T, Input.Type.KEY_RELEASE, () -> playerTwo.stopFiring());
     }
 
     private Stack<LifeIcon> buildPlayerLives(double lifeInitialX, double livesMargin, LifeIcon.Type type) {
