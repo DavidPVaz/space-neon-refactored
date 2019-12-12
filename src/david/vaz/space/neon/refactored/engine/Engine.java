@@ -39,8 +39,8 @@ public final class Engine implements KeyboardHandler {
         addScreen(State.MENU, new MenuScreen(this));
 
         Screen gameScreen = new GameScreen(this);
-        addScreen(State.SINGLE_PLAYER_GAME, gameScreen);
-        addScreen(State.MULTI_PLAYER_GAME, gameScreen);
+        addScreen(State.SINGLE_PLAYER, gameScreen);
+        addScreen(State.MULTI_PLAYER, gameScreen);
         addScreen(State.VERSUS, gameScreen);
 
         addScreen(State.INSTRUCTIONS, new InstructionsScreen(this));
@@ -182,8 +182,8 @@ public final class Engine implements KeyboardHandler {
 
     public enum State {
         MENU,
-        SINGLE_PLAYER_GAME,
-        MULTI_PLAYER_GAME,
+        SINGLE_PLAYER,
+        MULTI_PLAYER,
         VERSUS,
         INSTRUCTIONS
     }

@@ -58,6 +58,14 @@ public final class GameScreen extends AbstractScreen {
         }
 
         new Thread(() -> getEngine().play(game)).start();
+        getEngine().setActiveState(Engine.State.MENU);
+    }
+
+    @Override
+    public void hide() {
+        topBar.hide();
+        bottomBar.hide();
+        super.hide();
     }
 
     private void setupPlayers() {
@@ -67,7 +75,7 @@ public final class GameScreen extends AbstractScreen {
 
         Engine.State activeState = getEngine().getActiveState();
 
-        if (activeState.equals(Engine.State.MULTI_PLAYER_GAME) || activeState.equals(Engine.State.VERSUS)) {
+        if (activeState.equals(Engine.State.MULTI_PLAYER) || activeState.equals(Engine.State.VERSUS)) {
 
             Stack<LifeIcon> playerTwoLives = buildPlayerLives(PLAYER_TWO_LIFE_X, PLAYER_TWO_LIVES_MARGIN, LifeIcon.Type.GREEN);
             playerTwo = new Player(PLAYER_TWO_INITIAL_X, PLAYERS_INITIAL_Y, Image.PLAYER_GREEN, Bullet.Type.GREEN, playerTwoLives);
@@ -91,7 +99,7 @@ public final class GameScreen extends AbstractScreen {
 
         Engine.State activeState = getEngine().getActiveState();
 
-        if (activeState.equals(Engine.State.MULTI_PLAYER_GAME) || activeState.equals(Engine.State.VERSUS)) {
+        if (activeState.equals(Engine.State.MULTI_PLAYER) || activeState.equals(Engine.State.VERSUS)) {
 
             addInputHandler(Key.D, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.EAST));
             addInputHandler(Key.A, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.WEST));
