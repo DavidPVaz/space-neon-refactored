@@ -82,11 +82,11 @@ public final class Player extends AbstractEntity implements Hittable {
 
     @Override
     public boolean isDestroyed() {
-        return livesStack.isEmpty();
+        return livesStack.empty();
     }
 
     public boolean isAlive() {
-        return !livesStack.isEmpty();
+        return !livesStack.empty();
     }
 
     public void collect(PowerUp powerUp) {

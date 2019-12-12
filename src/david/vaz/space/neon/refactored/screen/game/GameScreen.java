@@ -20,7 +20,6 @@ import static david.vaz.space.neon.refactored.game.Constants.*;
 
 public final class GameScreen extends AbstractScreen {
 
-    private Game game;
     private Player playerOne;
     private Player playerTwo;
     private final ScreenBar topBar;
@@ -43,11 +42,12 @@ public final class GameScreen extends AbstractScreen {
     @Override
     public void show() {
         setupInputs();
+        setupPlayers();
         super.show();
         topBar.show();
         bottomBar.show();
 
-        setupPlayers();
+        Game game;
 
         if (getEngine().getActiveState().equals(Engine.State.VERSUS)) {
             game = new Versus(playerOne, playerTwo);
@@ -57,7 +57,7 @@ public final class GameScreen extends AbstractScreen {
             game = new SpaceNeon(playerOne, playerTwo);
         }
 
-        new Thread(() -> getEngine().play(game)).start();
+        getEngine().play(game);
         getEngine().setActiveState(Engine.State.MENU);
     }
 

@@ -52,5 +52,21 @@ abstract class AbstractGame implements Game {
         }
     }
 
-    abstract void movePlayers();
+    void movePlayers() {
+
+        Iterator<Player> playerIterator = players.iterator();
+
+        while (playerIterator.hasNext()) {
+
+            Player player = playerIterator.next();
+
+            if (player.isDestroyed()) {
+                player.hide();
+                playerIterator.remove();
+                continue;
+            }
+
+            player.move();
+        }
+    };
 }

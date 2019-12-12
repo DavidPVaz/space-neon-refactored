@@ -87,25 +87,6 @@ public final class SpaceNeon extends AbstractGame {
         frames.hide();
     }
 
-    @Override
-    void movePlayers() {
-
-        Iterator<Player> playerIterator = players.iterator();
-
-        while (playerIterator.hasNext()) {
-
-            Player player = playerIterator.next();
-
-            if (player.isDestroyed()) {
-                player.hide();
-                playerIterator.remove();
-                continue;
-            }
-
-            player.move();
-        }
-    }
-
     private void generateEnemy() {
 
         Enemy enemy = EnemyGenerator.generateEnemy();

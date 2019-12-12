@@ -47,9 +47,4 @@ public final class Versus extends AbstractGame {
 
         frames.hide();
     }
-
-    @Override
-    void movePlayers() {
-        players.forEach(Player::move);
-    }
 }
