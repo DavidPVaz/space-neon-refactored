@@ -165,7 +165,7 @@ public final class Player extends AbstractEntity implements Hittable {
                 iconAtTheTopOfTheStack.getPicture().getX() +
                         (iconAtTheTopOfTheStack.getType().equals(LifeIcon.Type.BLUE) ? PLAYER_ONE_LIVES_MARGIN : PLAYER_TWO_LIVES_MARGIN),
                 LIFE_ICON_Y,
-                livesStack.peek().getType());
+                iconAtTheTopOfTheStack.getType());
 
         livesStack.push(newLife);
         newLife.show();
@@ -206,11 +206,11 @@ public final class Player extends AbstractEntity implements Hittable {
 
         return shootingStrategy.equals(ShootingStrategy.SINGLE_BULLET) ?
                 getMinX() + (getPicture().getWidth() / 6.0) :
-                getMinX() - 5;
+                getMinX() - 5.0;
     }
 
     private double getBulletYCoordinates() {
-        return shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET) ? getMinY() : getMinY() - 10;
+        return shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET) ? getMinY() : getMinY() - 10.0;
     }
 
     private Map<PowerUp.Type, PowerUpEnhancement> setPowerUpAction() {

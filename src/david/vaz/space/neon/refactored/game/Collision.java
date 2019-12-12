@@ -1,4 +1,4 @@
-package david.vaz.space.neon.refactored.engine.modules;
+package david.vaz.space.neon.refactored.game;
 
 import david.vaz.space.neon.refactored.drawable.entity.Collidable;
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
