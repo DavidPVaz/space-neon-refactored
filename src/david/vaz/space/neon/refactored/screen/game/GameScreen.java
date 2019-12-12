@@ -20,6 +20,7 @@ public final class GameScreen extends AbstractScreen {
 
     private Game game;
     private Player playerOne;
+    private Player playerTwo;
     private final ScreenBar topBar;
     private final ScreenBar bottomBar;
 
@@ -41,7 +42,12 @@ public final class GameScreen extends AbstractScreen {
         bottomBar.show();
 
         setupPlayers();
-        game = new Game(playerOne);
+
+        if (playerTwo == null) {
+            game = new Game(playerOne);
+        } else {
+            game = new Game(playerOne, playerTwo);
+        }
 
         new Thread(() -> getEngine().play(game)).start();
     }
@@ -54,7 +60,19 @@ public final class GameScreen extends AbstractScreen {
             playerOneLifeList.push(new LifeIcon(PLAYER_ONE_LIFE_X + i * PLAYER_ONE_LIVES_MARGIN, LIFE_ICON_Y, LifeIcon.Type.BLUE));
         }
 
-        playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYER_ONE_INITIAL_Y, Image.PLAYER_BLUE, Bullet.Type.BLUE, playerOneLifeList);
+        playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYERS_INITIAL_Y, Image.PLAYER_BLUE, Bullet.Type.BLUE, playerOneLifeList);
+
+        if (!getEngine().getActiveState().equals(Engine.State.MULTI_PLAYER_GAME)) {
+            return;
+        }
+
+        Stack<LifeIcon> playerTwoLifeList = new Stack<>();
+
+        for (int i = 0; i < PLAYERS_MAX_LIVES; i++) {
+            playerTwoLifeList.push(new LifeIcon(PLAYER_TWO_LIFE_X + i * PLAYER_TWO_LIVES_MARGIN, LIFE_ICON_Y, LifeIcon.Type.GREEN));
+        }
+
+        playerTwo = new Player(PLAYER_TWO_INITIAL_X, PLAYERS_INITIAL_Y, Image.PLAYER_GREEN, Bullet.Type.GREEN, playerTwoLifeList);
     }
 
     private void setupInputs() {
@@ -71,5 +89,19 @@ public final class GameScreen extends AbstractScreen {
 
         addInputHandler(Key.SPACE, Input.Type.KEY_PRESS, () -> playerOne.fire());
         addInputHandler(Key.SPACE, Input.Type.KEY_RELEASE, () -> playerOne.stopFiring());
+
+        addInputHandler(Key.D, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.EAST));
+        addInputHandler(Key.A, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.WEST));
+        addInputHandler(Key.W, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.NORTH));
+        addInputHandler(Key.S, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.SOUTH));
+
+        addInputHandler(Key.D, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.EAST));
+        addInputHandler(Key.A, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.WEST));
+        addInputHandler(Key.W, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.NORTH));
+        addInputHandler(Key.S, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.SOUTH));
+
+        addInputHandler(Key.T, Input.Type.KEY_PRESS, () -> playerTwo.fire());
+        addInputHandler(Key.T, Input.Type.KEY_RELEASE, () -> playerTwo.stopFiring());
+
     }
 }

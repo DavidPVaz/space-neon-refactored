@@ -37,7 +37,11 @@ public final class Engine implements KeyboardHandler {
     public void init() {
 
         addScreen(State.MENU, new MenuScreen(this));
-        addScreen(State.SINGLE_PLAYER_GAME, new GameScreen(this));
+
+        Screen gameScreen = new GameScreen(this);
+        addScreen(State.SINGLE_PLAYER_GAME, gameScreen);
+        addScreen(State.MULTI_PLAYER_GAME, gameScreen);
+
         addScreen(State.INSTRUCTIONS, new InstructionsScreen(this));
 
         activeScreen = screens.get(activeState);
@@ -103,6 +107,10 @@ public final class Engine implements KeyboardHandler {
 
     public void setActiveState(State activeState) {
         this.activeState = activeState;
+    }
+
+    public State getActiveState() {
+        return activeState;
     }
 
     public void quit() {

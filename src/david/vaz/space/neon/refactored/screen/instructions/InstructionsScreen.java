@@ -6,7 +6,7 @@ import david.vaz.space.neon.refactored.input.Key;
 import david.vaz.space.neon.refactored.resources.Image;
 import david.vaz.space.neon.refactored.screen.AbstractScreen;
 
-public class InstructionsScreen extends AbstractScreen {
+public final class InstructionsScreen extends AbstractScreen {
 
     public InstructionsScreen(Engine engine) {
         super(Image.INSTRUCTIONS_SCREEN, engine);

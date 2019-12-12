@@ -15,7 +15,9 @@ public final class Constants {
     public final static double BOTTOM_BAR_Y = SCREEN_HEIGHT - BAR_HEIGHT - PADDING;
 
     public final static double PLAYER_ONE_INITIAL_X = SCREEN_WIDTH - 100;
-    public final static double PLAYER_ONE_INITIAL_Y = SCREEN_HEIGHT - 100;
+    public final static double PLAYERS_INITIAL_Y = SCREEN_HEIGHT - 100;
+    public final static double PLAYER_TWO_INITIAL_X = 100;
+
     public final static double PLAYERS_INITIAL_SPEED = 4;
     public final static int PLAYERS_FIRING_COOLDOWN = 8;
     public final static int INVINCIBILITY_COOLDOWN = 120;
@@ -26,6 +28,8 @@ public final class Constants {
     public final static double LIFE_ICON_Y = SCREEN_HEIGHT - BAR_HEIGHT + PADDING + PADDING;
     public final static double PLAYER_ONE_LIFE_X = SCREEN_WIDTH - PADDING - LIFE_ICON_SIDE;
     public final static double PLAYER_ONE_LIVES_MARGIN = -LIFE_ICON_SIDE - LIFE_ICON_DISTANCE;
+    public final static double PLAYER_TWO_LIFE_X = PADDING + LIFE_ICON_SIDE;
+    public final static double PLAYER_TWO_LIVES_MARGIN = LIFE_ICON_SIDE + LIFE_ICON_DISTANCE;
 
     public final static double REGULAR_ENEMY_SPEED = 3;
     public final static double DIAMOND_ENEMY_SPEED = 4;
