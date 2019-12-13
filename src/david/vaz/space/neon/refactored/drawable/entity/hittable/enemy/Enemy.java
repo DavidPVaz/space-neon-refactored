@@ -25,6 +25,10 @@ public abstract class Enemy extends AbstractEntity implements Hittable {
         return hp <= 0;
     }
 
+    public void boostHp(int hpIncrement) {
+        this.hp += hpIncrement;
+    }
+
     public enum Type {
         REGULAR(Image.NORMAL_ENEMY, REGULAR_ENEMY_SPEED, ENEMY_HP),
         DIAMOND(Image.DIAMOND_ENEMY, DIAMOND_ENEMY_SPEED, ENEMY_HP);

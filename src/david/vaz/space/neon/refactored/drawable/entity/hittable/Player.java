@@ -225,10 +225,10 @@ public final class Player extends AbstractEntity implements Hittable {
         HashMap<PowerUp.Type, PowerUpEnhancement> powerUpAction = new HashMap<>();
 
         powerUpAction.put(PowerUp.Type.DOUBLE_SHOOTING, this::changeShootingStrategy);
-        powerUpAction.put(PowerUp.Type.EXTRA_DAMAGE, () -> bulletType.incrementDamage(2));
+        powerUpAction.put(PowerUp.Type.EXTRA_DAMAGE, () -> bulletType.incrementDamage(1));
         powerUpAction.put(PowerUp.Type.EXTRA_LIFE, this::addExtraLife);
         powerUpAction.put(PowerUp.Type.INCREASE_BULLET_SPEED, () -> bulletType.incrementSpeed(2));
-        powerUpAction.put(PowerUp.Type.INCREASE_PLAYER_SPEED, () -> incrementSpeed(2));
+        powerUpAction.put(PowerUp.Type.INCREASE_PLAYER_SPEED, () -> incrementSpeed(1));
 
         return powerUpAction;
     }

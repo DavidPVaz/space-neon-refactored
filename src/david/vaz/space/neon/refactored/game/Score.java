@@ -33,4 +33,8 @@ public final class Score implements Drawable {
         this.score += score;
         display.setText("Score: " + this.score);
     }
+
+    public int value() {
+        return score;
+    }
 }

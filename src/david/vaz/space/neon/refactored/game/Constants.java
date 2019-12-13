@@ -34,7 +34,7 @@ public final class Constants {
 
     public final static double REGULAR_ENEMY_SPEED = 3;
     public final static double DIAMOND_ENEMY_SPEED = 4;
-    public final static int ENEMY_HP = 6;
+    public final static int ENEMY_HP = 10;
 
     public final static double SMALL_OBSTACLE_SPEED = 5;
     public final static double MEDIUM_OBSTACLE_SPEED = 4;

@@ -80,7 +80,7 @@ public final class Bullet extends AbstractEntity {
 
         public void incrementDamage(int damage) {
 
-            if (this.damage >= 20) {
+            if (this.damage >= 18) {
                 return;
             }
 

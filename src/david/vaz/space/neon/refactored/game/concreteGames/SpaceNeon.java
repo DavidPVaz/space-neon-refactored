@@ -114,6 +114,10 @@ public final class SpaceNeon extends AbstractGame {
             return;
         }
 
+        if (score.value() % 100 == 0) {
+            enemy.boostHp(5);
+        }
+
         enemies.add(enemy);
         enemy.show();
     }
