@@ -17,6 +17,7 @@ public final class Constants {
     public final static double PLAYER_ONE_INITIAL_X = SCREEN_WIDTH - 100;
     public final static double PLAYERS_INITIAL_Y = SCREEN_HEIGHT - 100;
     public final static double PLAYER_TWO_INITIAL_X = 100;
+    public final static double PLAYER_TWO_REVERSED_INITIAL_Y = 70;
 
     public final static double PLAYERS_INITIAL_SPEED = 4;
     public final static int PLAYERS_FIRING_COOLDOWN = 8;

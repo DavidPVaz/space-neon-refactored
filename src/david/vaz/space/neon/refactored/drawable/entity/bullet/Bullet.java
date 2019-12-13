@@ -20,7 +20,7 @@ public final class Bullet extends AbstractEntity {
         this.type = type;
         this.owner = owner;
         hasCollided = false;
-        setDirection(owner instanceof Player ? Direction.NORTH : Direction.SOUTH);
+        setDirection(owner instanceof Player && !((Player) owner).isReversed() ? Direction.NORTH : Direction.SOUTH);
     }
 
     @Override

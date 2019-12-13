@@ -70,15 +70,22 @@ public final class GameScreen extends AbstractScreen {
 
     private void setupPlayers() {
 
-        Stack<LifeIcon> playerOneLives = buildPlayerLives(PLAYER_ONE_LIFE_X, PLAYER_ONE_LIVES_MARGIN, LifeIcon.Type.BLUE);
-        playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYERS_INITIAL_Y, Image.PLAYER_BLUE, Bullet.Type.BLUE, playerOneLives);
+        Stack<LifeIcon> playerOneLives = buildPlayerLives(PLAYER_ONE_LIFE_X, PLAYER_ONE_LIVES_MARGIN, LifeIcon.Type.GREEN);
+        playerOne = new Player(PLAYER_ONE_INITIAL_X, PLAYERS_INITIAL_Y, Image.PLAYER_GREEN, Bullet.Type.GREEN, playerOneLives, false);
 
         Engine.State activeState = getEngine().getActiveState();
 
-        if (activeState.equals(Engine.State.MULTI_PLAYER) || activeState.equals(Engine.State.VERSUS)) {
+        if (activeState.equals(Engine.State.MULTI_PLAYER)) {
 
-            Stack<LifeIcon> playerTwoLives = buildPlayerLives(PLAYER_TWO_LIFE_X, PLAYER_TWO_LIVES_MARGIN, LifeIcon.Type.GREEN);
-            playerTwo = new Player(PLAYER_TWO_INITIAL_X, PLAYERS_INITIAL_Y, Image.PLAYER_GREEN, Bullet.Type.GREEN, playerTwoLives);
+            Stack<LifeIcon> playerTwoLives = buildPlayerLives(PLAYER_TWO_LIFE_X, PLAYER_TWO_LIVES_MARGIN, LifeIcon.Type.BLUE);
+            playerTwo = new Player(PLAYER_TWO_INITIAL_X, PLAYERS_INITIAL_Y, Image.PLAYER_BLUE, Bullet.Type.BLUE, playerTwoLives, false);
+            return;
+        }
+
+        if (activeState.equals(Engine.State.VERSUS)) {
+
+            Stack<LifeIcon> playerTwoLives = buildPlayerLives(PLAYER_TWO_LIFE_X, PLAYER_TWO_LIVES_MARGIN, LifeIcon.Type.BLUE);
+            playerTwo = new Player(PLAYER_TWO_INITIAL_X, PLAYER_TWO_REVERSED_INITIAL_Y, Image.PLAYER_BLUE_REVERSED, Bullet.Type.BLUE, playerTwoLives, true);
         }
     }
 

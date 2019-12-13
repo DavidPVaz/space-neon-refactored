@@ -52,11 +52,11 @@ public final class SpaceNeon extends AbstractGame {
         players.forEach(Player::update);
         players.forEach(this::shoot);
 
+        movePlayers();
         moveBullets();
         moveEnemies();
         moveObstacles();
         movePowerUps();
-        movePlayers();
 
         frames.update(Engine.getFPS());
     }
@@ -141,8 +141,6 @@ public final class SpaceNeon extends AbstractGame {
         powerUps.add(powerUp);
         powerUp.show();
     }
-
-
 
     private void moveEnemies() {
 

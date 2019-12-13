@@ -23,8 +23,9 @@ public final class Player extends AbstractEntity implements Hittable {
     private boolean firing;
     private int firingCooldown;
     private ShootingStrategy shootingStrategy;
+    private boolean reversed;
 
-    public Player(double x, double y, Image image, Bullet.Type bulletType, Stack<LifeIcon> livesStack) {
+    public Player(double x, double y, Image image, Bullet.Type bulletType, Stack<LifeIcon> livesStack, boolean reversed) {
         super(x, y, image, PLAYERS_INITIAL_SPEED);
         this.bulletType = bulletType;
         this.livesStack = livesStack;
@@ -34,6 +35,7 @@ public final class Player extends AbstractEntity implements Hittable {
         this.firing = false;
         this.firingCooldown = PLAYERS_FIRING_COOLDOWN;
         this.shootingStrategy = ShootingStrategy.SINGLE_BULLET;
+        this.reversed = reversed;
     }
 
     @Override
@@ -153,6 +155,10 @@ public final class Player extends AbstractEntity implements Hittable {
         directions.remove(direction);
     }
 
+    public boolean isReversed() {
+        return reversed;
+    }
+
     private void addExtraLife() {
 
         if (livesStack.size() == PLAYERS_MAX_LIVES) {
@@ -210,7 +216,8 @@ public final class Player extends AbstractEntity implements Hittable {
     }
 
     private double getBulletYCoordinates() {
-        return shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET) ? getMinY() : getMinY() - 10.0;
+        return reversed ? getMaxY() - 14 :
+                shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET) ? getMinY() : getMinY() - 10.0;
     }
 
     private Map<PowerUp.Type, PowerUpEnhancement> setPowerUpAction() {

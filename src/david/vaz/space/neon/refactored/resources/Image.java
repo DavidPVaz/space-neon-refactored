@@ -13,7 +13,7 @@ public enum Image {
     GREEN_HEART(Directory.HEART),
     PLAYER_BLUE(Directory.PLAYER),
     PLAYER_GREEN(Directory.PLAYER),
-    PLAYER_BLUE_INVERTED(Directory.PLAYER),
+    PLAYER_BLUE_REVERSED(Directory.PLAYER),
     DOUBLE_SHOOTING(Directory.POWER_UP),
     EXTRA_DAMAGE(Directory.POWER_UP),
     EXTRA_LIFE(Directory.POWER_UP),
