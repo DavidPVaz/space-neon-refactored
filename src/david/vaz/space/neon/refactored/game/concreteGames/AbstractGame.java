@@ -1,7 +1,8 @@
 package david.vaz.space.neon.refactored.game.concreteGames;
 
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
-import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.Player;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.Shootable;
 import david.vaz.space.neon.refactored.game.Frames;
 
 import java.util.Iterator;
@@ -20,11 +21,9 @@ abstract class AbstractGame implements Game {
         this.frames = new Frames();
     }
 
-    void shoot(Player player) {
+    void shoot(Shootable shootable) {
 
-        //since booth players and enemies will shoot, i'll create a shootable interface
-        //and use varargs again to ask them all to shoot
-        List<Bullet> bullets = player.shoot();
+        List<Bullet> bullets = shootable.shoot();
 
         if (bullets == null) {
             return;

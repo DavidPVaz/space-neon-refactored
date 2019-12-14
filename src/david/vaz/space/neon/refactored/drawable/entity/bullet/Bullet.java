@@ -2,7 +2,7 @@ package david.vaz.space.neon.refactored.drawable.entity.bullet;
 
 import david.vaz.space.neon.refactored.drawable.entity.AbstractEntity;
 import david.vaz.space.neon.refactored.drawable.entity.Collidable;
-import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.Player;
 import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Hittable;
@@ -45,7 +45,7 @@ public final class Bullet extends AbstractEntity {
     public enum Type {
         GREEN(BULLET_DAMAGE, Image.GREEN_BULLET, BULLET_SPEED),
         BLUE(BULLET_DAMAGE, Image.BLUE_BULLET, BULLET_SPEED),
-        RED(BULLET_DAMAGE, Image.RED_BULLET, BULLET_SPEED);
+        RED(BULLET_DAMAGE, Image.RED_BULLET, BULLET_RED_SPEED);
 
         private int damage;
         private Image image;

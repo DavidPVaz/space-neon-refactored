@@ -4,8 +4,8 @@ import david.vaz.space.neon.refactored.drawable.entity.Collidable;
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Hittable;
-import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
-import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.Enemy;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.Player;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.enemy.Enemy;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.obstacle.Obstacle;
 
 import java.util.List;

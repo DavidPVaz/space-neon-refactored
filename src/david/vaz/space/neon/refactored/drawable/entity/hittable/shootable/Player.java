@@ -1,9 +1,10 @@
-package david.vaz.space.neon.refactored.drawable.entity.hittable;
+package david.vaz.space.neon.refactored.drawable.entity.hittable.shootable;
 
 import david.vaz.space.neon.refactored.drawable.entity.AbstractEntity;
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
 import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUpEnhancement;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.Hittable;
 import david.vaz.space.neon.refactored.drawable.lifes.LifeIcon;
 import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
@@ -11,9 +12,8 @@ import david.vaz.space.neon.refactored.resources.Image;
 import java.util.*;
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
-import static david.vaz.space.neon.refactored.game.Constants.PADDING;
 
-public final class Player extends AbstractEntity implements Hittable {
+public final class Player extends AbstractEntity implements Hittable, Shootable {
 
     private Bullet.Type bulletType;
     private final Stack<LifeIcon> livesStack;
@@ -87,6 +87,53 @@ public final class Player extends AbstractEntity implements Hittable {
         return livesStack.empty();
     }
 
+    @Override
+    public List<Bullet> shoot() {
+
+        firingCooldown--;
+
+        if (!firing || firingCooldown > 0) {
+            return null;
+        }
+
+        List<Bullet> bullets = createBullets();
+
+        if (firingCooldown <= 0) {
+            firingCooldown = PLAYERS_FIRING_COOLDOWN;
+        }
+
+        return bullets;
+    }
+
+    @Override
+    public List<Bullet> createBullets() {
+
+        List<Bullet> bullets = new LinkedList<>();
+
+        if (shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET)) {
+            bullets.add(new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), bulletType, this));
+            bullets.add(new Bullet(getBulletXCoordinates() + DOUBLE_SHOOT_DISTANCE, getBulletYCoordinates(), bulletType, this));
+            return bullets;
+        }
+
+        bullets.add(new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), bulletType, this));
+        return bullets;
+    }
+
+    @Override
+    public double getBulletXCoordinates() {
+
+        return shootingStrategy.equals(ShootingStrategy.SINGLE_BULLET) ?
+                getMinX() + (getPicture().getWidth() / 6.0) :
+                getMinX() - 5.0;
+    }
+
+    @Override
+    public double getBulletYCoordinates() {
+        return reversed ? getMaxY() - 14 :
+                shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET) ? getMinY() : getMinY() - 10.0;
+    }
+
     public boolean isAlive() {
         return !livesStack.empty();
     }
@@ -123,23 +170,6 @@ public final class Player extends AbstractEntity implements Hittable {
 
     public void stopFiring() {
         firing = false;
-    }
-
-    public List<Bullet> shoot() { //maybe turn this into shared method with enemies
-
-        firingCooldown--;
-
-        if (!firing || firingCooldown > 0) {
-            return null;
-        }
-
-        List<Bullet> bullets = createBullets();
-
-        if (firingCooldown <= 0) {
-            firingCooldown = PLAYERS_FIRING_COOLDOWN;
-        }
-
-        return bullets;
     }
 
     public void addDirection(Direction direction) {
@@ -192,32 +222,6 @@ public final class Player extends AbstractEntity implements Hittable {
         }
 
         return directions.get(0);
-    }
-
-    private List<Bullet> createBullets() {
-
-        List<Bullet> bullets = new LinkedList<>();
-
-        if (shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET)) {
-            bullets.add(new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), bulletType, this));
-            bullets.add(new Bullet(getBulletXCoordinates() + DOUBLE_SHOOT_DISTANCE, getBulletYCoordinates(), bulletType, this));
-            return bullets;
-        }
-
-        bullets.add(new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), bulletType, this));
-        return bullets;
-    }
-
-    private double getBulletXCoordinates() {
-
-        return shootingStrategy.equals(ShootingStrategy.SINGLE_BULLET) ?
-                getMinX() + (getPicture().getWidth() / 6.0) :
-                getMinX() - 5.0;
-    }
-
-    private double getBulletYCoordinates() {
-        return reversed ? getMaxY() - 14 :
-                shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET) ? getMinY() : getMinY() - 10.0;
     }
 
     private Map<PowerUp.Type, PowerUpEnhancement> setPowerUpAction() {

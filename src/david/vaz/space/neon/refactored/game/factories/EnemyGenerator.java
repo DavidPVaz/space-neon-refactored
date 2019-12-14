@@ -1,8 +1,8 @@
 package david.vaz.space.neon.refactored.game.factories;
 
-import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.DiamondEnemy;
-import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.Enemy;
-import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.RegularEnemy;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.enemy.DiamondEnemy;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.enemy.Enemy;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.enemy.RegularEnemy;
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
 

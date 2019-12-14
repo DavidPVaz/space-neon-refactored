@@ -33,6 +33,7 @@ public final class Constants {
     public final static double REGULAR_ENEMY_SPEED = 3;
     public final static double DIAMOND_ENEMY_SPEED = 4;
     public final static int ENEMY_HP = 10;
+    public final static int ENEMIES_FIRING_COOLDOWN = 70;
 
     public final static double SMALL_OBSTACLE_SPEED = 5;
     public final static double MEDIUM_OBSTACLE_SPEED = 4;
@@ -44,6 +45,7 @@ public final class Constants {
     public final static int COLLISION_DAMAGE = 10;
     public final static int POWER_UP_SPEED = 3;
     public final static int BULLET_SPEED = 6;
+    public final static int BULLET_RED_SPEED = 4;
     public final static int BULLET_DAMAGE = 2;
     public final static double DOUBLE_SHOOT_DISTANCE = 20;
 

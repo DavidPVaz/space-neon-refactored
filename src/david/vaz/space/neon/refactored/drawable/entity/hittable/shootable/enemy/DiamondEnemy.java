@@ -1,4 +1,4 @@
-package david.vaz.space.neon.refactored.drawable.entity.hittable.enemy;
+package david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.enemy;
 
 import david.vaz.space.neon.refactored.game.Direction;
 

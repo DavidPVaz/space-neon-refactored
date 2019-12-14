@@ -2,9 +2,9 @@ package david.vaz.space.neon.refactored.game.concreteGames;
 
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
-import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
-import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.Enemy;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.Player;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.obstacle.Obstacle;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.enemy.Enemy;
 import david.vaz.space.neon.refactored.engine.Engine;
 import david.vaz.space.neon.refactored.game.Collision;
 import david.vaz.space.neon.refactored.game.Score;
@@ -45,20 +45,21 @@ public final class SpaceNeon extends AbstractGame {
         generateObstacle();
         generatePowerUp();
 
-        int toUpdate = Collision.checkIfBulletHitAnything(bullets, players, enemies, obstacles);
-        score.update(toUpdate);
-
-        Collision.checkIfAnyEnemyEntityHitPlayers(players, enemies, obstacles);
-        Collision.checkIfAnyPlayerCatchAnyPowerUp(players, powerUps);
-
-        players.forEach(Player::update);
-        players.forEach(this::shoot);
-
         movePlayers();
         moveBullets();
         moveEnemies();
         moveObstacles();
         movePowerUps();
+
+        players.forEach(Player::update);
+        players.forEach(this::shoot);
+        enemies.forEach(this::shoot);
+
+        int toUpdate = Collision.checkIfBulletHitAnything(bullets, players, enemies, obstacles);
+        score.update(toUpdate);
+
+        Collision.checkIfAnyEnemyEntityHitPlayers(players, enemies, obstacles);
+        Collision.checkIfAnyPlayerCatchAnyPowerUp(players, powerUps);
 
         frames.update(Engine.getFPS());
     }
