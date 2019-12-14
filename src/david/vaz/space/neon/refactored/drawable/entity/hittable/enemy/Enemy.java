@@ -56,7 +56,7 @@ public abstract class Enemy extends AbstractEntity implements Hittable {
         }
 
         public static Type random() {
-            return Math.random() > 0.4 ? REGULAR : DIAMOND;
+            return Math.random() > 0.6 ? REGULAR : DIAMOND;
         }
     }
 }

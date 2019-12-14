@@ -8,11 +8,11 @@ import static david.vaz.space.neon.refactored.game.Constants.*;
 
 public final class EnemyGenerator {
 
-    public static Enemy generateEnemy() {
+    public static Enemy generateEnemy(int score) {
 
         double chance = Math.random() * 20;
 
-        return chance > 0.4 ?
+        return chance > score / DIFFICULTY_VALUE ?
                 null :
                 Enemy.Type.random().equals(Enemy.Type.REGULAR) ?
                         new RegularEnemy(generateRandomX(), ENTITIES_STARTING_Y) :

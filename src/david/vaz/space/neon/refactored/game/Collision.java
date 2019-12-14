@@ -6,11 +6,11 @@ import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Hittable;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Player;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.enemy.Enemy;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.obstacle.Obstacle;
 
 import java.util.List;
 
-import static david.vaz.space.neon.refactored.game.Constants.COLLISION_DAMAGE;
-import static david.vaz.space.neon.refactored.game.Constants.SCORE_PER_ENEMY;
+import static david.vaz.space.neon.refactored.game.Constants.*;
 
 public final class Collision {
 
@@ -26,7 +26,9 @@ public final class Collision {
 
                     if (bullet.collideWith(entity)) {
                         bullet.hit((Hittable) entity);
-                        score += entity instanceof Enemy && ((Enemy) entity).isDestroyed() ? SCORE_PER_ENEMY : score;
+                        score += entity instanceof Enemy && ((Enemy) entity).isDestroyed() ? SCORE_PER_ENEMY :
+                                entity instanceof Obstacle && ((Obstacle) entity).isDestroyed() ? SCORE_PER_OBSTACLE :
+                                        score;
                     }
                 }
             }

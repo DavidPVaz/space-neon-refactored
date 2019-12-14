@@ -1,7 +1,5 @@
 package david.vaz.space.neon.refactored.game;
 
-import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
-
 public final class Constants {
 
     public final static double PADDING = 10;
@@ -45,13 +43,15 @@ public final class Constants {
 
     public final static int COLLISION_DAMAGE = 10;
     public final static int POWER_UP_SPEED = 3;
-    public final static int BULLET_SPEED = 8;
+    public final static int BULLET_SPEED = 6;
     public final static int BULLET_DAMAGE = 2;
     public final static double DOUBLE_SHOOT_DISTANCE = 20;
 
     public final static double SCORE_PER_ENEMY = 5;
+    public final static double SCORE_PER_OBSTACLE = 2;
     public final static double SCORE_X = SCREEN_WIDTH / 2;
     public final static double SCORE_Y = SCREEN_HEIGHT - BAR_HEIGHT + PADDING + PADDING;
+    public final static double DIFFICULTY_VALUE = 1500;
 
     public final static double FPS_X = PADDING + PADDING;
     public final static double FPS_Y = PADDING + PADDING;

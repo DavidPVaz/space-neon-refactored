@@ -20,7 +20,7 @@ public final class Score implements Drawable {
     @Override
     public void show() {
         display.setColor(Color.CYAN);
-        display.grow(35, 15);
+        display.grow(25, 10);
         display.draw();
     }
 

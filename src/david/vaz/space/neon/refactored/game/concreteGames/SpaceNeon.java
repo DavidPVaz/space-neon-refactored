@@ -39,6 +39,8 @@ public final class SpaceNeon extends AbstractGame {
     @Override
     public void loop() {
 
+        //when score reaches 4000 or 5000, spawn a boss
+
         generateEnemy();
         generateObstacle();
         generatePowerUp();
@@ -108,13 +110,13 @@ public final class SpaceNeon extends AbstractGame {
 
     private void generateEnemy() {
 
-        Enemy enemy = EnemyGenerator.generateEnemy();
+        Enemy enemy = EnemyGenerator.generateEnemy(score.value());
 
         if (enemy == null) {
             return;
         }
 
-        if (score.value() % 100 == 0) {
+        if (score.value() % 400 == 0) {
             enemy.boostHp(5);
         }
 
@@ -136,7 +138,7 @@ public final class SpaceNeon extends AbstractGame {
 
     private void generatePowerUp() {
 
-        PowerUp powerUp = PowerUpGenerator.generatePowerUp();
+        PowerUp powerUp = PowerUpGenerator.generatePowerUp(score.value());
 
         if (powerUp == null) {
             return;

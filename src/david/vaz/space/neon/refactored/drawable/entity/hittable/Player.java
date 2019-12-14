@@ -169,7 +169,7 @@ public final class Player extends AbstractEntity implements Hittable {
 
         LifeIcon newLife = new LifeIcon(
                 iconAtTheTopOfTheStack.getPicture().getX() +
-                        (iconAtTheTopOfTheStack.getType().equals(LifeIcon.Type.BLUE) ? PLAYER_ONE_LIVES_MARGIN : PLAYER_TWO_LIVES_MARGIN),
+                        (iconAtTheTopOfTheStack.getType().equals(LifeIcon.Type.GREEN) ? PLAYER_ONE_LIVES_MARGIN : PLAYER_TWO_LIVES_MARGIN),
                 LIFE_ICON_Y,
                 iconAtTheTopOfTheStack.getType());
 
