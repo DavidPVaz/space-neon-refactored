@@ -8,7 +8,7 @@ public final class PowerUpGenerator {
 
     public static PowerUp generatePowerUp(int score) {
 
-        double chance = Math.random() * 400;
+        double chance = Math.random() * 350;
 
         return chance > score / DIFFICULTY_VALUE ? null : new PowerUp(generateRandomX(), ENTITIES_STARTING_Y, PowerUp.Type.random());
     }

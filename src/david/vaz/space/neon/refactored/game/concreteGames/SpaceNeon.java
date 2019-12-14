@@ -14,6 +14,8 @@ import david.vaz.space.neon.refactored.game.factories.PowerUpGenerator;
 
 import java.util.*;
 
+import static david.vaz.space.neon.refactored.game.Constants.SCORE_INCREMENT;
+
 public final class SpaceNeon extends AbstractGame {
 
     private final List<Enemy> enemies;
@@ -117,7 +119,7 @@ public final class SpaceNeon extends AbstractGame {
             return;
         }
 
-        if (score.value() % 400 == 0) {
+        if (score.value() % SCORE_INCREMENT == 0) {
             enemy.boostHp(5);
         }
 

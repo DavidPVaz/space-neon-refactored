@@ -54,6 +54,7 @@ public final class Constants {
     public final static double SCORE_X = SCREEN_WIDTH / 2;
     public final static double SCORE_Y = SCREEN_HEIGHT - BAR_HEIGHT + PADDING + PADDING;
     public final static double DIFFICULTY_VALUE = 1500;
+    public final static double SCORE_INCREMENT = 300;
 
     public final static double FPS_X = PADDING + PADDING;
     public final static double FPS_Y = PADDING + PADDING;
