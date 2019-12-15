@@ -1,9 +1,8 @@
 package david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.enemy;
 
+import david.vaz.space.neon.refactored.drawable.entity.AbstractEntity;
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Hittable;
-import david.vaz.space.neon.refactored.drawable.entity.AbstractEntity;
-import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.Player;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.Shootable;
 import david.vaz.space.neon.refactored.resources.Image;
 
@@ -79,7 +78,8 @@ public abstract class Enemy extends AbstractEntity implements Hittable, Shootabl
 
     public enum Type {
         REGULAR(Image.NORMAL_ENEMY, REGULAR_ENEMY_SPEED, ENEMY_HP),
-        DIAMOND(Image.DIAMOND_ENEMY, DIAMOND_ENEMY_SPEED, ENEMY_HP);
+        DIAMOND(Image.DIAMOND_ENEMY, DIAMOND_ENEMY_SPEED, ENEMY_HP),
+        BOSS(Image.BOSS, BOSS_SPEED, BOSS_HP);
 
         private Image image;
         private double speed;

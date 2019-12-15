@@ -5,6 +5,7 @@ import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.Player;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.obstacle.Obstacle;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.enemy.Enemy;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.enemy.FinalBoss;
 import david.vaz.space.neon.refactored.engine.Engine;
 import david.vaz.space.neon.refactored.game.Collision;
 import david.vaz.space.neon.refactored.game.Score;
@@ -22,6 +23,7 @@ public final class SpaceNeon extends AbstractGame {
     private final List<Obstacle> obstacles;
     private final List<PowerUp> powerUps;
     private final Score score;
+    private boolean bossHasBeenSpawned;
 
     public SpaceNeon(Player... players) {
         this.players.addAll(Arrays.asList(players));
@@ -29,6 +31,7 @@ public final class SpaceNeon extends AbstractGame {
         this.obstacles = new LinkedList<>();
         this.powerUps = new LinkedList<>();
         this.score = new Score();
+        this.bossHasBeenSpawned = false;
     }
 
     @Override
@@ -40,8 +43,6 @@ public final class SpaceNeon extends AbstractGame {
 
     @Override
     public void loop() {
-
-        //when score reaches 4000 or 5000, spawn a boss
 
         generateEnemy();
         generateObstacle();
@@ -113,10 +114,18 @@ public final class SpaceNeon extends AbstractGame {
 
     private void generateEnemy() {
 
+        if (bossHasBeenSpawned) {
+            return;
+        }
+
         Enemy enemy = EnemyGenerator.generateEnemy(score.value());
 
         if (enemy == null) {
             return;
+        }
+
+        if (enemy instanceof FinalBoss) {
+            bossHasBeenSpawned = true;
         }
 
         if (score.value() % SCORE_INCREMENT == 0) {
@@ -129,6 +138,10 @@ public final class SpaceNeon extends AbstractGame {
 
     private void generateObstacle() {
 
+        if (bossHasBeenSpawned) {
+            return;
+        }
+
         Obstacle obstacle = ObstacleGenerator.generateObstacle();
 
         if (obstacle == null) {
@@ -140,6 +153,10 @@ public final class SpaceNeon extends AbstractGame {
     }
 
     private void generatePowerUp() {
+
+        if (bossHasBeenSpawned) {
+            return;
+        }
 
         PowerUp powerUp = PowerUpGenerator.generatePowerUp(score.value());
 

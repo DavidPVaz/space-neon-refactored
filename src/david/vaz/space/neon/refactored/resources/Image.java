@@ -6,6 +6,7 @@ public enum Image {
     RED_BULLET(Directory.BULLET),
     DIAMOND_ENEMY(Directory.ENEMY),
     NORMAL_ENEMY(Directory.ENEMY),
+    BOSS(Directory.ENEMY),
     BIG_OBSTACLE(Directory.ENEMY),
     MEDIUM_OBSTACLE(Directory.ENEMY),
     SMALL_OBSTACLE(Directory.ENEMY),

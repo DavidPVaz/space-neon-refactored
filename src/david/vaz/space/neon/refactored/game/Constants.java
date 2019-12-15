@@ -32,7 +32,9 @@ public final class Constants {
 
     public final static double REGULAR_ENEMY_SPEED = 3;
     public final static double DIAMOND_ENEMY_SPEED = 4;
+    public final static double BOSS_SPEED = 2;
     public final static int ENEMY_HP = 10;
+    public final static int BOSS_HP = 1000;
     public final static int ENEMIES_FIRING_COOLDOWN = 70;
 
     public final static double SMALL_OBSTACLE_SPEED = 5;
@@ -60,6 +62,8 @@ public final class Constants {
     public final static double FPS_Y = PADDING + PADDING;
 
     public final static double ENTITIES_STARTING_Y = PADDING + BAR_HEIGHT;
+    public final static double FINAL_BOSS_Y = ENTITIES_STARTING_Y + 50;
+    public final static double FINAL_BOSS_INITIAL_X = PADDING + 100;
     private final static double ENEMIES_WIDTH = 25;
     private final static double SMALL_OBSTACLE_WIDTH = 80;
     private final static double MEDIUM_OBSTACLE_WIDTH = 100;
