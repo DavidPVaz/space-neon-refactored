@@ -12,7 +12,7 @@ public final class Score implements Drawable {
     private int score;
     private Text display;
 
-    public Score () {
+    public Score() {
         this.score = 0;
         this.display = new Text(SCORE_X, SCORE_Y, "Score");
     }
@@ -20,7 +20,7 @@ public final class Score implements Drawable {
     @Override
     public void show() {
         display.setColor(Color.CYAN);
-        display.grow(25, 10);
+        display.grow(40, 15);
         display.draw();
     }
 
@@ -29,9 +29,16 @@ public final class Score implements Drawable {
         display.delete();
     }
 
-    public void update(int score){
+    public void update(int score) {
         this.score += score;
-        display.setText("Score: " + this.score);
+
+        String toDisplay = this.score < 10 ? " 000" + this.score :
+
+                this.score < 100 ? " 00" + this.score :
+
+                        this.score < 1000 ? " 0" + this.score : "" + this.score;
+
+        display.setText("Score:" + toDisplay);
     }
 
     public int value() {

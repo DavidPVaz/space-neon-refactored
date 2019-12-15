@@ -14,6 +14,10 @@ import static david.vaz.space.neon.refactored.game.Constants.*;
 
 public final class Collision {
 
+    private Collision(){
+
+    }
+
     @SafeVarargs
     public static int checkIfBulletHitAnything(List<Bullet> bullets, List<? extends Collidable>... entitiesToCheck) {
 
@@ -63,5 +67,4 @@ public final class Collision {
             }
         }));
     }
-
 }
