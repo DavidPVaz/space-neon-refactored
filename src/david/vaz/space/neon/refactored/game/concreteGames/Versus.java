@@ -24,7 +24,8 @@ public final class Versus extends AbstractGame {
         Collision.checkIfBulletHitAnything(bullets, players);
 
         players.forEach(Player::update);
-        players.forEach(this::shoot);
+
+        shoot(players);
 
         moveBullets();
         movePlayers();

@@ -21,19 +21,26 @@ abstract class AbstractGame implements Game {
         this.frames = new Frames();
     }
 
-    void shoot(Shootable shootable) {
+    @SafeVarargs
+    final void shoot(List<? extends Shootable>... shootables) {
 
-        List<Bullet> bullets = shootable.shoot();
+        for (List<? extends Shootable> listOfShootables : shootables) {
 
-        if (bullets == null) {
-            return;
+            for (Shootable shootable : listOfShootables) {
+
+                List<Bullet> bullets = shootable.shoot();
+
+                if (bullets == null) {
+                    continue;
+                }
+
+                bullets.forEach(Bullet::show);
+                this.bullets.addAll(bullets);
+            }
         }
-
-        bullets.forEach(Bullet::show);
-        this.bullets.addAll(bullets);
     }
 
-    void moveBullets() {
+    final void moveBullets() {
 
         Iterator<Bullet> bulletIterator = bullets.iterator();
 

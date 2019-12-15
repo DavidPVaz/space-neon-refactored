@@ -55,8 +55,8 @@ public final class SpaceNeon extends AbstractGame {
         movePowerUps();
 
         players.forEach(Player::update);
-        players.forEach(this::shoot);
-        enemies.forEach(this::shoot);
+
+        shoot(players, enemies);
 
         int toUpdate = Collision.checkIfBulletHitAnything(bullets, players, enemies, obstacles);
         score.update(toUpdate);
