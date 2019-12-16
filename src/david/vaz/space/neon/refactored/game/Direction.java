@@ -39,7 +39,7 @@ public enum Direction {
                 return direction.equals(NORTH);
         }
 
-        return false;
+        throw new IllegalStateException();
     }
 
     public static Direction resolveTwoPressedDirections(Direction direction, Direction direction1) {

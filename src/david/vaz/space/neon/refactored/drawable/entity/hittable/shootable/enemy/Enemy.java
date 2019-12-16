@@ -13,9 +13,9 @@ import static david.vaz.space.neon.refactored.game.Constants.*;
 
 public abstract class Enemy extends AbstractEntity implements Hittable, Shootable {
 
-    private int hp;
-    private Bullet.Type bulletType;
-    private int firingCooldown;
+    protected int hp;
+    protected Bullet.Type bulletType;
+    protected int firingCooldown;
 
     public Enemy(double x, double y, Type type) {
         super(x, y, type.getImage(), type.getSpeed());
