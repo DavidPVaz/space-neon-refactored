@@ -10,16 +10,15 @@ import static david.vaz.space.neon.refactored.game.Constants.*;
 
 public class FinalBoss extends Enemy {
 
-    private int FIRING_COOLDOWN_VALUE;
-    private int LIFE_UPGRADE_BOUNDARY;
+    private int firingCooldownUpdatableValue;
+    private int ragingValue;
 
     public FinalBoss(double x, double y) {
         super(x, y, Type.BOSS);
-        this.FIRING_COOLDOWN_VALUE = 130;
-        this.LIFE_UPGRADE_BOUNDARY = hp / 2;
-        this.firingCooldown = FIRING_COOLDOWN_VALUE;
+        this.firingCooldownUpdatableValue = FINAL_BOSS_INITIAL_FIRING_COOLDOWN;
+        this.ragingValue = this.hp / 2;
+        this.firingCooldown = this.firingCooldownUpdatableValue;
         setDirection(Math.random() > 0.5 ? Direction.EAST : Direction.WEST);
-
     }
 
     @Override
@@ -38,10 +37,8 @@ public class FinalBoss extends Enemy {
     public void takeHit(int damage) {
         hp -= damage;
 
-        if (hp <= LIFE_UPGRADE_BOUNDARY) {
-            FIRING_COOLDOWN_VALUE -= 20;
-            incrementSpeed(2);
-            LIFE_UPGRADE_BOUNDARY = hp / 2;
+        if (hp <= ragingValue) {
+            rage();
         }
     }
 
@@ -57,7 +54,7 @@ public class FinalBoss extends Enemy {
         List<Bullet> bullets = Math.random() > 0.5 ? rainAttack() : maniacAttack();
 
         if (firingCooldown <= 0) {
-            firingCooldown = FIRING_COOLDOWN_VALUE;
+            firingCooldown = firingCooldownUpdatableValue;
         }
 
         return bullets;
@@ -79,9 +76,16 @@ public class FinalBoss extends Enemy {
         List<Bullet> bullets = new LinkedList<>();
 
         for (int i = 0; i < getPicture().getWidth(); i += 50) {
-            bullets.add(new Bullet(getMinX() + i, getBulletYCoordinates() + i/5, bulletType, this));
+            bullets.add(new Bullet(getMinX() + i, getBulletYCoordinates() + i / 5, bulletType, this));
         }
 
         return bullets;
+    }
+
+    private void rage() {
+        firingCooldownUpdatableValue -= 20;
+        ragingValue = hp / 2;
+        incrementSpeed(2);
+        bulletType.incrementSpeed(2);
     }
 }

@@ -36,6 +36,7 @@ public final class Constants {
     public final static int ENEMY_HP = 10;
     public final static int BOSS_HP = 3000;
     public final static int ENEMIES_FIRING_COOLDOWN = 70;
+    public final static int FINAL_BOSS_INITIAL_FIRING_COOLDOWN = 130;
 
     public final static double SMALL_OBSTACLE_SPEED = 5;
     public final static double MEDIUM_OBSTACLE_SPEED = 4;
