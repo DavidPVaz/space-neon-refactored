@@ -69,6 +69,10 @@ public abstract class AbstractEntity extends AbstractDrawable implements Collida
         return speed;
     }
 
+    protected void setSpeed(double speed) {
+        this.speed = speed;
+    }
+
     protected void incrementSpeed(int speed) {
 
         if (this.speed > 10) {
@@ -77,5 +81,4 @@ public abstract class AbstractEntity extends AbstractDrawable implements Collida
 
         this.speed += speed;
     }
-
 }

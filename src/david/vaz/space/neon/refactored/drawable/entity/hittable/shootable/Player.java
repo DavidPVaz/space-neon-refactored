@@ -77,8 +77,7 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
         }
 
         livesStack.pop().hide();
-        //need to reset all previous enhancements by the power-ups
-
+        resetEnhancements();
         mode = Mode.INVINCIBLE;
     }
 
@@ -131,7 +130,7 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
     @Override
     public double getBulletYCoordinates() {
         return reversed ? getMaxY() - 14 :
-                shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET) ? getMinY() : getMinY() - 10.0;
+                shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET) ? getMinY() : getMinY() - 15.0;
     }
 
     public boolean isAlive() {
@@ -231,10 +230,17 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
         powerUpAction.put(PowerUp.Type.DOUBLE_SHOOTING, this::changeShootingStrategy);
         powerUpAction.put(PowerUp.Type.EXTRA_DAMAGE, () -> bulletType.incrementDamage(1));
         powerUpAction.put(PowerUp.Type.EXTRA_LIFE, this::addExtraLife);
-        powerUpAction.put(PowerUp.Type.INCREASE_BULLET_SPEED, () -> bulletType.incrementSpeed(2));
+        powerUpAction.put(PowerUp.Type.INCREASE_BULLET_SPEED, () -> bulletType.incrementSpeed(1));
         powerUpAction.put(PowerUp.Type.INCREASE_PLAYER_SPEED, () -> incrementSpeed(1));
 
         return powerUpAction;
+    }
+
+    private void resetEnhancements() {
+        shootingStrategy = ShootingStrategy.SINGLE_BULLET;
+        bulletType.setDamage(BULLET_DAMAGE);
+        bulletType.setSpeed(BULLET_SPEED);
+        setSpeed(PLAYERS_INITIAL_SPEED);
     }
 
     private enum Mode {

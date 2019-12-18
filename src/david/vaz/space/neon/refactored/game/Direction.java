@@ -42,29 +42,29 @@ public enum Direction {
         throw new IllegalStateException();
     }
 
-    public static Direction resolveTwoPressedDirections(Direction direction, Direction direction1) {
+    public static Direction resolveTwoPressedDirections(Direction direction, Direction secondDirection) {
 
-        if (direction.isOpposite(direction1)) {
-            return direction1;
+        if (direction.isOpposite(secondDirection)) {
+            return secondDirection;
         }
 
-        if (direction.equals(NORTH) && direction1.equals(EAST) ||
-                direction.equals(EAST) && direction1.equals(NORTH)) {
+        if (direction.equals(NORTH) && secondDirection.equals(EAST) ||
+                direction.equals(EAST) && secondDirection.equals(NORTH)) {
             return Direction.NORTHEAST;
         }
 
-        if (direction.equals(NORTH) && direction1.equals(WEST) ||
-                direction.equals(WEST) && direction1.equals(NORTH)) {
+        if (direction.equals(NORTH) && secondDirection.equals(WEST) ||
+                direction.equals(WEST) && secondDirection.equals(NORTH)) {
             return Direction.NORTHWEST;
         }
 
-        if (direction.equals(SOUTH) && direction1.equals(EAST) ||
-                direction.equals(EAST) && direction1.equals(SOUTH)) {
+        if (direction.equals(SOUTH) && secondDirection.equals(EAST) ||
+                direction.equals(EAST) && secondDirection.equals(SOUTH)) {
             return Direction.SOUTHEAST;
         }
 
-        if (direction.equals(SOUTH) && direction1.equals(WEST) ||
-                direction.equals(WEST) && direction1.equals(SOUTH)) {
+        if (direction.equals(SOUTH) && secondDirection.equals(WEST) ||
+                direction.equals(WEST) && secondDirection.equals(SOUTH)) {
             return Direction.SOUTHWEST;
         }
 

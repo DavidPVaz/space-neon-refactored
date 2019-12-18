@@ -80,11 +80,19 @@ public final class Bullet extends AbstractEntity {
 
         public void incrementDamage(int damage) {
 
-            if (this.damage >= 15) {
+            if (this.damage >= 10) {
                 return;
             }
 
             this.damage += damage;
+        }
+
+        public void setSpeed(int speed) {
+            this.speed = speed;
+        }
+
+        public void setDamage(int damage) {
+            this.damage = damage;
         }
     }
 }
