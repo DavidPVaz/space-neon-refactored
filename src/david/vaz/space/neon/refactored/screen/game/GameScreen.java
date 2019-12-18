@@ -57,8 +57,7 @@ public final class GameScreen extends AbstractScreen {
             game = new SpaceNeon(playerOne, playerTwo);
         }
 
-        getEngine().play(game);
-        getEngine().setActiveState(Engine.State.MENU);
+        new Thread(() -> getEngine().play(game)).start();
     }
 
     @Override

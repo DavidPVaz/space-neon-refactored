@@ -103,6 +103,7 @@ public final class Engine implements KeyboardHandler {
         }
 
         game.end();
+        activeState = State.MENU;
     }
 
     public void setActiveState(State activeState) {
@@ -145,6 +146,7 @@ public final class Engine implements KeyboardHandler {
 
     private void checkActiveScreen() {
 
+        System.out.println("Checking active screen. Current state: " + activeState);
         Screen screen = screens.get(activeState);
 
         if (screen != this.activeScreen) {
