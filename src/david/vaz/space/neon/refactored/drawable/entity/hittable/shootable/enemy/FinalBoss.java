@@ -8,7 +8,7 @@ import java.util.List;
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
 
-public class FinalBoss extends Enemy {
+public final class FinalBoss extends Enemy {
 
     private int firingCooldownUpdatableValue;
     private int ragingValue;

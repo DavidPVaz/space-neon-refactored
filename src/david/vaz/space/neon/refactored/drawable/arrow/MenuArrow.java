@@ -6,7 +6,7 @@ import david.vaz.space.neon.refactored.screen.menu.Option;
 
 import static david.vaz.space.neon.refactored.game.Constants.*;
 
-public class MenuArrow extends AbstractDrawable {
+public final class MenuArrow extends AbstractDrawable {
 
     private Option selected;
 
