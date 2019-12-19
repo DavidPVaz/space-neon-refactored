@@ -17,5 +17,4 @@ final class Directory {
     private Directory() {
 
     }
-
 }

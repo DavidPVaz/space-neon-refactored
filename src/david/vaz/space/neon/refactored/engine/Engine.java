@@ -132,6 +132,35 @@ public final class Engine implements KeyboardHandler {
         System.exit(0);
     }
 
+    @Override
+    public void keyPressed(KeyboardEvent keyboardEvent) {
+        Key key = Key.withCode(keyboardEvent.getKey());
+
+        synchronized (inputs) {
+            inputs.put(keyboardEvent.getKey(), new Input(key, Input.Type.KEY_PRESS));
+        }
+    }
+
+    @Override
+    public void keyReleased(KeyboardEvent keyboardEvent) {
+        Key key = Key.withCode(keyboardEvent.getKey());
+
+        synchronized (inputs) {
+            inputs.remove(keyboardEvent.getKey());
+        }
+
+        activeScreen.process(new Input(key, Input.Type.KEY_RELEASE));
+    }
+
+    public enum State {
+        MENU,
+        SINGLE_PLAYER,
+        MULTI_PLAYER,
+        VERSUS,
+        INSTRUCTIONS,
+        PAUSED
+    }
+
     private void sleep(long waitingValue) {
 
         if (waitingValue <= 0) {
@@ -176,34 +205,5 @@ public final class Engine implements KeyboardHandler {
         synchronized (inputs) {
             inputs.values().forEach(activeScreen::process);
         }
-    }
-
-    @Override
-    public void keyPressed(KeyboardEvent keyboardEvent) {
-        Key key = Key.withCode(keyboardEvent.getKey());
-
-        synchronized (inputs) {
-            inputs.put(keyboardEvent.getKey(), new Input(key, Input.Type.KEY_PRESS));
-        }
-    }
-
-    @Override
-    public void keyReleased(KeyboardEvent keyboardEvent) {
-        Key key = Key.withCode(keyboardEvent.getKey());
-
-        synchronized (inputs) {
-            inputs.remove(keyboardEvent.getKey());
-        }
-
-        activeScreen.process(new Input(key, Input.Type.KEY_RELEASE));
-    }
-
-    public enum State {
-        MENU,
-        SINGLE_PLAYER,
-        MULTI_PLAYER,
-        VERSUS,
-        INSTRUCTIONS,
-        PAUSED
     }
 }

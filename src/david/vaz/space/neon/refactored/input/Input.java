@@ -4,8 +4,8 @@ import java.util.Objects;
 
 public final class Input {
 
-    private Key key;
-    private Type type;
+    private final Key key;
+    private final Type type;
 
     public Input(Key key, Type type) {
         this.key = key;

@@ -30,8 +30,8 @@ public final class GameScreen extends AbstractScreen {
     public GameScreen(Engine engine, PauseScreenMock pauseScreen) {
         super(Image.GAME_SCREEN, engine);
         this.pauseScreen = pauseScreen;
-        topBar = new ScreenBar(TOP_BAR_X, TOP_BAR_Y, Image.TOP_BAR);
-        bottomBar = new ScreenBar(BOTTOM_BAR_X, BOTTOM_BAR_Y, Image.BOTTOM_BAR);
+        this.topBar = new ScreenBar(TOP_BAR_X, TOP_BAR_Y, Image.TOP_BAR);
+        this.bottomBar = new ScreenBar(BOTTOM_BAR_X, BOTTOM_BAR_Y, Image.BOTTOM_BAR);
     }
 
     @Override

@@ -37,6 +37,4 @@ public enum Image {
     public String path() {
         return path + name().toLowerCase() + ".png";
     }
-
-
 }

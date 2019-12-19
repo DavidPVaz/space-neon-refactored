@@ -57,18 +57,6 @@ public final class Bullet extends AbstractEntity {
             this.speed = speed;
         }
 
-        private int getDamage() {
-            return damage;
-        }
-
-        private int getSpeed() {
-            return speed;
-        }
-
-        private Image getImage() {
-            return image;
-        }
-
         public void incrementSpeed(int speed) {
 
             if (this.speed >= 16) {
@@ -93,6 +81,18 @@ public final class Bullet extends AbstractEntity {
 
         public void setDamage(int damage) {
             this.damage = damage;
+        }
+
+        private int getDamage() {
+            return damage;
+        }
+
+        private int getSpeed() {
+            return speed;
+        }
+
+        private Image getImage() {
+            return image;
         }
     }
 }

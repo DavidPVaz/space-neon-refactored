@@ -18,30 +18,6 @@ public enum Direction {
         this.y = y;
     }
 
-    public double getX() {
-        return x;
-    }
-
-    public double getY() {
-        return y;
-    }
-
-    private boolean isOpposite(Direction direction) {
-
-        switch (this) {
-            case EAST:
-                return direction == WEST;
-            case WEST:
-                return direction == EAST;
-            case NORTH:
-                return direction == SOUTH;
-            case SOUTH:
-                return direction == NORTH;
-        }
-
-        throw new IllegalStateException();
-    }
-
     public static Direction resolveTwoPressedDirections(Direction direction, Direction secondDirection) {
 
         if (direction.isOpposite(secondDirection)) {
@@ -71,6 +47,27 @@ public enum Direction {
         throw new IllegalStateException();
     }
 
+    public double getX() {
+        return x;
+    }
 
+    public double getY() {
+        return y;
+    }
 
+    private boolean isOpposite(Direction direction) {
+
+        switch (this) {
+            case EAST:
+                return direction == WEST;
+            case WEST:
+                return direction == EAST;
+            case NORTH:
+                return direction == SOUTH;
+            case SOUTH:
+                return direction == NORTH;
+        }
+
+        throw new IllegalStateException();
+    }
 }

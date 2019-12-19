@@ -65,7 +65,7 @@ public final class FinalBoss extends Enemy {
         List<Bullet> bullets = new LinkedList<>();
 
         for (int i = 0; i < getPicture().getWidth(); i += 50) {
-            bullets.add(new Bullet(getMinX() + i, getBulletYCoordinates(), bulletType, this));
+            bullets.add(new Bullet(getMinX() + i, getProjectilesYCoordinates(), bulletType, this));
         }
 
         return bullets;
@@ -76,7 +76,7 @@ public final class FinalBoss extends Enemy {
         List<Bullet> bullets = new LinkedList<>();
 
         for (int i = 0; i < getPicture().getWidth(); i += 50) {
-            bullets.add(new Bullet(getMinX() + i, getBulletYCoordinates() + i / 5, bulletType, this));
+            bullets.add(new Bullet(getMinX() + i, getProjectilesYCoordinates() + i / 5, bulletType, this));
         }
 
         return bullets;

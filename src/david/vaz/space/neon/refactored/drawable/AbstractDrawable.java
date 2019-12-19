@@ -24,5 +24,4 @@ public abstract class AbstractDrawable implements Drawable {
     public Picture getPicture() {
         return picture;
     }
-
 }

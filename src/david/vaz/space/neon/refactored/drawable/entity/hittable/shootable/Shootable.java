@@ -8,10 +8,10 @@ public interface Shootable {
 
     List<Bullet> shoot();
 
-    List<Bullet> createBullets();
+    List<Bullet> getProjectiles();
 
-    double getBulletXCoordinates();
+    double getProjectilesXCoordinates();
 
-    double getBulletYCoordinates();
+    double getProjectilesYCoordinates();
 
 }

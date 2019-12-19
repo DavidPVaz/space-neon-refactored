@@ -8,8 +8,8 @@ import static david.vaz.space.neon.refactored.game.Constants.POWER_UP_SPEED;
 
 public final class PowerUp extends AbstractEntity {
 
+    private final Type type;
     private boolean isCollected;
-    private Type type;
 
     public PowerUp(double x, double y, Type type) {
         super(x, y, type.getImage(), type.getSpeed());
@@ -45,19 +45,19 @@ public final class PowerUp extends AbstractEntity {
             this.image = image;
         }
 
+        public static Type random() {
+
+            int random = (int) (Math.random() * values().length);
+
+            return values()[random];
+        }
+
         private int getSpeed() {
             return speed;
         }
 
         private Image getImage() {
             return image;
-        }
-
-        public static Type random() {
-
-            int random = (int) (Math.random() * values().length);
-
-            return values()[random];
         }
     }
 }

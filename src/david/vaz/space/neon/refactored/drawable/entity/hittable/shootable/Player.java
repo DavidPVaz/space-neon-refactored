@@ -95,7 +95,7 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
             return null;
         }
 
-        List<Bullet> bullets = createBullets();
+        List<Bullet> bullets = getProjectiles();
 
         if (firingCooldown <= 0) {
             firingCooldown = PLAYERS_FIRING_COOLDOWN;
@@ -105,32 +105,32 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
     }
 
     @Override
-    public List<Bullet> createBullets() {
+    public List<Bullet> getProjectiles() {
 
         List<Bullet> bullets = new LinkedList<>();
 
         if (shootingStrategy == ShootingStrategy.DOUBLE_BULLET) {
-            bullets.add(new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), bulletType, this));
-            bullets.add(new Bullet(getBulletXCoordinates() + DOUBLE_SHOOT_DISTANCE, getBulletYCoordinates(), bulletType, this));
+            bullets.add(new Bullet(getProjectilesXCoordinates(), getProjectilesYCoordinates(), bulletType, this));
+            bullets.add(new Bullet(getProjectilesXCoordinates() + DOUBLE_SHOOT_DISTANCE, getProjectilesYCoordinates(), bulletType, this));
             return bullets;
         }
 
-        bullets.add(new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), bulletType, this));
+        bullets.add(new Bullet(getProjectilesXCoordinates(), getProjectilesYCoordinates(), bulletType, this));
         return bullets;
     }
 
     @Override
-    public double getBulletXCoordinates() {
-
-        return shootingStrategy == ShootingStrategy.SINGLE_BULLET ?
-                getMinX() + (getPicture().getWidth() / 6.0) :
-                getMinX() - 5.0;
+    public double getProjectilesXCoordinates() {
+        return shootingStrategy == ShootingStrategy.SINGLE_BULLET ? getMinX() + (getPicture().getWidth() / 6.0) : getMinX() - 5.0;
     }
 
     @Override
-    public double getBulletYCoordinates() {
-        return reversed ? getMaxY() - 14 :
-                shootingStrategy == ShootingStrategy.DOUBLE_BULLET ? getMinY() : getMinY() - 15.0;
+    public double getProjectilesYCoordinates() {
+        return reversed ?
+                getMaxY() - 14 :
+                shootingStrategy == ShootingStrategy.DOUBLE_BULLET ?
+                        getMinY() :
+                        getMinY() - 15.0;
     }
 
     public boolean isAlive() {
@@ -173,11 +173,9 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
 
     public void addDirection(Direction direction) {
 
-        if (directions.contains(direction)) {
-            return;
+        if (!directions.contains(direction)) {
+            directions.add(direction);
         }
-
-        directions.add(direction);
     }
 
     public void removeDirection(Direction direction) {
@@ -261,5 +259,4 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
         SINGLE_BULLET,
         DOUBLE_BULLET
     }
-
 }

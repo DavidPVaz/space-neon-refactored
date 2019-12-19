@@ -43,7 +43,7 @@ public abstract class Enemy extends AbstractEntity implements Hittable, Shootabl
             return null;
         }
 
-        List<Bullet> bullets = createBullets();
+        List<Bullet> bullets = getProjectiles();
 
         if (firingCooldown <= 0) {
             firingCooldown = ENEMIES_FIRING_COOLDOWN;
@@ -53,22 +53,22 @@ public abstract class Enemy extends AbstractEntity implements Hittable, Shootabl
     }
 
     @Override
-    public List<Bullet> createBullets() {
+    public List<Bullet> getProjectiles() {
 
         List<Bullet> bullets = new LinkedList<>();
 
-        bullets.add(new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), bulletType, this));
+        bullets.add(new Bullet(getProjectilesXCoordinates(), getProjectilesYCoordinates(), bulletType, this));
 
         return bullets;
     }
 
     @Override
-    public double getBulletXCoordinates() {
+    public double getProjectilesXCoordinates() {
         return getMinX() + (getPicture().getWidth() / 6.0);
     }
 
     @Override
-    public double getBulletYCoordinates() {
+    public double getProjectilesYCoordinates() {
         return getMaxY() - 14;
     }
 
@@ -91,6 +91,10 @@ public abstract class Enemy extends AbstractEntity implements Hittable, Shootabl
             this.hp = hp;
         }
 
+        public static Type random() {
+            return Math.random() > 0.4 ? REGULAR : DIAMOND;
+        }
+
         private Image getImage() {
             return image;
         }
@@ -101,10 +105,6 @@ public abstract class Enemy extends AbstractEntity implements Hittable, Shootabl
 
         private int getHp() {
             return hp;
-        }
-
-        public static Type random() {
-            return Math.random() > 0.4 ? REGULAR : DIAMOND;
         }
     }
 }

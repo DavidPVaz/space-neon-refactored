@@ -15,6 +15,7 @@ public final class AudioManager {
     private final Map<Sound, Music> sounds = new HashMap<>();
 
     private AudioManager() {
+
     }
 
     public static AudioManager getInstance() {

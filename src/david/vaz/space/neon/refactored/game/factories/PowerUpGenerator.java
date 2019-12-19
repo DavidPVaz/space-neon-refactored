@@ -16,5 +16,4 @@ public final class PowerUpGenerator {
     private static double generateRandomX() {
         return (Math.random() * (POWER_UP_MAX_X_SPAWN - PADDING)) + PADDING;
     }
-
 }

@@ -42,6 +42,17 @@ public final class Obstacle extends AbstractEntity implements Hittable {
             this.hp = hp;
         }
 
+        public static Type random() {
+
+            double random = Math.random();
+
+            return random > 0.8 ?
+                    BIG :
+                    random < 0.5 ?
+                            SMALL :
+                            MEDIUM;
+        }
+
         private Image getImage() {
             return image;
         }
@@ -53,17 +64,5 @@ public final class Obstacle extends AbstractEntity implements Hittable {
         private int getHp() {
             return hp;
         }
-
-        public static Type random() {
-
-            double random = Math.random();
-
-            return random > 0.8 ?
-                    BIG :
-                    random < 0.5 ?
-                            SMALL :
-                            MEDIUM;
-        }
     }
-
 }
