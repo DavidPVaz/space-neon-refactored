@@ -13,7 +13,7 @@ public final class Score implements Drawable {
     private final Text display;
 
     public Score() {
-        score = 0;
+        score = 1000;
         display = new Text(SCORE_X, SCORE_Y, "Score");
     }
 

@@ -6,8 +6,10 @@ import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
 import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUpEnhancement;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.Hittable;
 import david.vaz.space.neon.refactored.drawable.lifes.LifeIcon;
+import david.vaz.space.neon.refactored.engine.modules.AudioManager;
 import david.vaz.space.neon.refactored.game.Direction;
 import david.vaz.space.neon.refactored.resources.Image;
+import david.vaz.space.neon.refactored.resources.Sound;
 
 import java.util.*;
 
@@ -24,6 +26,7 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
     private boolean firing;
     private int firingCooldown;
     private ShootingStrategy shootingStrategy;
+    private final AudioManager manger;
 
     public Player(double x, double y, Image image, Bullet.Type bulletType, Stack<LifeIcon> livesStack, boolean reversed) {
         super(x, y, image, PLAYERS_INITIAL_SPEED);
@@ -36,6 +39,7 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
         firing = false;
         firingCooldown = PLAYERS_FIRING_COOLDOWN;
         shootingStrategy = ShootingStrategy.SINGLE_BULLET;
+        manger = AudioManager.getInstance();
     }
 
     @Override
@@ -76,6 +80,7 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
             return;
         }
 
+        manger.play(Sound.TORPEDO_IMPACT, false);
         livesStack.pop().hide();
         resetEnhancements();
         mode = Mode.INVINCIBLE;
@@ -101,6 +106,7 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
             firingCooldown = PLAYERS_FIRING_COOLDOWN;
         }
 
+        manger.play(Sound.BULLET_WHIZZING, false);
         return bullets;
     }
 
@@ -138,6 +144,7 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
     }
 
     public void collect(PowerUp powerUp) {
+        manger.play(Sound.POWER_UP, false);
         powerUpAction.get(powerUp.type()).enhance();
     }
 
@@ -210,15 +217,18 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
 
     private Direction getPressedDirection() {
 
-        if (directions.isEmpty()) {
-            return null;
-        }
+        synchronized (directions) {
 
-        if (directions.size() == 2) {
-            return Direction.resolveTwoPressedDirections(directions.get(0), directions.get(1));
-        }
+            if (directions.isEmpty()) {
+                return null;
+            }
 
-        return directions.get(0);
+            if (directions.size() == 2) {
+                return Direction.resolveTwoPressedDirections(directions.get(0), directions.get(1));
+            }
+
+            return directions.get(0);
+        }
     }
 
     private Map<PowerUp.Type, PowerUpEnhancement> setPowerUpAction() {

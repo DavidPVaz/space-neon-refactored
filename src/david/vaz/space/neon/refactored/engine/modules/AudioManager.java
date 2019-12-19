@@ -13,6 +13,7 @@ public final class AudioManager {
 
     private static AudioManager audioManager = null;
     private final Map<Sound, Music> sounds = new HashMap<>();
+    private Sound inLoopSound;
 
     private AudioManager() {
 
@@ -36,12 +37,18 @@ public final class AudioManager {
         music.play();
 
         if (loop) {
+            inLoopSound = sound;
             music.loop();
         }
+
+        if (!loop) {
+            music.setup(sound.path());
+        }
+
     }
 
-    public void stop(Sound sound) {
-        sounds.get(sound).stop();
+    public void stopCurrentInLoopSound() {
+        sounds.get(inLoopSound).stop();
     }
 
     public void close() {
@@ -58,6 +65,13 @@ public final class AudioManager {
                 AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(path));
                 clip = AudioSystem.getClip();
                 clip.open(audioStream);
+                //auto close for sound effects
+                clip.addLineListener(event -> {
+                    if (event.getType() == LineEvent.Type.STOP) {
+                        Line clip = event.getLine();
+                        clip.close();
+                    }
+                });
 
             } catch (UnsupportedAudioFileException | LineUnavailableException | IOException e) {
                 System.err.println(e.getMessage());

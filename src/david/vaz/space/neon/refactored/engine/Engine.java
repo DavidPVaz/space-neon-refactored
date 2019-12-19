@@ -1,5 +1,6 @@
 package david.vaz.space.neon.refactored.engine;
 
+import david.vaz.space.neon.refactored.engine.modules.AudioManager;
 import david.vaz.space.neon.refactored.game.concreteGames.Game;
 import david.vaz.space.neon.refactored.input.Input;
 import david.vaz.space.neon.refactored.input.Key;
@@ -25,6 +26,7 @@ public final class Engine implements KeyboardHandler {
     private final long targetFrames;
     private final Map<State, Screen> screens;
     private final Map<Integer, Input> inputs;
+    private final AudioManager manager;
     private State activeState = State.MENU;
     private State previousState;
     private Screen activeScreen;
@@ -34,6 +36,7 @@ public final class Engine implements KeyboardHandler {
         this.targetFrames = targetFrames;
         screens = new HashMap<>();
         inputs = new LinkedHashMap<>();
+        manager = AudioManager.getInstance();
     }
 
     public static int getFPS() {
@@ -41,6 +44,8 @@ public final class Engine implements KeyboardHandler {
     }
 
     public void init() {
+
+        manager.setup();
 
         addScreen(State.MENU, new MenuScreen(this));
 
@@ -130,6 +135,7 @@ public final class Engine implements KeyboardHandler {
     }
 
     public void quit() {
+        manager.close();
         running = false;
         System.exit(0);
     }

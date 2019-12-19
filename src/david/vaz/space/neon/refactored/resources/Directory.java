@@ -12,7 +12,9 @@ final class Directory {
     static final String SCREEN = IMAGE + "screen/";
     static final String BAR = SCREEN + "bar/";
 
-    static final String SOUND = ASSETS + "sound/";
+    private static final String SOUND = ASSETS + "sound/";
+    static final String EFFECTS = SOUND + "effects/";
+    static final String BACKGROUND_MUSIC = SOUND + "background_music/";
 
     private Directory() {
 
