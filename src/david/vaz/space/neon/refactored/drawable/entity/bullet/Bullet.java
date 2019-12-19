@@ -43,21 +43,21 @@ public final class Bullet extends AbstractEntity {
     }
 
     public enum Type {
-        GREEN(BULLET_DAMAGE, Image.GREEN_BULLET, BULLET_SPEED),
-        BLUE(BULLET_DAMAGE, Image.BLUE_BULLET, BULLET_SPEED),
-        RED(BULLET_DAMAGE, Image.RED_BULLET, BULLET_RED_SPEED);
+        GREEN(Image.GREEN_BULLET),
+        BLUE(Image.BLUE_BULLET),
+        RED(Image.RED_BULLET);
 
-        private int damage;
         private Image image;
-        private int speed;
+        private int damage;
+        private double speed;
 
-        Type(int damage, Image image, int speed) {
-            this.damage = damage;
+        Type(Image image) {
             this.image = image;
-            this.speed = speed;
+            damage = BULLET_DAMAGE;
+            speed = BULLET_SPEED;
         }
 
-        public void incrementSpeed(int speed) {
+        public void incrementSpeed(double speed) {
 
             if (this.speed >= 16) {
                 return;
@@ -75,7 +75,7 @@ public final class Bullet extends AbstractEntity {
             this.damage += damage;
         }
 
-        public void setSpeed(int speed) {
+        public void setSpeed(double speed) {
             this.speed = speed;
         }
 
@@ -87,7 +87,7 @@ public final class Bullet extends AbstractEntity {
             return damage;
         }
 
-        private int getSpeed() {
+        private double getSpeed() {
             return speed;
         }
 

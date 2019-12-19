@@ -17,10 +17,10 @@ abstract class AbstractGame implements Game {
     protected boolean notDisposed;
 
     AbstractGame() {
-        this.players = new LinkedList<>();
-        this.bullets = new LinkedList<>();
-        this.frames = new Frames();
-        this.notDisposed = true;
+        players = new LinkedList<>();
+        bullets = new LinkedList<>();
+        frames = new Frames();
+        notDisposed = true;
     }
 
     @SafeVarargs

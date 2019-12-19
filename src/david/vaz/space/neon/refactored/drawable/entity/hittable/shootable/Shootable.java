@@ -13,5 +13,4 @@ public interface Shootable {
     double getProjectilesXCoordinates();
 
     double getProjectilesYCoordinates();
-
 }

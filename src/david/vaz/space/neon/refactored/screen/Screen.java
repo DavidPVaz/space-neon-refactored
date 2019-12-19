@@ -16,5 +16,4 @@ public interface Screen extends Drawable {
     }
 
     void process(Input input);
-
 }

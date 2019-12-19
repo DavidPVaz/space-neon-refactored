@@ -10,11 +10,11 @@ import static david.vaz.space.neon.refactored.game.Constants.SCORE_Y;
 public final class Score implements Drawable {
 
     private int score;
-    private Text display;
+    private final Text display;
 
     public Score() {
-        this.score = 0;
-        this.display = new Text(SCORE_X, SCORE_Y, "Score");
+        score = 0;
+        display = new Text(SCORE_X, SCORE_Y, "Score");
     }
 
     @Override

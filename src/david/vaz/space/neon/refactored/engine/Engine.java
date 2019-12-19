@@ -22,9 +22,9 @@ public final class Engine implements KeyboardHandler {
 
     private static int currentFrames;
 
-    private final Map<State, Screen> screens = new HashMap<>();
-    private final Map<Integer, Input> inputs = new LinkedHashMap<>();
     private final long targetFrames;
+    private final Map<State, Screen> screens;
+    private final Map<Integer, Input> inputs;
     private State activeState = State.MENU;
     private State previousState;
     private Screen activeScreen;
@@ -32,6 +32,8 @@ public final class Engine implements KeyboardHandler {
 
     public Engine(long targetFrames) {
         this.targetFrames = targetFrames;
+        screens = new HashMap<>();
+        inputs = new LinkedHashMap<>();
     }
 
     public static int getFPS() {
@@ -194,10 +196,10 @@ public final class Engine implements KeyboardHandler {
 
         Screen screen = screens.get(activeState);
 
-        if (screen != this.activeScreen) {
-            this.activeScreen.hide();
-            this.activeScreen = screen;
-            this.activeScreen.show();
+        if (screen != activeScreen) {
+            activeScreen.hide();
+            activeScreen = screen;
+            activeScreen.show();
         }
     }
 

@@ -8,10 +8,10 @@ import static david.vaz.space.neon.refactored.game.Constants.*;
 
 public final class Frames implements Drawable {
 
-    private Text display;
+    private final Text display;
 
     public Frames() {
-        this.display = new Text(FPS_X, FPS_Y, "FPS");
+        display = new Text(FPS_X, FPS_Y, "FPS");
     }
 
     @Override

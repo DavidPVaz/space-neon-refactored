@@ -31,18 +31,18 @@ public final class PowerUp extends AbstractEntity {
     }
 
     public enum Type {
-        EXTRA_DAMAGE(POWER_UP_SPEED, Image.EXTRA_DAMAGE),
-        DOUBLE_SHOOTING(POWER_UP_SPEED, Image.DOUBLE_SHOOTING),
-        EXTRA_LIFE(POWER_UP_SPEED, Image.EXTRA_LIFE),
-        INCREASE_PLAYER_SPEED(POWER_UP_SPEED, Image.FASTER_PLAYER),
-        INCREASE_BULLET_SPEED(POWER_UP_SPEED, Image.FASTER_BULLET);
+        EXTRA_DAMAGE(Image.EXTRA_DAMAGE),
+        DOUBLE_SHOOTING(Image.DOUBLE_SHOOTING),
+        EXTRA_LIFE(Image.EXTRA_LIFE),
+        INCREASE_PLAYER_SPEED(Image.FASTER_PLAYER),
+        INCREASE_BULLET_SPEED(Image.FASTER_BULLET);
 
-        private int speed;
         private Image image;
+        private double speed;
 
-        Type(int speed, Image image) {
-            this.speed = speed;
+        Type(Image image) {
             this.image = image;
+            speed = POWER_UP_SPEED;
         }
 
         public static Type random() {
@@ -52,7 +52,7 @@ public final class PowerUp extends AbstractEntity {
             return values()[random];
         }
 
-        private int getSpeed() {
+        private double getSpeed() {
             return speed;
         }
 

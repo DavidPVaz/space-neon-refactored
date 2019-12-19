@@ -6,6 +6,10 @@ import static david.vaz.space.neon.refactored.game.Constants.*;
 
 public final class PowerUpGenerator {
 
+    private PowerUpGenerator() {
+
+    }
+
     public static PowerUp generatePowerUp(int score) {
 
         double chance = Math.random() * 300;

@@ -13,13 +13,13 @@ public final class Obstacle extends AbstractEntity implements Hittable {
 
     public Obstacle(double x, double y, Type type) {
         super(x, y, type.getImage(), type.getSpeed());
-        this.hp = type.getHp();
+        hp = type.getHp();
         setDirection(Direction.SOUTH);
     }
 
     @Override
     public void takeHit(int damage) {
-        this.hp -= damage;
+        hp -= damage;
     }
 
     @Override

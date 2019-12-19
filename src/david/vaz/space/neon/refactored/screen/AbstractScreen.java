@@ -14,13 +14,13 @@ import static david.vaz.space.neon.refactored.game.Constants.PADDING;
 
 public abstract class AbstractScreen extends AbstractDrawable implements Screen {
 
-    private Map<Input, InputHandler> validInputs;
     private Engine engine;
+    private Map<Input, InputHandler> validInputs;
 
     protected AbstractScreen(Image image, Engine engine) {
         super(PADDING, PADDING, image);
-        this.validInputs = new HashMap<>();
         this.engine = engine;
+        validInputs = new HashMap<>();
     }
 
     public final void process(Input input) {

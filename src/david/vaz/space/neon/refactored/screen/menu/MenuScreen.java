@@ -17,8 +17,8 @@ public final class MenuScreen extends AbstractScreen {
 
     public MenuScreen(Engine engine) {
         super(Image.MENU_SCREEN, engine);
-        this.options = new HashMap<>();
-        this.arrow = new MenuArrow(Option.SINGLE_PLAYER);
+        options = new HashMap<>();
+        arrow = new MenuArrow(Option.SINGLE_PLAYER);
     }
 
     @Override

@@ -6,6 +6,10 @@ import static david.vaz.space.neon.refactored.game.Constants.*;
 
 public final class ObstacleGenerator {
 
+    private ObstacleGenerator() {
+
+    }
+
     public static Obstacle generateObstacle() {
 
         double chance = Math.random() * 20;

@@ -9,6 +9,10 @@ import static david.vaz.space.neon.refactored.game.Constants.*;
 
 public final class EnemyGenerator {
 
+    private EnemyGenerator() {
+
+    }
+
     public static Enemy generateEnemy(int score) {
 
         double chance = Math.random() * 18;

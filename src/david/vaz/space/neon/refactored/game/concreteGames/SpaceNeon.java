@@ -27,11 +27,11 @@ public final class SpaceNeon extends AbstractGame {
 
     public SpaceNeon(Player... players) {
         this.players.addAll(Arrays.asList(players));
-        this.enemies = new LinkedList<>();
-        this.obstacles = new LinkedList<>();
-        this.powerUps = new LinkedList<>();
-        this.score = new Score();
-        this.bossHasBeenSpawned = false;
+        enemies = new LinkedList<>();
+        obstacles = new LinkedList<>();
+        powerUps = new LinkedList<>();
+        score = new Score();
+        bossHasBeenSpawned = false;
     }
 
     @Override

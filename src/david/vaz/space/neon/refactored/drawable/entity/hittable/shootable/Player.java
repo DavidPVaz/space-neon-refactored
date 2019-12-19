@@ -15,27 +15,27 @@ import static david.vaz.space.neon.refactored.game.Constants.*;
 
 public final class Player extends AbstractEntity implements Hittable, Shootable {
 
-    private Bullet.Type bulletType;
+    private final Bullet.Type bulletType;
     private final Stack<LifeIcon> livesStack;
+    private final boolean reversed;
     private final List<Direction> directions;
     private final Map<PowerUp.Type, PowerUpEnhancement> powerUpAction;
     private Mode mode;
     private boolean firing;
     private int firingCooldown;
     private ShootingStrategy shootingStrategy;
-    private boolean reversed;
 
     public Player(double x, double y, Image image, Bullet.Type bulletType, Stack<LifeIcon> livesStack, boolean reversed) {
         super(x, y, image, PLAYERS_INITIAL_SPEED);
         this.bulletType = bulletType;
         this.livesStack = livesStack;
-        this.directions = new LinkedList<>();
-        this.powerUpAction = setPowerUpAction();
-        this.mode = Mode.VULNERABLE;
-        this.firing = false;
-        this.firingCooldown = PLAYERS_FIRING_COOLDOWN;
-        this.shootingStrategy = ShootingStrategy.SINGLE_BULLET;
         this.reversed = reversed;
+        directions = new LinkedList<>();
+        powerUpAction = setPowerUpAction();
+        mode = Mode.VULNERABLE;
+        firing = false;
+        firingCooldown = PLAYERS_FIRING_COOLDOWN;
+        shootingStrategy = ShootingStrategy.SINGLE_BULLET;
     }
 
     @Override
