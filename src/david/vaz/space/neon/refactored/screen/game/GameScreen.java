@@ -33,14 +33,6 @@ public final class GameScreen extends AbstractScreen {
     }
 
     @Override
-    public void setup() {
-        // Input setup need to be invoked before show,
-        // since this screen work for both single and multi-player,
-        // I need the engine state to build just one, or two players.
-        // Otherwise I would need a specific screen for single, and another for multi.
-    }
-
-    @Override
     public void show() {
         setupPlayers();
         setupInputs();
