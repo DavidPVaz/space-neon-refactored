@@ -16,8 +16,8 @@ public final class FinalBoss extends Enemy {
     public FinalBoss(double x, double y) {
         super(x, y, Type.BOSS);
         this.firingCooldownUpdatableValue = FINAL_BOSS_INITIAL_FIRING_COOLDOWN;
-        this.ragingValue = this.hp / 2;
-        this.firingCooldown = this.firingCooldownUpdatableValue;
+        this.ragingValue = getHp() / 2;
+        setFiringCooldown(this.firingCooldownUpdatableValue);
         setDirection(Math.random() > 0.5 ? Direction.EAST : Direction.WEST);
     }
 
@@ -35,9 +35,9 @@ public final class FinalBoss extends Enemy {
 
     @Override
     public void takeHit(int damage) {
-        hp -= damage;
+        decrementHp(damage);
 
-        if (hp <= ragingValue) {
+        if (getHp() <= ragingValue) {
             rage();
         }
     }
@@ -45,19 +45,24 @@ public final class FinalBoss extends Enemy {
     @Override
     public List<Bullet> shoot() {
 
-        firingCooldown--;
+        decrementFiringCooldown();
 
-        if (firingCooldown > 0) {
+        if (getFiringCooldown() > 0) {
             return null;
         }
 
-        List<Bullet> bullets = Math.random() > 0.5 ? rainAttack() : maniacAttack();
+        List<Bullet> bullets = getProjectiles();
 
-        if (firingCooldown <= 0) {
-            firingCooldown = firingCooldownUpdatableValue;
+        if (getFiringCooldown() <= 0) {
+            setFiringCooldown(firingCooldownUpdatableValue);
         }
 
         return bullets;
+    }
+
+    @Override
+    public List<Bullet> getProjectiles() {
+        return Math.random() > 0.5 ? rainAttack() : maniacAttack();
     }
 
     private List<Bullet> rainAttack() {
@@ -65,7 +70,7 @@ public final class FinalBoss extends Enemy {
         List<Bullet> bullets = new LinkedList<>();
 
         for (int i = 0; i < getPicture().getWidth(); i += 50) {
-            bullets.add(new Bullet(getMinX() + i, getProjectilesYCoordinates(), bulletType, this));
+            bullets.add(new Bullet(getMinX() + i, getProjectilesYCoordinates(), getBulletType(), this));
         }
 
         return bullets;
@@ -76,7 +81,7 @@ public final class FinalBoss extends Enemy {
         List<Bullet> bullets = new LinkedList<>();
 
         for (int i = 0; i < getPicture().getWidth(); i += 50) {
-            bullets.add(new Bullet(getMinX() + i, getProjectilesYCoordinates() + i / 5, bulletType, this));
+            bullets.add(new Bullet(getMinX() + i, getProjectilesYCoordinates() + i / 5, getBulletType(), this));
         }
 
         return bullets;
@@ -84,8 +89,8 @@ public final class FinalBoss extends Enemy {
 
     private void rage() {
         firingCooldownUpdatableValue -= 20;
-        ragingValue = hp / 2;
+        ragingValue = getHp() / 2;
         incrementSpeed(2);
-        bulletType.incrementSpeed(2);
+        getBulletType().incrementSpeed(2);
     }
 }

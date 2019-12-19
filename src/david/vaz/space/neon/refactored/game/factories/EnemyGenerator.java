@@ -13,7 +13,7 @@ public final class EnemyGenerator {
 
         double chance = Math.random() * 18;
 
-        return score >= 3000 ?
+        return score >= 2800 ?
                 new FinalBoss(FINAL_BOSS_INITIAL_X, FINAL_BOSS_Y) :
                 chance > score / DIFFICULTY_VALUE ?
                         null :

@@ -13,9 +13,9 @@ import static david.vaz.space.neon.refactored.game.Constants.*;
 
 public abstract class Enemy extends AbstractEntity implements Hittable, Shootable {
 
-    protected int hp;
-    protected final Bullet.Type bulletType;
-    protected int firingCooldown;
+    private int hp;
+    private final Bullet.Type bulletType;
+    private int firingCooldown;
 
     protected Enemy(double x, double y, Type type) {
         super(x, y, type.getImage(), type.getSpeed());
@@ -53,7 +53,7 @@ public abstract class Enemy extends AbstractEntity implements Hittable, Shootabl
     }
 
     @Override
-    public final List<Bullet> getProjectiles() {
+    public List<Bullet> getProjectiles() {
 
         List<Bullet> bullets = new LinkedList<>();
 
@@ -73,7 +73,31 @@ public abstract class Enemy extends AbstractEntity implements Hittable, Shootabl
     }
 
     public final void boostHp(int hpIncrement) {
-        this.hp += hpIncrement;
+        hp += hpIncrement;
+    }
+
+    protected final int getHp() {
+        return hp;
+    }
+
+    protected final void decrementHp(int damage) {
+        hp -= damage;
+    }
+
+    protected final int getFiringCooldown() {
+        return firingCooldown;
+    }
+
+    protected final void setFiringCooldown(int firingCooldown) {
+        this.firingCooldown = firingCooldown;
+    }
+
+    protected final void decrementFiringCooldown() {
+        firingCooldown--;
+    }
+
+    protected final Bullet.Type getBulletType() {
+        return bulletType;
     }
 
     public enum Type {
