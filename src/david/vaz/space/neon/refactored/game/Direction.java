@@ -30,13 +30,13 @@ public enum Direction {
 
         switch (this) {
             case EAST:
-                return direction.equals(WEST);
+                return direction == WEST;
             case WEST:
-                return direction.equals(EAST);
+                return direction == EAST;
             case NORTH:
-                return direction.equals(SOUTH);
+                return direction == SOUTH;
             case SOUTH:
-                return direction.equals(NORTH);
+                return direction == NORTH;
         }
 
         throw new IllegalStateException();
@@ -48,23 +48,23 @@ public enum Direction {
             return secondDirection;
         }
 
-        if (direction.equals(NORTH) && secondDirection.equals(EAST) ||
-                direction.equals(EAST) && secondDirection.equals(NORTH)) {
+        if (direction == NORTH && secondDirection == EAST ||
+                direction == EAST && secondDirection == NORTH) {
             return Direction.NORTHEAST;
         }
 
-        if (direction.equals(NORTH) && secondDirection.equals(WEST) ||
-                direction.equals(WEST) && secondDirection.equals(NORTH)) {
+        if (direction == NORTH && secondDirection == WEST ||
+                direction == WEST && secondDirection == NORTH) {
             return Direction.NORTHWEST;
         }
 
-        if (direction.equals(SOUTH) && secondDirection.equals(EAST) ||
-                direction.equals(EAST) && secondDirection.equals(SOUTH)) {
+        if (direction == SOUTH && secondDirection == EAST ||
+                direction == EAST && secondDirection == SOUTH) {
             return Direction.SOUTHEAST;
         }
 
-        if (direction.equals(SOUTH) && secondDirection.equals(WEST) ||
-                direction.equals(WEST) && secondDirection.equals(SOUTH)) {
+        if (direction == SOUTH && secondDirection == WEST ||
+                direction == WEST && secondDirection == SOUTH) {
             return Direction.SOUTHWEST;
         }
 

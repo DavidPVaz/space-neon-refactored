@@ -17,9 +17,9 @@ public final class ObstacleGenerator {
 
     private static double generateRandomX(Obstacle.Type type) {
 
-        double xMaxSpawn = type.equals(Obstacle.Type.SMALL) ?
+        double xMaxSpawn = type == Obstacle.Type.SMALL ?
                 SMALL_OBSTACLE_MAX_X_SPAWN :
-                type.equals(Obstacle.Type.MEDIUM) ?
+                type == Obstacle.Type.MEDIUM ?
                         MEDIUM_OBSTACLE_MAX_X_SPAWN :
                         BIG_OBSTACLE_MAX_X_SPAWN;
 

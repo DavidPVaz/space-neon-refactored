@@ -12,7 +12,9 @@ import org.academiadecodigo.simplegraphics.keyboard.KeyboardEvent;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardEventType;
 import org.academiadecodigo.simplegraphics.keyboard.KeyboardHandler;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 public final class Engine implements KeyboardHandler {
@@ -23,6 +25,7 @@ public final class Engine implements KeyboardHandler {
     private final Map<Integer, Input> inputs = new LinkedHashMap<>();
     private final long targetFrames;
     private State activeState = State.MENU;
+    private State previousState;
     private Screen activeScreen;
     private boolean running;
 
@@ -65,7 +68,7 @@ public final class Engine implements KeyboardHandler {
 
             checkActiveScreen();
 
-            if (activeState.equals(State.MENU) || activeState.equals(State.INSTRUCTIONS)) {
+            if (activeState == State.MENU || activeState == State.INSTRUCTIONS) {
                 processAllPressedInputs();
             }
         }
@@ -103,15 +106,20 @@ public final class Engine implements KeyboardHandler {
         }
 
         game.end();
-        activeState = State.MENU;
+        setActiveState(State.MENU);
     }
 
     public void setActiveState(State activeState) {
+        previousState = this.activeState;
         this.activeState = activeState;
     }
 
     public State getActiveState() {
         return activeState;
+    }
+
+    public State getPreviousState() {
+        return previousState;
     }
 
     public void quit() {
@@ -146,7 +154,6 @@ public final class Engine implements KeyboardHandler {
 
     private void checkActiveScreen() {
 
-        System.out.println("Checking active screen. Current state: " + activeState);
         Screen screen = screens.get(activeState);
 
         if (screen != this.activeScreen) {
@@ -187,6 +194,7 @@ public final class Engine implements KeyboardHandler {
         SINGLE_PLAYER,
         MULTI_PLAYER,
         VERSUS,
-        INSTRUCTIONS
+        INSTRUCTIONS,
+        PAUSED
     }
 }

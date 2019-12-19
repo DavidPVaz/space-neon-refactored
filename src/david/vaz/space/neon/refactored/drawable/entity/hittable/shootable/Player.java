@@ -72,7 +72,7 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
     @Override
     public void takeHit(int damage) {
 
-        if (mode.equals(Mode.INVINCIBLE)) {
+        if (mode == Mode.INVINCIBLE) {
             return;
         }
 
@@ -109,7 +109,7 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
 
         List<Bullet> bullets = new LinkedList<>();
 
-        if (shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET)) {
+        if (shootingStrategy == ShootingStrategy.DOUBLE_BULLET) {
             bullets.add(new Bullet(getBulletXCoordinates(), getBulletYCoordinates(), bulletType, this));
             bullets.add(new Bullet(getBulletXCoordinates() + DOUBLE_SHOOT_DISTANCE, getBulletYCoordinates(), bulletType, this));
             return bullets;
@@ -122,7 +122,7 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
     @Override
     public double getBulletXCoordinates() {
 
-        return shootingStrategy.equals(ShootingStrategy.SINGLE_BULLET) ?
+        return shootingStrategy == ShootingStrategy.SINGLE_BULLET ?
                 getMinX() + (getPicture().getWidth() / 6.0) :
                 getMinX() - 5.0;
     }
@@ -130,7 +130,7 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
     @Override
     public double getBulletYCoordinates() {
         return reversed ? getMaxY() - 14 :
-                shootingStrategy.equals(ShootingStrategy.DOUBLE_BULLET) ? getMinY() : getMinY() - 15.0;
+                shootingStrategy == ShootingStrategy.DOUBLE_BULLET ? getMinY() : getMinY() - 15.0;
     }
 
     public boolean isAlive() {
@@ -143,7 +143,7 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
 
     public void update() {
 
-        if (mode.equals(Mode.VULNERABLE)) {
+        if (mode == Mode.VULNERABLE) {
             super.show();
             return;
         }
@@ -198,7 +198,7 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
 
         LifeIcon newLife = new LifeIcon(
                 iconAtTheTopOfTheStack.getPicture().getX() +
-                        (iconAtTheTopOfTheStack.getType().equals(LifeIcon.Type.GREEN) ? PLAYER_ONE_LIVES_MARGIN : PLAYER_TWO_LIVES_MARGIN),
+                        (iconAtTheTopOfTheStack.getType() == LifeIcon.Type.GREEN ? PLAYER_ONE_LIVES_MARGIN : PLAYER_TWO_LIVES_MARGIN),
                 LIFE_ICON_Y,
                 iconAtTheTopOfTheStack.getType());
 

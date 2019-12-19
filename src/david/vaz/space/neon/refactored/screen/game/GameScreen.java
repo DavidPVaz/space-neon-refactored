@@ -20,6 +20,7 @@ import static david.vaz.space.neon.refactored.game.Constants.*;
 
 public final class GameScreen extends AbstractScreen {
 
+    private Game game;
     private Player playerOne;
     private Player playerTwo;
     private final ScreenBar topBar;
@@ -47,9 +48,7 @@ public final class GameScreen extends AbstractScreen {
         topBar.show();
         bottomBar.show();
 
-        Game game;
-
-        if (getEngine().getActiveState().equals(Engine.State.VERSUS)) {
+        if (getEngine().getActiveState() == Engine.State.VERSUS) {
             game = new Versus(playerOne, playerTwo);
         } else if (playerTwo == null) {
             game = new SpaceNeon(playerOne);
@@ -67,6 +66,10 @@ public final class GameScreen extends AbstractScreen {
         super.hide();
     }
 
+    public void dispose() {
+        game.end();
+    }
+
     private void setupPlayers() {
 
         Stack<LifeIcon> playerOneLives = buildPlayerLives(PLAYER_ONE_LIFE_X, PLAYER_ONE_LIVES_MARGIN, LifeIcon.Type.GREEN);
@@ -74,14 +77,14 @@ public final class GameScreen extends AbstractScreen {
 
         Engine.State activeState = getEngine().getActiveState();
 
-        if (activeState.equals(Engine.State.MULTI_PLAYER)) {
+        if (activeState == Engine.State.MULTI_PLAYER) {
 
             Stack<LifeIcon> playerTwoLives = buildPlayerLives(PLAYER_TWO_LIFE_X, PLAYER_TWO_LIVES_MARGIN, LifeIcon.Type.BLUE);
             playerTwo = new Player(PLAYER_TWO_INITIAL_X, PLAYERS_INITIAL_Y, Image.PLAYER_BLUE, Bullet.Type.BLUE, playerTwoLives, false);
             return;
         }
 
-        if (activeState.equals(Engine.State.VERSUS)) {
+        if (activeState == Engine.State.VERSUS) {
 
             Stack<LifeIcon> playerTwoLives = buildPlayerLives(PLAYER_TWO_LIFE_X, PLAYER_TWO_LIVES_MARGIN, LifeIcon.Type.BLUE);
             playerTwo = new Player(PLAYER_TWO_INITIAL_X, PLAYER_TWO_REVERSED_INITIAL_Y, Image.PLAYER_BLUE_REVERSED, Bullet.Type.BLUE, playerTwoLives, true);
@@ -105,7 +108,7 @@ public final class GameScreen extends AbstractScreen {
 
         Engine.State activeState = getEngine().getActiveState();
 
-        if (activeState.equals(Engine.State.MULTI_PLAYER) || activeState.equals(Engine.State.VERSUS)) {
+        if (activeState == Engine.State.MULTI_PLAYER || activeState == Engine.State.VERSUS) {
 
             addInputHandler(Key.D, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.EAST));
             addInputHandler(Key.A, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.WEST));

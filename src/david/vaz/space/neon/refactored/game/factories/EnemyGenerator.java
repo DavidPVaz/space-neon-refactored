@@ -17,7 +17,7 @@ public final class EnemyGenerator {
 
                 chance > score / DIFFICULTY_VALUE ?
                         null :
-                        Enemy.Type.random().equals(Enemy.Type.REGULAR) ?
+                        Enemy.Type.random() == Enemy.Type.REGULAR ?
                                 new RegularEnemy(generateRandomX(), ENTITIES_STARTING_Y) :
                                 new DiamondEnemy(generateRandomX(), ENTITIES_STARTING_Y);
     }

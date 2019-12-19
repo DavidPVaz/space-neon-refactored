@@ -27,7 +27,7 @@ public final class FinalBoss extends Enemy {
         if (getMinX() + getDirection().getX() * getSpeed() < PADDING ||
                 getMaxX() + getDirection().getX() * getSpeed() > SCREEN_WIDTH + PADDING) {
 
-            setDirection(getDirection().equals(Direction.EAST) ? Direction.WEST : Direction.EAST);
+            setDirection(getDirection() == Direction.EAST ? Direction.WEST : Direction.EAST);
         }
 
         super.move();

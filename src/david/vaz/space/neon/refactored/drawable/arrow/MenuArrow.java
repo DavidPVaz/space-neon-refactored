@@ -21,7 +21,7 @@ public final class MenuArrow extends AbstractDrawable {
 
     public void previous() {
 
-        if (selected.previous().equals(selected)) {
+        if (selected.previous() == selected) {
             return;
         }
 
@@ -31,7 +31,7 @@ public final class MenuArrow extends AbstractDrawable {
 
     public void next() {
 
-        if (selected.next().equals(selected)) {
+        if (selected.next() == selected) {
             return;
         }
 
