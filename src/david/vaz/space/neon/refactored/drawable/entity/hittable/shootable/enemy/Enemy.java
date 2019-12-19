@@ -14,10 +14,10 @@ import static david.vaz.space.neon.refactored.game.Constants.*;
 public abstract class Enemy extends AbstractEntity implements Hittable, Shootable {
 
     protected int hp;
-    protected Bullet.Type bulletType;
+    protected final Bullet.Type bulletType;
     protected int firingCooldown;
 
-    public Enemy(double x, double y, Type type) {
+    protected Enemy(double x, double y, Type type) {
         super(x, y, type.getImage(), type.getSpeed());
         this.hp = type.getHp();
         this.bulletType = Bullet.Type.RED;
@@ -30,7 +30,7 @@ public abstract class Enemy extends AbstractEntity implements Hittable, Shootabl
     }
 
     @Override
-    public boolean isDestroyed() {
+    public final boolean isDestroyed() {
         return hp <= 0;
     }
 
@@ -53,7 +53,7 @@ public abstract class Enemy extends AbstractEntity implements Hittable, Shootabl
     }
 
     @Override
-    public List<Bullet> getProjectiles() {
+    public final List<Bullet> getProjectiles() {
 
         List<Bullet> bullets = new LinkedList<>();
 
@@ -63,16 +63,16 @@ public abstract class Enemy extends AbstractEntity implements Hittable, Shootabl
     }
 
     @Override
-    public double getProjectilesXCoordinates() {
+    public final double getProjectilesXCoordinates() {
         return getMinX() + (getPicture().getWidth() / 6.0);
     }
 
     @Override
-    public double getProjectilesYCoordinates() {
+    public final double getProjectilesYCoordinates() {
         return getMaxY() - 14;
     }
 
-    public void boostHp(int hpIncrement) {
+    public final void boostHp(int hpIncrement) {
         this.hp += hpIncrement;
     }
 

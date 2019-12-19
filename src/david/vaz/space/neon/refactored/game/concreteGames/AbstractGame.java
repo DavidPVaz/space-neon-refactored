@@ -62,7 +62,7 @@ abstract class AbstractGame implements Game {
 
     abstract void movePlayers();
 
-    public void dispose() {
+    public final void dispose() {
         notDisposed = false;
     }
 }

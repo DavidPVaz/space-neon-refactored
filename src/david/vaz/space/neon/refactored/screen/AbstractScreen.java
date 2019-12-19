@@ -23,7 +23,7 @@ public abstract class AbstractScreen extends AbstractDrawable implements Screen 
         this.engine = engine;
     }
 
-    public void process(Input input) {
+    public final void process(Input input) {
 
         if (!validInputs.containsKey(input)) {
             return;
@@ -32,15 +32,15 @@ public abstract class AbstractScreen extends AbstractDrawable implements Screen 
         validInputs.get(input).handle();
     }
 
-    protected void addInputHandler(Key key, Input.Type inputType, InputHandler inputHandler) {
+    protected final void addInputHandler(Key key, Input.Type inputType, InputHandler inputHandler) {
         validInputs.put(new Input(key, inputType), inputHandler);
     }
 
-    protected Engine getEngine() {
+    protected final Engine getEngine() {
         return engine;
     }
 
-    protected void clearInputs() {
+    protected final void clearInputs() {
         validInputs.clear();
     }
 }

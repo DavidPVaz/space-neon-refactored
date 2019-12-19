@@ -21,7 +21,7 @@ public abstract class AbstractDrawable implements Drawable {
         picture.delete();
     }
 
-    public Picture getPicture() {
+    public final Picture getPicture() {
         return picture;
     }
 }

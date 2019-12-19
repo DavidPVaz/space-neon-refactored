@@ -17,22 +17,22 @@ public abstract class AbstractEntity extends AbstractDrawable implements Collida
     }
 
     @Override
-    public int getMinX() {
+    public final int getMinX() {
         return getPicture().getX();
     }
 
     @Override
-    public int getMinY() {
+    public final int getMinY() {
         return getPicture().getY();
     }
 
     @Override
-    public int getMaxX() {
+    public final int getMaxX() {
         return getPicture().getMaxX();
     }
 
     @Override
-    public int getMaxY() {
+    public final int getMaxY() {
         return getPicture().getMaxY();
     }
 
@@ -57,23 +57,23 @@ public abstract class AbstractEntity extends AbstractDrawable implements Collida
         return getMaxY() + getDirection().getY() * getSpeed() > SCREEN_HEIGHT - BAR_HEIGHT - PADDING;
     }
 
-    protected void setDirection(Direction direction) {
+    protected final void setDirection(Direction direction) {
         this.direction = direction;
     }
 
-    protected Direction getDirection() {
+    protected final Direction getDirection() {
         return direction;
     }
 
-    protected double getSpeed() {
+    protected final double getSpeed() {
         return speed;
     }
 
-    protected void setSpeed(double speed) {
+    protected final void setSpeed(double speed) {
         this.speed = speed;
     }
 
-    protected void incrementSpeed(int speed) {
+    protected final void incrementSpeed(int speed) {
 
         if (this.speed > 10) {
             return;
