@@ -23,11 +23,13 @@ public final class GameScreen extends AbstractScreen {
     private Game game;
     private Player playerOne;
     private Player playerTwo;
+    private final PauseScreenMock pauseScreen;
     private final ScreenBar topBar;
     private final ScreenBar bottomBar;
 
-    public GameScreen(Engine engine) {
+    public GameScreen(Engine engine, PauseScreenMock pauseScreen) {
         super(Image.GAME_SCREEN, engine);
+        this.pauseScreen = pauseScreen;
         topBar = new ScreenBar(TOP_BAR_X, TOP_BAR_Y, Image.TOP_BAR);
         bottomBar = new ScreenBar(BOTTOM_BAR_X, BOTTOM_BAR_Y, Image.BOTTOM_BAR);
     }
@@ -87,6 +89,7 @@ public final class GameScreen extends AbstractScreen {
 
             if (engine.getActiveState() != Engine.State.PAUSED) {
                 engine.setActiveState(Engine.State.PAUSED);
+                pauseScreen.show();
                 return;
             }
 
@@ -95,14 +98,16 @@ public final class GameScreen extends AbstractScreen {
             engine.setActiveState(previousState == Engine.State.MULTI_PLAYER ? Engine.State.MULTI_PLAYER :
                     previousState == Engine.State.SINGLE_PLAYER ? Engine.State.SINGLE_PLAYER :
                             Engine.State.VERSUS);
+
+            pauseScreen.hide();
         });
 
         addInputHandler(Key.M, Input.Type.KEY_RELEASE, () -> {
 
             if (engine.getActiveState() == Engine.State.PAUSED) {
                 dispose();
+                pauseScreen.hide();
             }
-
         });
 
         addInputHandler(Key.RIGHT, Input.Type.KEY_PRESS, () -> playerOne.addDirection(Direction.EAST));

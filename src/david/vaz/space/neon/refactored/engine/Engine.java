@@ -5,6 +5,7 @@ import david.vaz.space.neon.refactored.input.Input;
 import david.vaz.space.neon.refactored.input.Key;
 import david.vaz.space.neon.refactored.screen.Screen;
 import david.vaz.space.neon.refactored.screen.game.GameScreen;
+import david.vaz.space.neon.refactored.screen.game.PauseScreenMock;
 import david.vaz.space.neon.refactored.screen.instructions.InstructionsScreen;
 import david.vaz.space.neon.refactored.screen.menu.MenuScreen;
 import org.academiadecodigo.simplegraphics.keyboard.Keyboard;
@@ -41,7 +42,7 @@ public final class Engine implements KeyboardHandler {
 
         addScreen(State.MENU, new MenuScreen(this));
 
-        Screen gameScreen = new GameScreen(this);
+        Screen gameScreen = new GameScreen(this, new PauseScreenMock());
         addScreen(State.SINGLE_PLAYER, gameScreen);
         addScreen(State.MULTI_PLAYER, gameScreen);
         addScreen(State.VERSUS, gameScreen);
