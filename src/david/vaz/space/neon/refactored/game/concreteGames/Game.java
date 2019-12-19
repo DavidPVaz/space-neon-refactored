@@ -10,4 +10,6 @@ public interface Game {
 
     void end();
 
+    void dispose();
+
 }

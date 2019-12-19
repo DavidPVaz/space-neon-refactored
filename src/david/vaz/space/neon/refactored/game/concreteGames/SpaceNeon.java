@@ -69,7 +69,7 @@ public final class SpaceNeon extends AbstractGame {
 
     @Override
     public boolean doesNotEnd() {
-        return players.stream().anyMatch(Player::isAlive);
+        return notDisposed && players.stream().anyMatch(Player::isAlive);
     }
 
     @Override

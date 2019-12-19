@@ -8,9 +8,7 @@ import david.vaz.space.neon.refactored.input.Key;
 import david.vaz.space.neon.refactored.resources.Image;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 import java.util.Map;
-import java.util.Queue;
 
 import static david.vaz.space.neon.refactored.game.Constants.PADDING;
 
@@ -40,5 +38,9 @@ public abstract class AbstractScreen extends AbstractDrawable implements Screen 
 
     protected Engine getEngine() {
         return engine;
+    }
+
+    protected void clearInputs() {
+        validInputs.clear();
     }
 }

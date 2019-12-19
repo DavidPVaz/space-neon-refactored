@@ -14,11 +14,13 @@ abstract class AbstractGame implements Game {
     protected final List<Player> players;
     protected final List<Bullet> bullets;
     protected final Frames frames;
+    protected boolean notDisposed;
 
     AbstractGame() {
         this.players = new LinkedList<>();
         this.bullets = new LinkedList<>();
         this.frames = new Frames();
+        this.notDisposed = true;
     }
 
     @SafeVarargs
@@ -59,4 +61,8 @@ abstract class AbstractGame implements Game {
     }
 
     abstract void movePlayers();
+
+    public void dispose() {
+        notDisposed = false;
+    }
 }

@@ -35,7 +35,7 @@ public final class Versus extends AbstractGame {
 
     @Override
     public boolean doesNotEnd() {
-        return players.stream().allMatch(Player::isAlive);
+        return notDisposed && players.stream().allMatch(Player::isAlive);
     }
 
     @Override

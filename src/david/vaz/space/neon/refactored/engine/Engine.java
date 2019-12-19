@@ -68,7 +68,7 @@ public final class Engine implements KeyboardHandler {
 
             checkActiveScreen();
 
-            if (activeState == State.MENU || activeState == State.INSTRUCTIONS) {
+            if (activeState == State.MENU || activeState == State.INSTRUCTIONS || activeState == State.PAUSED) {
                 processAllPressedInputs();
             }
         }
@@ -85,6 +85,10 @@ public final class Engine implements KeyboardHandler {
         int howManyLoopsPerSecond = 0;
 
         while (game.doesNotEnd()) {
+
+            if (activeState == State.PAUSED) {
+                continue;
+            }
 
             long startTime = System.currentTimeMillis();
 
@@ -153,6 +157,10 @@ public final class Engine implements KeyboardHandler {
     }
 
     private void checkActiveScreen() {
+
+        if (activeState == State.PAUSED) {
+            return;
+        }
 
         Screen screen = screens.get(activeState);
 

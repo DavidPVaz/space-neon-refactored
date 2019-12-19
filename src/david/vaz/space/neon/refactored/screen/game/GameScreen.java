@@ -42,8 +42,8 @@ public final class GameScreen extends AbstractScreen {
 
     @Override
     public void show() {
-        setupInputs();
         setupPlayers();
+        setupInputs();
         super.show();
         topBar.show();
         bottomBar.show();
@@ -64,10 +64,6 @@ public final class GameScreen extends AbstractScreen {
         topBar.hide();
         bottomBar.hide();
         super.hide();
-    }
-
-    public void dispose() {
-        game.end();
     }
 
     private void setupPlayers() {
@@ -93,6 +89,30 @@ public final class GameScreen extends AbstractScreen {
 
     private void setupInputs() {
 
+        Engine engine = getEngine();
+
+        addInputHandler(Key.ESC, Input.Type.KEY_RELEASE, () -> {
+
+            if (engine.getActiveState() != Engine.State.PAUSED) {
+                engine.setActiveState(Engine.State.PAUSED);
+                return;
+            }
+
+            Engine.State previousState = engine.getPreviousState();
+
+            engine.setActiveState(previousState == Engine.State.MULTI_PLAYER ? Engine.State.MULTI_PLAYER :
+                    previousState == Engine.State.SINGLE_PLAYER ? Engine.State.SINGLE_PLAYER :
+                            Engine.State.VERSUS);
+        });
+
+        addInputHandler(Key.M, Input.Type.KEY_RELEASE, () -> {
+
+            if (engine.getActiveState() == Engine.State.PAUSED) {
+                dispose();
+            }
+
+        });
+
         addInputHandler(Key.RIGHT, Input.Type.KEY_PRESS, () -> playerOne.addDirection(Direction.EAST));
         addInputHandler(Key.LEFT, Input.Type.KEY_PRESS, () -> playerOne.addDirection(Direction.WEST));
         addInputHandler(Key.UP, Input.Type.KEY_PRESS, () -> playerOne.addDirection(Direction.NORTH));
@@ -106,23 +126,22 @@ public final class GameScreen extends AbstractScreen {
         addInputHandler(Key.SPACE, Input.Type.KEY_PRESS, () -> playerOne.fire());
         addInputHandler(Key.SPACE, Input.Type.KEY_RELEASE, () -> playerOne.stopFiring());
 
-        Engine.State activeState = getEngine().getActiveState();
-
-        if (activeState == Engine.State.MULTI_PLAYER || activeState == Engine.State.VERSUS) {
-
-            addInputHandler(Key.D, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.EAST));
-            addInputHandler(Key.A, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.WEST));
-            addInputHandler(Key.W, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.NORTH));
-            addInputHandler(Key.S, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.SOUTH));
-
-            addInputHandler(Key.D, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.EAST));
-            addInputHandler(Key.A, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.WEST));
-            addInputHandler(Key.W, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.NORTH));
-            addInputHandler(Key.S, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.SOUTH));
-
-            addInputHandler(Key.T, Input.Type.KEY_PRESS, () -> playerTwo.fire());
-            addInputHandler(Key.T, Input.Type.KEY_RELEASE, () -> playerTwo.stopFiring());
+        if (playerTwo == null) {
+            return;
         }
+
+        addInputHandler(Key.D, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.EAST));
+        addInputHandler(Key.A, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.WEST));
+        addInputHandler(Key.W, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.NORTH));
+        addInputHandler(Key.S, Input.Type.KEY_PRESS, () -> playerTwo.addDirection(Direction.SOUTH));
+
+        addInputHandler(Key.D, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.EAST));
+        addInputHandler(Key.A, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.WEST));
+        addInputHandler(Key.W, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.NORTH));
+        addInputHandler(Key.S, Input.Type.KEY_RELEASE, () -> playerTwo.removeDirection(Direction.SOUTH));
+
+        addInputHandler(Key.T, Input.Type.KEY_PRESS, () -> playerTwo.fire());
+        addInputHandler(Key.T, Input.Type.KEY_RELEASE, () -> playerTwo.stopFiring());
     }
 
     private Stack<LifeIcon> buildPlayerLives(double lifeInitialX, double livesMargin, LifeIcon.Type type) {
@@ -134,5 +153,12 @@ public final class GameScreen extends AbstractScreen {
         }
 
         return livesStack;
+    }
+
+    private void dispose() {
+        game.dispose();
+        playerOne = null;
+        playerTwo = null;
+        clearInputs();
     }
 }
