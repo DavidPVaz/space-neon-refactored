@@ -4,6 +4,7 @@ import david.vaz.space.neon.refactored.engine.modules.AudioManager;
 import david.vaz.space.neon.refactored.game.concreteGames.Game;
 import david.vaz.space.neon.refactored.input.Input;
 import david.vaz.space.neon.refactored.input.Key;
+import david.vaz.space.neon.refactored.resources.Sound;
 import david.vaz.space.neon.refactored.screen.Screen;
 import david.vaz.space.neon.refactored.screen.game.GameScreen;
 import david.vaz.space.neon.refactored.screen.game.PauseScreenMock;
@@ -70,6 +71,7 @@ public final class Engine implements KeyboardHandler {
 
     public void start() {
 
+        manager.play(Sound.WACKY_RACE_SHORT, true);
         activeScreen.show();
 
         while (running) {
@@ -84,7 +86,7 @@ public final class Engine implements KeyboardHandler {
 
     public void play(Game game) {
 
-        game.init();
+        game.init(activeState);
 
         int oneSecond = 1;
         long milliSecondsPerFrame = TimeUnit.SECONDS.toMillis(oneSecond) / targetFrames;
@@ -118,6 +120,8 @@ public final class Engine implements KeyboardHandler {
         }
 
         game.end();
+        manager.stopCurrentInLoopSound();
+        manager.play(Sound.WACKY_RACE_SHORT, true);
         setActiveState(State.MENU);
     }
 

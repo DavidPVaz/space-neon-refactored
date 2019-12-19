@@ -43,18 +43,18 @@ public final class Bullet extends AbstractEntity {
     }
 
     public enum Type {
-        GREEN(Image.GREEN_BULLET),
-        BLUE(Image.BLUE_BULLET),
-        RED(Image.RED_BULLET);
+        GREEN(Image.GREEN_BULLET, BULLET_SPEED),
+        BLUE(Image.BLUE_BULLET, BULLET_SPEED),
+        RED(Image.RED_BULLET, BULLET_RED_SPEED);
 
         private Image image;
-        private int damage;
         private double speed;
+        private int damage;
 
-        Type(Image image) {
+        Type(Image image, double speed) {
             this.image = image;
+            this.speed = speed;
             damage = BULLET_DAMAGE;
-            speed = BULLET_SPEED;
         }
 
         public void incrementSpeed(double speed) {

@@ -12,9 +12,12 @@ public final class PowerUpGenerator {
 
     public static PowerUp generatePowerUp(int score) {
 
-        double chance = Math.random() * 300;
+        double chance = Math.random() * 250;
+        double inFunctionOfScore = score / DIFFICULTY_VALUE;
 
-        return chance > score / DIFFICULTY_VALUE ? null : new PowerUp(generateRandomX(), ENTITIES_STARTING_Y, PowerUp.Type.random());
+        return chance > (Math.max(inFunctionOfScore, 0.1)) ?
+                null :
+                new PowerUp(generateRandomX(), ENTITIES_STARTING_Y, PowerUp.Type.random());
     }
 
     private static double generateRandomX() {

@@ -1,8 +1,10 @@
 package david.vaz.space.neon.refactored.game.concreteGames;
 
+import david.vaz.space.neon.refactored.engine.Engine;
+
 public interface Game {
 
-    void init();
+    void init(Engine.State state);
 
     void loop();
 

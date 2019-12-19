@@ -2,8 +2,8 @@ package david.vaz.space.neon.refactored.game.concreteGames;
 
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.collectibles.PowerUp;
-import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.Player;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.obstacle.Obstacle;
+import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.Player;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.enemy.Enemy;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.enemy.FinalBoss;
 import david.vaz.space.neon.refactored.engine.Engine;
@@ -12,8 +12,12 @@ import david.vaz.space.neon.refactored.game.Score;
 import david.vaz.space.neon.refactored.game.factories.EnemyGenerator;
 import david.vaz.space.neon.refactored.game.factories.ObstacleGenerator;
 import david.vaz.space.neon.refactored.game.factories.PowerUpGenerator;
+import david.vaz.space.neon.refactored.resources.Sound;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 
 import static david.vaz.space.neon.refactored.game.Constants.SCORE_INCREMENT;
 
@@ -35,10 +39,12 @@ public final class SpaceNeon extends AbstractGame {
     }
 
     @Override
-    public void init() {
+    public void init(Engine.State state) {
+        manager.stopCurrentInLoopSound();
         players.forEach(Player::show);
         score.show();
         frames.show();
+        manager.play(gameSounds.get(state), true);
     }
 
     @Override
@@ -125,11 +131,13 @@ public final class SpaceNeon extends AbstractGame {
         }
 
         if (enemy instanceof FinalBoss) {
+            manager.stopCurrentInLoopSound();
+            manager.play(Sound.FINAL_ACT_SHORT, true);
             bossHasBeenSpawned = true;
         }
 
         if (score.value() % SCORE_INCREMENT == 0) {
-            enemy.boostHp(10);
+            enemy.boostHp(15);
         }
 
         enemies.add(enemy);

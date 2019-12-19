@@ -3,11 +3,12 @@ package david.vaz.space.neon.refactored.game.concreteGames;
 import david.vaz.space.neon.refactored.drawable.entity.bullet.Bullet;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.Player;
 import david.vaz.space.neon.refactored.drawable.entity.hittable.shootable.Shootable;
+import david.vaz.space.neon.refactored.engine.Engine;
+import david.vaz.space.neon.refactored.engine.modules.AudioManager;
 import david.vaz.space.neon.refactored.game.Frames;
+import david.vaz.space.neon.refactored.resources.Sound;
 
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 abstract class AbstractGame implements Game {
 
@@ -15,12 +16,16 @@ abstract class AbstractGame implements Game {
     protected final List<Bullet> bullets;
     protected final Frames frames;
     protected boolean notDisposed;
+    protected final AudioManager manager;
+    protected final Map<Engine.State, Sound> gameSounds;
 
     AbstractGame() {
         players = new LinkedList<>();
         bullets = new LinkedList<>();
         frames = new Frames();
         notDisposed = true;
+        manager = AudioManager.getInstance();
+        gameSounds = possibleSounds();
     }
 
     @SafeVarargs
@@ -64,5 +69,16 @@ abstract class AbstractGame implements Game {
 
     public final void dispose() {
         notDisposed = false;
+    }
+
+    private Map<Engine.State, Sound> possibleSounds() {
+
+        Map<Engine.State, Sound> map = new HashMap<>();
+
+        map.put(Engine.State.SINGLE_PLAYER, Sound.GOLD_GRYPHONS_SHORT);
+        map.put(Engine.State.MULTI_PLAYER, Sound.NINJA_PANDA_SHORT);
+        map.put(Engine.State.VERSUS, Sound.MAD_RUN_SHORT);
+
+        return map;
     }
 }

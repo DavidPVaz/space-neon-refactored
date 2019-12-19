@@ -48,7 +48,9 @@ public final class AudioManager {
     }
 
     public void stopCurrentInLoopSound() {
-        sounds.get(inLoopSound).stop();
+        Music music = sounds.get(inLoopSound);
+        music.stop();
+        music.setup(inLoopSound.path());
     }
 
     public void close() {

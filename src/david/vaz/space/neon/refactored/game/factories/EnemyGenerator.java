@@ -16,10 +16,12 @@ public final class EnemyGenerator {
     public static Enemy generateEnemy(int score) {
 
         double chance = Math.random() * 18;
+        double inFunctionOfScore = score / DIFFICULTY_VALUE;
 
         return score >= 2800 ?
                 new FinalBoss(FINAL_BOSS_INITIAL_X, FINAL_BOSS_Y) :
-                chance > score / DIFFICULTY_VALUE ?
+
+                chance > (Math.max(inFunctionOfScore, 0.15)) ?
                         null :
                         Enemy.Type.random() == Enemy.Type.REGULAR ?
                                 new RegularEnemy(generateRandomX(), ENTITIES_STARTING_Y) :

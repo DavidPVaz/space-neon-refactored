@@ -13,9 +13,11 @@ public final class Versus extends AbstractGame {
     }
 
     @Override
-    public void init() {
+    public void init(Engine.State state) {
+        manager.stopCurrentInLoopSound();
         players.forEach(Player::show);
         frames.show();
+        manager.play(gameSounds.get(state), true);
     }
 
     @Override
