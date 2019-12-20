@@ -1,7 +1,7 @@
 package david.vaz.space.neon.refactored.resources;
 
 public enum Sound {
-    BULLET_WHIZZING(Directory.EFFECTS),
+    BULLET_WHIZZING_BY(Directory.EFFECTS),
     POWER_UP(Directory.EFFECTS),
     TORPEDO_IMPACT(Directory.EFFECTS),
     FINAL_ACT_SHORT(Directory.BACKGROUND_MUSIC),

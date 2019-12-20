@@ -106,7 +106,7 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
             firingCooldown = PLAYERS_FIRING_COOLDOWN;
         }
 
-        manger.play(Sound.BULLET_WHIZZING, false);
+        manger.play(Sound.BULLET_WHIZZING_BY, false);
         return bullets;
     }
 
