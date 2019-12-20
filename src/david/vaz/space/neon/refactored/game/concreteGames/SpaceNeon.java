@@ -28,6 +28,7 @@ public final class SpaceNeon extends AbstractGame {
     private final List<PowerUp> powerUps;
     private final Score score;
     private boolean bossHasBeenSpawned;
+    private boolean bossHasNotBeenDefeated;
 
     public SpaceNeon(Player... players) {
         this.players.addAll(Arrays.asList(players));
@@ -36,6 +37,7 @@ public final class SpaceNeon extends AbstractGame {
         powerUps = new LinkedList<>();
         score = new Score();
         bossHasBeenSpawned = false;
+        bossHasNotBeenDefeated = true;
     }
 
     @Override
@@ -75,7 +77,7 @@ public final class SpaceNeon extends AbstractGame {
 
     @Override
     public boolean doesNotEnd() {
-        return notDisposed && players.stream().anyMatch(Player::isAlive);
+        return notDisposed && players.stream().anyMatch(Player::isAlive) && bossHasNotBeenDefeated;
     }
 
     @Override
@@ -185,6 +187,7 @@ public final class SpaceNeon extends AbstractGame {
             Enemy enemy = enemyIterator.next();
 
             if (enemy.cantMove() || enemy.isDestroyed()) {
+                bossHasNotBeenDefeated = !(enemy instanceof FinalBoss);
                 enemy.hide();
                 enemyIterator.remove();
                 continue;
