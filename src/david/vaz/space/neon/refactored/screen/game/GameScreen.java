@@ -55,6 +55,9 @@ public final class GameScreen extends AbstractScreen {
 
     @Override
     public void hide() {
+        playerOne = null;
+        playerTwo = null;
+        clearInputs();
         topBar.hide();
         bottomBar.hide();
         super.hide();
@@ -98,15 +101,14 @@ public final class GameScreen extends AbstractScreen {
             engine.setActiveState(previousState == Engine.State.MULTI_PLAYER ? Engine.State.MULTI_PLAYER :
                     previousState == Engine.State.SINGLE_PLAYER ? Engine.State.SINGLE_PLAYER :
                             Engine.State.VERSUS);
-
             pauseScreen.hide();
         });
 
         addInputHandler(Key.M, Input.Type.KEY_RELEASE, () -> {
 
             if (engine.getActiveState() == Engine.State.PAUSED) {
-                dispose();
                 pauseScreen.hide();
+                dispose();
             }
         });
 
@@ -154,8 +156,5 @@ public final class GameScreen extends AbstractScreen {
 
     private void dispose() {
         game.dispose();
-        playerOne = null;
-        playerTwo = null;
-        clearInputs();
     }
 }
