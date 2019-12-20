@@ -37,6 +37,10 @@ public final class Constants {
     public final static int BOSS_HP = 4000;
     public final static int ENEMIES_FIRING_COOLDOWN = 70;
     public final static int FINAL_BOSS_INITIAL_FIRING_COOLDOWN = 130;
+    public final static double FINAL_BOSS_SPAWN_SCORE = 3000;
+    public final static double MINIMUM_ENEMIES_SPAWN_CHANCE = 0.15;
+    public final static double OBSTACLES_SPAWN_CHANCE = 0.1;
+    public final static double MINIMUM_POWER_UP_SPAWN_CHANCE = 0.1;
 
     public final static double SMALL_OBSTACLE_SPEED = 5;
     public final static double MEDIUM_OBSTACLE_SPEED = 4;

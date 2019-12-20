@@ -15,7 +15,7 @@ public final class PowerUpGenerator {
         double chance = Math.random() * 250;
         double inFunctionOfScore = score / DIFFICULTY_VALUE;
 
-        return chance > (Math.max(inFunctionOfScore, 0.1)) ?
+        return chance > (Math.max(inFunctionOfScore, MINIMUM_POWER_UP_SPAWN_CHANCE)) ?
                 null :
                 new PowerUp(generateRandomX(), ENTITIES_STARTING_Y, PowerUp.Type.random());
     }
