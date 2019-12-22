@@ -22,8 +22,7 @@ of time, experience and scalable/maintainable/design notions.
 - [ ] Refine the values of the enemies and power-up spawn logic
 
 #### **To play the game**:
-- Clone the project and run ant with the build.xml to create the jar.
-- Go to release tab and download it.
+- Clone the project and run ant with the build.xml to create the jar, or just download it from the release. 
 
 ## **Credits**:
 
