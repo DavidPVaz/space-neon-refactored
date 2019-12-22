@@ -18,7 +18,7 @@ the code, please.
 #### **About**:
 
 - This game has a **single-player**, **two-player** and **versus** mode. In both single and two-player, fight against waves of 
-enemies spaceships that will grow in number as you increase your score! Feel free to collect power-ups to ease your ride 
+enemy spaceships that will grow in number as you increase your score! Feel free to collect power-ups to ease your ride 
 (increase player speed, increase bullet speed, increase bullet damage, switch to double shooting and extra life). 
 
 - You are not a cat, so you only have 3 lives! Each time you lose your life, you also lose all power-up enhancements collected 
