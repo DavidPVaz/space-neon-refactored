@@ -22,7 +22,7 @@ enemy spaceships that will grow in number as you increase your score! Feel free 
 (increase player speed, increase bullet speed, increase bullet damage, switch to double shooting and extra life). 
 
 - You are not a cat, so you only have 3 lives! Each time you lose your life, you also lose all power-up enhancements collected 
-until then, and your state is reseted back to the beginning. If you're tough, and get to 3000 score points, the waves will 
+until then, and your state is reset back to the beginning. If you're tough, and get to 3000 score points, the waves will 
 disappear and a final boss will spawn, and as this get closest to his death, it will begin to move and shoot faster. Don't say
 I didn't warn you! 
 
