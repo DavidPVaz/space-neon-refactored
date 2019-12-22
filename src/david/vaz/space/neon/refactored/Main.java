@@ -5,7 +5,9 @@ import david.vaz.space.neon.refactored.engine.Engine;
 public class Main {
     public static void main(String[] args) {
 
-        Engine engine = new Engine(60);
+        int targetFrames = 60;
+
+        Engine engine = new Engine(targetFrames);
 
         engine.init();
         engine.start();
