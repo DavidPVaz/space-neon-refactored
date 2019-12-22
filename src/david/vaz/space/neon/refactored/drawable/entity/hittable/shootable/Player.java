@@ -219,15 +219,11 @@ public final class Player extends AbstractEntity implements Hittable, Shootable 
 
         synchronized (directions) {
 
-            if (directions.isEmpty()) {
-                return null;
-            }
-
-            if (directions.size() == 2) {
-                return Direction.resolveTwoPressedDirections(directions.get(0), directions.get(1));
-            }
-
-            return directions.get(0);
+            return directions.isEmpty() ?
+                    null :
+                    directions.size() == 2 ?
+                            Direction.resolveTwoPressedDirections(directions.get(0), directions.get(1)) :
+                            directions.get(0);
         }
     }
 
