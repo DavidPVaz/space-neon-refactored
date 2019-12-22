@@ -5,6 +5,7 @@ import david.vaz.space.neon.refactored.resources.Sound;
 import javax.sound.sampled.*;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -64,7 +65,10 @@ public final class AudioManager {
         private void setup(String path) {
 
             try {
-                AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(path));
+                File sound = new File(path);
+                // comment the line above and use the line below when making build, so the path is accessible when executing jar
+                //URL sound = getClass().getClassLoader().getResource(path);
+                AudioInputStream audioStream = AudioSystem.getAudioInputStream(sound);
                 clip = AudioSystem.getClip();
                 clip.open(audioStream);
                 //auto close for sound effects

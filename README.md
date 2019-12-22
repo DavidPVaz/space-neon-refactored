@@ -38,7 +38,7 @@ to shoot him, just move to versus mode and solve those issues!
 #### **To play the game**:
 - If you know how to, I think I don't need to tell you to clone the project and to run "ant" in the command line in project 
 dir (where build.xml sits).
-- If you don't know how to, just download it [here](https://drive.google.com/open?id=1VV-OdtOOF1zoWvAtvBpbvITfWokM0zC1).
+- If you don't know how to, just download it [here](https://drive.google.com/open?id=1UgTA54ZEfFO5BHxKHRGcXLvqi-oIu2Kw).
 
 ## **Credits**:
 

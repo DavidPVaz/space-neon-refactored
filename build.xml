@@ -1,6 +1,6 @@
 <?xml version="1.0" ?>
 
-<project name="game-project" default="jarfile">
+<project name="space-neon-refactored" default="jarfile">
 
     <!-- Initialize build properties  -->
     <target name="init" description="Initializes properties">
@@ -11,6 +11,7 @@
         <property name="classes.dir" value="${build.dir}/classes" />
         <property name="lib.dir" value="lib" />
         <property name="resources.dir" value="assets"/>
+        <property name="version" value="1.0-SNAPSHOT"/>
         <path id="classpath">
             <fileset dir="${lib.dir}" includes="**/*.jar" />
         </path>
@@ -35,7 +36,7 @@
 
     <!-- Creates a JAR file -->
     <target name="jarfile" description="Archives the code" depends="compile">
-        <jar destfile="${build.dir}/${project.name}.jar" basedir="${classes.dir}">
+        <jar destfile="${build.dir}/${project.name}-${version}.jar" basedir="${classes.dir}">
             <manifest>
                 <attribute name="Main-Class" value="${main.class}" />
                 <attribute name="Class-Path" value="${lib.dir} ${resources.dir}" />
