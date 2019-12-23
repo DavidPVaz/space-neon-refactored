@@ -42,13 +42,11 @@ public final class GameScreen extends AbstractScreen {
         topBar.show();
         bottomBar.show();
 
-        if (getEngine().getActiveState() == Engine.State.VERSUS) {
-            game = new Versus(playerOne, playerTwo);
-        } else if (playerTwo == null) {
-            game = new SpaceNeon(playerOne);
-        } else {
-            game = new SpaceNeon(playerOne, playerTwo);
-        }
+        game = getEngine().getActiveState() == Engine.State.VERSUS ?
+                new Versus(playerOne, playerTwo) :
+                playerTwo == null ?
+                        new SpaceNeon(playerOne) :
+                        new SpaceNeon(playerOne, playerTwo);
 
         new Thread(() -> getEngine().play(game)).start();
     }
