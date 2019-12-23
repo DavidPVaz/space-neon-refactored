@@ -4,8 +4,8 @@
 
 ## **Project Description**:
 
-- [SpaceNeon](https://github.com/DavidPVaz/SpaceNeon) is an open source game developed in 10 days by @FranciscoInacio, 
-@AshDrumish, @mcmatos, @PauloPatoleia and myself. This project was a challenge presented to us during the <Academia de Código_>
+- [SpaceNeon](https://github.com/DavidPVaz/SpaceNeon) is an open source game developed in 10 days by [FranciscoInacio](https://github.com/FranciscoInacio), 
+[AshDrumish](https://github.com/AshDrumish), [mcmatos](https://github.com/mcmatos), [PauloPatoleia](https://github.com/PauloPatoleia) and myself. This project was a challenge presented to us during the <Academia de Código_>
 bootcamp that lasted 14 weeks from January 2019 to April 2019, and all of us had zero programming experience or any related 
 knowledge. This game was developed with 4 weeks of programming "experience", and dit not come into full completion due to lack
 of time, experience and scalable/maintainable/design notions.
@@ -22,7 +22,7 @@ of time, experience and scalable/maintainable/design notions.
 - [ ] Refine the values of the enemies and power-up spawn logic
 
 #### **To play the game**:
-- Clone the project and run ant with the build.xml to create the jar, or just download it from the release. 
+- Clone the project and run ant with the build.xml to create the jar, or just download the release. 
 
 ## **Credits**:
 
