@@ -1,4 +1,4 @@
-# **Space Neon Refactored** - Open Source Game
+# **Space Neon Refactored**
 
 ![Space-Neon-Menu](https://i.imgur.com/gWsiMS3.png)
 
@@ -22,7 +22,7 @@ of time, experience and scalable/maintainable/design notions.
 - [ ] Refine the values of the enemies and power-up spawn logic
 
 #### **To play the game**:
-- Clone the project and run ant with the build.xml to create the jar, or just download the release. 
+-  Download the release, and execute the jar on command line (java -jar).
 
 ## **Credits**:
 
