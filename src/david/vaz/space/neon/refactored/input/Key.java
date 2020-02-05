@@ -27,7 +27,7 @@ public enum Key {
     }
 
     public static Key withCode(int keyCode) {
-        return Arrays.stream(values()).filter(key -> key.keyCode == keyCode).findFirst().orElse(null);
+        return Arrays.stream(values()).filter(key -> key.keyCode == keyCode).findFirst().get();
     }
 
     public int getKeyCode() {
