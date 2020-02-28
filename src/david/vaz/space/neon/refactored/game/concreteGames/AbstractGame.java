@@ -67,6 +67,7 @@ abstract class AbstractGame implements Game {
 
     abstract void movePlayers();
 
+    @Override
     public final void dispose() {
         notDisposed = false;
     }
